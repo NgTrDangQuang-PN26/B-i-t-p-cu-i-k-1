@@ -109,6 +109,14 @@ h3{font-size:clamp(16px,1.55vw,22px);line-height:1.15}
 .table-wrap{overflow:auto;border-radius:14px;flex:1;min-height:0}
 .note{font-size:clamp(10px,.9vw,12px);color:#efc1cb;line-height:1.4}
 .bottomline{display:flex;justify-content:space-between;align-items:center;gap:14px;margin-top:auto;padding-top:12px;color:#f2c4ce;font-size:clamp(10px,.9vw,12px)}
+/* Keep classification cards in normal flow so the example callout sits below them. */
+.classification-slide .classification-cards{flex:0 0 auto;min-height:auto;align-items:stretch}
+.classification-slide .classification-cards>.panel{min-height:220px;padding:clamp(14px,1.5vw,21px)}
+.classification-slide .classification-cards .threshold{margin:8px 0 12px}
+.classification-slide .classification-cards .callout{padding:10px 13px}
+.classification-slide .classification-cards .rowline{margin-top:12px!important;flex-wrap:wrap}
+.classification-slide .classification-situation{flex:0 0 auto;min-height:68px;margin-top:12px!important;padding:12px 16px;position:relative;z-index:2}
+.classification-slide .bottomline{padding-top:8px}
 .final-mark{font-size:clamp(42px,5vw,70px);filter:drop-shadow(0 0 23px #ff6b91)}
 .footer{height:45px;display:flex;align-items:center;justify-content:space-between;gap:12px;color:#f6d8df}
 .progress-wrap{display:flex;align-items:center;gap:10px;flex:1;max-width:560px}
@@ -215,10 +223,10 @@ h3{font-size:clamp(16px,1.55vw,22px);line-height:1.15}
     <div class="bottomline"><span>Đây không phải là nhiệt độ sôi của chất lỏng.</span></div>
    </section>
 
-   <section class="slide">
+   <section class="slide classification-slide">
     <div class="slide-head"><span class="kicker"><i class="dot"></i> 01 · PHÂN LOẠI</span></div>
     <h2 class="reveal" style="--delay:60ms">Điểm chớp cháy càng thấp,<br><span class="accent">nguy cơ bắt lửa càng đáng lưu ý</span></h2>
-    <div class="cols" style="margin-top:20px">
+    <div class="cols classification-cards" style="margin-top:20px">
      <div class="panel reveal" style="--delay:180ms">
       <div class="threshold"><span class="symbol">&lt;</span><div><b>37,8°C</b><small>Chất lỏng dễ cháy</small></div></div>
       <div class="callout">Dễ tạo hơi có khả năng bắt lửa ở nhiệt độ thấp.</div>
@@ -230,7 +238,7 @@ h3{font-size:clamp(16px,1.55vw,22px);line-height:1.15}
       <div class="rowline" style="margin-top:20px"><span class="muted">Ví dụ</span><strong class="accent">Ethylene glycol · 111°C</strong></div>
      </div>
     </div>
-    <div class="panel reveal" style="--delay:410ms;margin-top:14px;display:flex;align-items:center;gap:13px">
+    <div class="panel reveal classification-situation" style="--delay:410ms;margin-top:14px;display:flex;align-items:center;gap:13px">
      <span class="icon-bubble">↘</span><p><b class="gold">Tình huống thực tế:</b> Diesel bị lẫn xăng có thể làm điểm chớp cháy của hỗn hợp giảm xuống, từ đó tăng nguy cơ cháy trong bảo quản và vận chuyển.</p>
     </div>
     <div class="bottomline"><span>Phân loại theo tiêu chí được nêu trong tài liệu/SGK.</span></div>
