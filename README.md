@@ -9,6 +9,6 @@ Trang trình chiếu web 16:9 tông đỏ gradient, được biên soạn rút g
 - Trên điện thoại: vuốt ngang để chuyển slide
 
 ## Xuất bản GitHub Pages
-Workflow đã có tại `.github/workflows/deploy-pages.yml`. Lần đầu, vào **Settings → Pages → Build and deployment → Source**, chọn **GitHub Actions**. Sau đó workflow sẽ tự xuất bản mỗi khi có thay đổi trên nhánh `main`.
+Workflow đã có tại `.github/workflows/deploy-pages.yml`. Lần đầu, vào [**Settings → Pages**](https://github.com/NgTrDangQuang-PN26/B-i-t-p-cu-i-k-1/settings/pages) → **Build and deployment → Source**, chọn **GitHub Actions**. Sau đó vào tab [**Actions**](https://github.com/NgTrDangQuang-PN26/B-i-t-p-cu-i-k-1/actions), chọn workflow **Deploy static presentation to GitHub Pages** và nhấn **Run workflow** một lần. Các thay đổi tiếp theo trên nhánh `main` sẽ tự xuất bản.
 
 Nội dung học thuật và số liệu được tóm lược từ tài liệu thuyết trình Hóa 10 Bài 6 do người dùng cung cấp.
