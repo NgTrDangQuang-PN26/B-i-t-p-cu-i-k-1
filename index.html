@@ -85,8 +85,8 @@ h3{font-size:clamp(16px,1.55vw,22px);line-height:1.15}
 .start-hint{min-height:18px;margin-top:12px!important;font-size:11px!important;color:#eab9c5!important}
 
 /* Morph is deliberately dormant until fullscreen mode is confirmed. */
-.morph-old{opacity:1;filter:none;transform:none}
-.morph-new{opacity:0;visibility:hidden;filter:blur(12px);transform:translateY(13px) scale(.68)}
+.morph-old{opacity:1;filter:none;transform:none;animation:none}
+.morph-new{opacity:0;visibility:hidden;filter:blur(12px);transform:translateY(13px) scale(.68);animation:none}
 @keyframes morphOut{0%{opacity:1;filter:blur(0);transform:scale(1)}100%{opacity:0;visibility:hidden;filter:blur(13px);transform:scale(.55) rotate(-12deg)}}
 @keyframes morphIn{0%{opacity:0;visibility:visible;filter:blur(14px);transform:translateY(18px) scale(.55) rotate(9deg)}65%{opacity:1;filter:blur(0);transform:translateY(-4px) scale(1.08) rotate(-2deg)}100%{opacity:1;visibility:visible;filter:blur(0);transform:none}}
 body.morph-active .morph-old{animation:morphOut .88s cubic-bezier(.2,.8,.2,1) both;animation-delay:var(--morph-delay,0ms)}
@@ -203,6 +203,16 @@ body.morph-done .morph-new{opacity:1;visibility:visible;filter:none;transform:no
 </style>
 </head>
 <body>
+<div class="start-overlay" id="startOverlay" role="dialog" aria-modal="true" aria-labelledby="startTitle">
+ <div class="start-card">
+  <div class="start-emblem">✦</div>
+  <div class="start-eyebrow">SẴN SÀNG TRÌNH CHIẾU?</div>
+  <h2 id="startTitle">Hãy vào toàn màn hình để bắt đầu bài thuyết trình.</h2>
+  <p>Nhấn nút bên dưới để mở chế độ trình chiếu. Hiệu ứng Morph ở phần mở đầu sẽ bắt đầu ngay khi toàn màn hình được bật.</p>
+  <button class="start-button" id="startButton">Bật toàn màn hình &amp; bắt đầu <span aria-hidden="true">↗</span></button>
+  <p class="start-hint" id="startHint" aria-live="polite">Bạn có thể thoát toàn màn hình bằng phím Esc.</p>
+ </div>
+</div>
 <div class="deck">
  <header class="topbar">
   <div class="brand"><span class="brand-mark">✦</span><span>HÓA HỌC 10 <span style="opacity:.48">/</span> CHUYÊN ĐỀ</span></div>
@@ -214,13 +224,13 @@ body.morph-done .morph-new{opacity:1;visibility:visible;filter:none;transform:no
     <span class="corner-star star-a">✧</span><span class="corner-star star-b">✦</span><span class="corner-star star-c">✧</span><span class="corner-star star-d">✦</span>
     <div class="cover-meta reveal" style="--delay:0ms">CHUYÊN ĐỀ HÓA HỌC 10 · BÀI 6</div>
     <div class="welcome-grid">
-     <div class="welcome-card"><b class="morph-old">O</b><b class="morph-new">W</b></div>
-     <div class="welcome-card"><b class="morph-old">O</b><b class="morph-new">E</b></div>
-     <div class="welcome-card"><b class="morph-old">O</b><b class="morph-new">L</b></div>
-     <div class="welcome-card"><b class="morph-old">O</b><b class="morph-new">C</b></div>
-     <div class="welcome-card"><b class="morph-old">O</b><b class="morph-new">O</b></div>
-     <div class="welcome-card"><b class="morph-old">O</b><b class="morph-new">M</b></div>
-     <div class="welcome-card"><b class="morph-old">O</b><b class="morph-new">E</b></div>
+     <div class="welcome-card" style="--morph-delay:0ms"><b class="morph-old">O</b><b class="morph-new">W</b></div>
+     <div class="welcome-card" style="--morph-delay:70ms"><b class="morph-old">O</b><b class="morph-new">E</b></div>
+     <div class="welcome-card" style="--morph-delay:140ms"><b class="morph-old">O</b><b class="morph-new">L</b></div>
+     <div class="welcome-card" style="--morph-delay:210ms"><b class="morph-old">O</b><b class="morph-new">C</b></div>
+     <div class="welcome-card" style="--morph-delay:280ms"><b class="morph-old">O</b><b class="morph-new">O</b></div>
+     <div class="welcome-card" style="--morph-delay:350ms"><b class="morph-old">O</b><b class="morph-new">M</b></div>
+     <div class="welcome-card" style="--morph-delay:420ms"><b class="morph-old">O</b><b class="morph-new">E</b></div>
     </div>
     <div class="cover-title reveal" style="--delay:1250ms">CÁC NGƯỠNG NHIỆT<br><span style="color:#ffb7c8">TRONG SỰ CHÁY</span></div>
     <p class="cover-sub reveal" style="--delay:1500ms">Điểm chớp cháy · Nhiệt độ ngọn lửa · Nhiệt độ tự bốc cháy</p>
@@ -342,7 +352,7 @@ body.morph-done .morph-new{opacity:1;visibility:visible;filter:none;transform:no
     <div class="bottomline"><span>Đây là nhiệt độ của vùng ngọn lửa, không phải điểm chớp cháy.</span></div>
    </section>
 
-   <section class="slide">
+   <section class="slide oxygen-slide">
     <div class="slide-head"><span class="kicker"><i class="dot"></i> 02 · OXYGEN</span></div>
     <h2 class="reveal" style="--delay:60ms">Oxygen ảnh hưởng<br><span class="accent">đến nhiệt độ ngọn lửa</span></h2>
     <div class="cols" style="margin-top:15px">
@@ -356,8 +366,8 @@ body.morph-done .morph-new{opacity:1;visibility:visible;filter:none;transform:no
      <div class="panel reveal" style="--delay:290ms">
       <h3>So sánh hình ảnh ngọn lửa</h3>
       <div class="flameduo" style="margin-top:9px">
-       <div class="flamebox"><div class="flame-shape">🔵</div><b>Đủ oxygen</b><small>Ngọn lửa bếp gas thường có màu xanh; quá trình cháy tương đối hoàn toàn.</small></div>
-       <div class="flamebox"><div class="flame-shape">🟠</div><b>Thiếu oxygen</b><small>Cháy có thể không hoàn toàn và tạo khí carbon monoxide (CO) độc hại.</small></div>
+       <div class="flamebox"><div class="flame-shape" aria-hidden="true"><svg viewBox="0 0 100 120"><defs><linearGradient id="blueFlame" x1="0" y1="1" x2="1" y2="0"><stop stop-color="#2c7eff"/><stop offset=".58" stop-color="#57d8ff"/><stop offset="1" stop-color="#d8fbff"/></linearGradient></defs><path d="M51 7C58 31 88 40 82 78C78 104 60 116 43 112C20 107 9 88 19 62C25 46 39 37 37 19C49 30 52 42 50 52C63 44 63 26 51 7Z" fill="url(#blueFlame)"/><path d="M50 59C57 73 66 79 61 94C58 104 49 108 41 102C31 95 34 82 42 72C46 67 49 63 50 59Z" fill="#effcff" opacity=".9"/></svg></div><b>Đủ oxygen</b><small>Ngọn lửa bếp gas thường có màu xanh; quá trình cháy tương đối hoàn toàn.</small></div>
+       <div class="flamebox"><div class="flame-shape" aria-hidden="true"><svg viewBox="0 0 100 120"><defs><linearGradient id="orangeFlame" x1="0" y1="1" x2="1" y2="0"><stop stop-color="#ee4a36"/><stop offset=".55" stop-color="#ff9b3d"/><stop offset="1" stop-color="#ffe3a0"/></linearGradient></defs><path d="M51 7C58 31 88 40 82 78C78 104 60 116 43 112C20 107 9 88 19 62C25 46 39 37 37 19C49 30 52 42 50 52C63 44 63 26 51 7Z" fill="url(#orangeFlame)"/><path d="M50 59C57 73 66 79 61 94C58 104 49 108 41 102C31 95 34 82 42 72C46 67 49 63 50 59Z" fill="#fff0c7" opacity=".9"/></svg></div><b>Thiếu oxygen</b><small>Cháy có thể không hoàn toàn và tạo khí carbon monoxide (CO) độc hại.</small></div>
       </div>
      </div>
     </div>
@@ -493,7 +503,10 @@ body.morph-done .morph-new{opacity:1;visibility:visible;filter:none;transform:no
  const next=document.getElementById('next');
  const full=document.getElementById('full');
  const stage=document.getElementById('stage');
- let index=0, cleanupTimer=null, touchX=null;
+ const startOverlay=document.getElementById('startOverlay');
+ const startButton=document.getElementById('startButton');
+ const startHint=document.getElementById('startHint');
+ let index=0, cleanupTimer=null, touchX=null, morphTriggered=false, overlayDismissed=false;
  const total=slides.length;
  function paint(){
   const pct=((index+1)/total)*100;
@@ -521,8 +534,42 @@ body.morph-done .morph-new{opacity:1;visibility:visible;filter:none;transform:no
  function backward(){go(index===0?0:index-1)}
  prev.addEventListener('click',backward);
  next.addEventListener('click',forward);
+ function enterPresentationMode(){
+  if(!document.fullscreenElement)return;
+  document.body.classList.add('is-presenting');
+  if(startOverlay&&!overlayDismissed){
+   startOverlay.classList.add('is-hidden');
+   startOverlay.setAttribute('aria-hidden','true');
+   overlayDismissed=true;
+  }
+  if(!morphTriggered&&index===0){
+   morphTriggered=true;
+   document.body.classList.add('morph-active');
+   window.setTimeout(function(){
+    document.body.classList.remove('morph-active');
+    document.body.classList.add('morph-done');
+   },1850);
+  }
+ }
+ function requestPresentationMode(){
+  const request=document.documentElement.requestFullscreen;
+  if(!request){
+   if(startHint)startHint.textContent='Trình duyệt chưa hỗ trợ toàn màn hình. Hãy thử mở bằng trình duyệt trên máy tính.';
+   return;
+  }
+  Promise.resolve(request.call(document.documentElement)).then(function(){
+   if(document.fullscreenElement)enterPresentationMode();
+  }).catch(function(){
+   if(startHint)startHint.textContent='Chưa bật được toàn màn hình. Hãy cho phép trang web sử dụng chế độ toàn màn hình rồi thử lại nhé.';
+  });
+ }
+ startButton.addEventListener('click',requestPresentationMode);
+ document.addEventListener('fullscreenchange',function(){
+  if(document.fullscreenElement)enterPresentationMode();
+  else document.body.classList.remove('is-presenting');
+ });
  full.addEventListener('click',function(){
-  if(!document.fullscreenElement){const request=document.documentElement.requestFullscreen;if(request)Promise.resolve(request.call(document.documentElement)).catch(function(){});}
+  if(!document.fullscreenElement)requestPresentationMode();
   else if(document.exitFullscreen)document.exitFullscreen();
  });
  document.addEventListener('keydown',function(e){
