@@ -6,6 +6,7 @@
 <meta name="theme-color" content="#6f0925">
 <meta name="description" content="Bài thuyết trình Hóa học 10 – Điểm chớp cháy, nhiệt độ ngọn lửa và nhiệt độ tự bốc cháy.">
 <title>Hóa học 10 · Các ngưỡng nhiệt trong sự cháy</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&display=swap" rel="stylesheet">
 <style>
 :root{--ink:#fff8f7;--muted:#f5cbd3;--rose:#ff9db5;--pink:#ffd5df;--red:#e52b55;--wine:#260713;--wine2:#4b0b20;--panel:rgba(255,242,244,.09);--line:rgba(255,220,228,.18);--gold:#ffd58b}
 *{box-sizing:border-box}
@@ -42,7 +43,7 @@ h3{font-size:clamp(16px,1.55vw,22px);line-height:1.15}
 
 @keyframes enterFromLeft{from{opacity:0;transform:translateX(-30px) rotate(-1deg) scale(.98);filter:blur(4px)}to{opacity:1;transform:none;filter:blur(0)}}
 @keyframes enterFromRight{from{opacity:0;transform:translateX(30px) rotate(1deg) scale(.98);filter:blur(4px)}to{opacity:1;transform:none;filter:blur(0)}}
-@keyframes softPop{0%{opacity:0;transform:translateY(12px) scale(.94);filter:blur(3px)}72%{opacity:1;transform:translateY(-3px) scale(1.015);filter:blur(0)}100%{opacity:1;transform:none}}
+@keyframes softPop{0%{opacity:0;transform:translateY(12px) scale(.94);filter:blur(3px)}72%{opacity:1;transform:translateY(-3px) scale(1.015);filter:blur(0)}100%{opacity:1;transform:none;filter:blur(0)}}
 @keyframes iconBob{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(-5px) rotate(-5deg)}}
 @keyframes flamePulse{0%,100%{transform:translateY(0) scale(1);filter:drop-shadow(0 0 12px #ff9b6b55)}45%{transform:translateY(-4px) scale(1.04);filter:drop-shadow(0 0 22px #ff9b6b99)}}
 @keyframes twinkle{0%,100%{opacity:.45;transform:scale(.88) rotate(-8deg)}50%{opacity:1;transform:scale(1.12) rotate(10deg)}}
@@ -50,7 +51,7 @@ h3{font-size:clamp(16px,1.55vw,22px);line-height:1.15}
 @keyframes dotPulse{0%,100%{box-shadow:0 0 0 0 #ff9db566}50%{box-shadow:0 0 0 7px #ff9db500}}
 .slide.active .panel.reveal:nth-child(odd){animation-name:enterFromLeft}
 .slide.active .panel.reveal:nth-child(even){animation-name:enterFromRight}
-.slide.active .callout{animation:softPop .72s cubic-bezier(.18,.78,.2,1) both;animation-delay:180ms}
+.slide.active .callout{animation:softPop .72s cubic-bezier(.18,.78,.2,1) both;animation-delay:180ms;filter:none}
 @keyframes accentGlow{0%,100%{text-shadow:0 0 0 #ffb1c200}50%{text-shadow:0 0 18px #ff91ad55}}
 .slide.active .accent{animation:accentGlow 4.5s ease-in-out infinite}
 .slide.active .flamebox{animation:softPop .78s cubic-bezier(.18,.78,.2,1) both;animation-delay:320ms}
@@ -87,6 +88,24 @@ h3{font-size:clamp(16px,1.55vw,22px);line-height:1.15}
 .start-button{margin-top:22px;border:0;border-radius:14px;padding:13px 20px;background:linear-gradient(135deg,#ff9db5,#ec456d);color:#43091d;font-weight:850;cursor:pointer;box-shadow:0 10px 24px #dc315b55;transition:transform .2s ease,box-shadow .2s ease}
 .start-button:hover{transform:translateY(-3px);box-shadow:0 14px 30px #dc315b77}
 .start-hint{min-height:18px;margin-top:12px!important;font-size:11px!important;color:#eab9c5!important}
+
+
+.source-link{color:#ffd3de;text-decoration:underline;text-decoration-color:#ffb1c477;text-underline-offset:3px;font-weight:800;white-space:nowrap}
+.source-link:hover{color:#fff}
+.source-pill{color:#ffe4ea;text-decoration:none;cursor:pointer}
+.thankyou-slide{justify-content:center;text-align:center;isolation:isolate;background:radial-gradient(ellipse at 50% 43%,#b51b36 0,transparent 39%),radial-gradient(ellipse at 10% 10%,#8b1232 0,transparent 34%),radial-gradient(ellipse at 88% 90%,#8f1232 0,transparent 34%),linear-gradient(145deg,#10040a,#380918 45%,#16040b)}
+.thankyou-slide:before{background-image:radial-gradient(#fff3f71a 1px,transparent 1px);background-size:18px 18px;opacity:.3}
+.thankyou-script{font-family:"Caveat","Segoe Print","Brush Script MT",cursive;font-size:clamp(68px,10vw,132px);line-height:.78;font-weight:700;letter-spacing:-.045em;color:#fff;text-shadow:0 9px 32px #09000688;transform:rotate(-3deg);margin:0 auto clamp(20px,3vw,34px);animation:thankYouReveal 1s cubic-bezier(.18,.8,.2,1) both}
+@keyframes thankYouReveal{from{opacity:0;transform:translateY(25px) rotate(-7deg) scale(.91);filter:blur(7px)}to{opacity:1;transform:rotate(-3deg) scale(1);filter:blur(0)}}
+.thankyou-eyebrow{font-size:clamp(10px,.95vw,13px);font-weight:900;letter-spacing:.22em;color:#ffd0da;text-transform:uppercase;margin-bottom:clamp(18px,2.5vw,30px)}
+.thankyou-copy{max-width:850px;margin:0 auto;color:#fff0f3;font-size:clamp(13px,1.45vw,18px);line-height:1.55;text-wrap:balance;text-shadow:0 2px 14px #13000866}
+.thankyou-link{display:inline-flex;align-items:center;gap:10px;margin-top:clamp(18px,2.5vw,28px);padding:11px 18px;border:1px solid #ffd2dd85;border-radius:999px;background:#fff1f311;color:#fff;font-size:clamp(11px,1vw,14px);font-weight:850;letter-spacing:.02em;text-decoration:none;box-shadow:0 9px 28px #15000855;transition:transform .22s ease,background .22s ease,box-shadow .22s ease}
+.thankyou-link:hover{transform:translateY(-3px);background:#fff2f325;box-shadow:0 14px 34px #15000877}
+.thankyou-credit{position:absolute!important;left:0;right:0;bottom:clamp(16px,2.4vw,28px);text-align:center;color:#f1c7d0;font-size:clamp(9px,.8vw,11px);letter-spacing:.04em}
+.thankyou-orbit{position:absolute!important;inset:auto 0 0;width:100%;height:43%;z-index:0;pointer-events:none;opacity:.48}
+.thankyou-orbit path{fill:none;stroke:#fff;stroke-width:1.15;stroke-opacity:.86}
+.thankyou-orbit .dots{fill:#fff;stroke:none;opacity:.56}
+@media(max-width:560px){.thankyou-script{font-size:clamp(58px,16vw,90px)}.thankyou-copy{font-size:12px;max-width:96%}.thankyou-credit{bottom:10px}.thankyou-orbit{height:34%}}
 
 /* Morph is deliberately dormant until fullscreen mode is confirmed. */
 .morph-old{opacity:1;filter:none;transform:none;animation:none}
@@ -212,7 +231,7 @@ body.morph-done .morph-new{opacity:1;visibility:visible;filter:none;transform:no
   <div class="start-emblem">✦</div>
   <div class="start-eyebrow">SẴN SÀNG TRÌNH CHIẾU?</div>
   <h2 id="startTitle">Hãy vào toàn màn hình để bắt đầu bài thuyết trình.</h2>
-  <p>Nhấn nút bên dưới để mở chế độ trình chiếu. Hiệu ứng Morph ở phần mở đầu sẽ bắt đầu ngay khi toàn màn hình được bật.</p>
+  <p>Khi hoàn thành bài thuyết trình, bạn có thể mở website tài liệu đã được liên kết ở cuối trang để tổng hợp lại toàn bộ kiến thức và ôn tập.</p>
   <button class="start-button" id="startButton">Bật toàn màn hình &amp; bắt đầu <span aria-hidden="true">↗</span></button>
   <p class="start-hint" id="startHint" aria-live="polite">Bạn có thể thoát toàn màn hình bằng phím Esc.</p>
  </div>
@@ -272,9 +291,9 @@ body.morph-done .morph-new{opacity:1;visibility:visible;filter:none;transform:no
       <div class="pill reveal" style="--delay:390ms;margin-top:15px">Điểm chớp cháy thấp → dễ tạo hơi bắt lửa ở nhiệt độ thấp</div>
      </div>
      <div class="panel soft reveal" style="--delay:230ms;display:flex;flex-direction:column;justify-content:center">
-      <div class="rowline"><span class="kicker">VÍ DỤ TRONG TÀI LIỆU</span><span class="icon-bubble">🧪</span></div>
+      <div class="rowline"><span class="kicker">MỐC THAM KHẢO</span><span class="icon-bubble">🧪</span></div>
       <div class="metric" style="margin-top:17px">13°C</div>
-      <div class="metric-label">Điểm chớp cháy của ethanol</div>
+      <div class="metric-label">Điểm chớp cháy của ethanol · <a class="source-link" href="https://en.wikipedia.org/wiki/Ethanol" target="_blank" rel="noopener noreferrer">Wikipedia ↗</a></div>
       <svg viewBox="0 0 420 220" class="thermo" role="img" aria-label="Minh họa nhiệt độ tăng làm lượng hơi của chất lỏng tăng">
        <defs><linearGradient id="liq" x1="0" x2="1"><stop stop-color="#ff9db5"/><stop offset="1" stop-color="#d82a54"/></linearGradient></defs>
        <rect x="18" y="142" width="155" height="54" rx="17" fill="#ffffff17" stroke="#ffc5d2" stroke-opacity=".45"/>
@@ -310,7 +329,7 @@ body.morph-done .morph-new{opacity:1;visibility:visible;filter:none;transform:no
     <div class="panel reveal classification-situation" style="--delay:410ms;margin-top:14px;display:flex;align-items:center;gap:13px">
      <span class="icon-bubble">↘</span><p><b class="gold">Tình huống thực tế:</b> Diesel bị lẫn xăng có thể làm điểm chớp cháy của hỗn hợp giảm xuống, từ đó tăng nguy cơ cháy trong bảo quản và vận chuyển.</p>
     </div>
-    <div class="bottomline"><span>Phân loại theo tiêu chí được nêu trong tài liệu/SGK.</span></div>
+    <div class="bottomline"><span>Mốc phân loại tham khảo: 37,8°C.</span></div>
    </section>
 
    <section class="slide">
@@ -331,7 +350,7 @@ body.morph-done .morph-new{opacity:1;visibility:visible;filter:none;transform:no
        <div style="width:70px;height:70px;border-radius:22px;background:#ffffff13;border:1px solid #ffc5d23b;display:grid;place-items:center;font-size:35px">⚗️</div>
        <div><b class="accent">Thiết bị chuyên dụng</b><p class="small" style="margin-top:5px">Ghi nhận nhiệt độ thấp nhất khi pha hơi bùng cháy khi tiếp xúc ngọn lửa thử.</p></div>
       </div>
-      <p class="note">Đây là mô tả nguyên lý trong tài liệu, không phải hướng dẫn tự tiến hành thí nghiệm.</p>
+      <p class="note">Đây là mô tả khái quát về phép thử; không phải hướng dẫn tự tiến hành thí nghiệm.</p>
      </div>
     </div>
     <div class="bottomline"><span>Xác định đúng điểm chớp cháy giúp hạn chế nguy cơ hỏa hoạn.</span></div>
@@ -349,8 +368,8 @@ body.morph-done .morph-new{opacity:1;visibility:visible;filter:none;transform:no
      <div class="panel soft reveal" style="--delay:220ms;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center">
       <div class="final-mark">🔥</div>
       <div class="metric" style="margin-top:7px">2.082°C</div>
-      <div class="metric-label">Nhiệt độ ngọn lửa theo lí thuyết của ethanol</div>
-      <div class="pill" style="margin-top:17px">VÍ DỤ TRONG TÀI LIỆU</div>
+      <div class="metric-label">Nhiệt độ ngọn lửa đoạn nhiệt của ethanol</div>
+      <a class="pill source-pill" style="margin-top:17px" href="https://en.wikipedia.org/wiki/Ethanol" target="_blank" rel="noopener noreferrer">THAM KHẢO: WIKIPEDIA · ETHANOL ↗</a>
      </div>
     </div>
     <div class="bottomline"><span>Đây là nhiệt độ của vùng ngọn lửa, không phải điểm chớp cháy.</span></div>
@@ -387,7 +406,7 @@ body.morph-done .morph-new{opacity:1;visibility:visible;filter:none;transform:no
      <article class="panel reveal" style="--delay:390ms"><div class="panel-title"><span class="icon-bubble">🛠️</span><h3>Cơ khí</h3></div><p>Ứng dụng nhiệt độ cao trong công nghệ hàn và cắt kim loại.</p><div class="pill" style="margin-top:15px">GIA CÔNG KIM LOẠI</div></article>
     </div>
     <div class="panel soft reveal" style="--delay:510ms;margin-top:15px;display:flex;align-items:center;gap:16px">
-     <div class="metric" style="white-space:nowrap">3.410 K</div><div><b class="gold">Ví dụ: đèn xì oxygen – acetylene</b><p class="small" style="margin-top:5px">Được sử dụng trong công nghiệp hàn và cắt kim loại; nhiệt độ ngọn lửa có thể đạt khoảng 3.410 K theo tài liệu.</p></div>
+     <div class="metric" style="white-space:nowrap">3.410 K</div><div><b class="gold">Ví dụ: đèn xì oxygen – acetylene</b><p class="small" style="margin-top:5px">Được sử dụng trong công nghiệp hàn và cắt kim loại; nhiệt độ ngọn lửa có thể đạt khoảng 3.410 K.</p></div>
     </div>
     <div class="bottomline"><span>Nhiệt độ cao vừa hữu ích trong sản xuất, vừa cần được kiểm soát an toàn.</span></div>
    </section>
@@ -404,7 +423,7 @@ body.morph-done .morph-new{opacity:1;visibility:visible;filter:none;transform:no
       <div class="final-mark">☀️</div>
       <div class="metric" style="margin-top:8px">210°C</div>
       <div class="metric-label">Nhiệt độ tự bốc cháy của octane</div>
-      <p class="note" style="margin-top:17px">Ví dụ trong tài liệu: hơi octane có thể tự bốc cháy khi đạt ngưỡng nhiệt độ này, dù không có tia lửa.</p>
+      <p class="note" style="margin-top:17px">Mốc minh họa: octane có nhiệt độ tự bốc cháy 210°C; hiện tượng tự bốc cháy không cần tia lửa.</p>
      </div>
     </div>
     <div class="bottomline"><span>Nhiệt độ tự bốc cháy càng thấp, khả năng gây cháy nổ càng cao.</span></div>
@@ -413,7 +432,7 @@ body.morph-done .morph-new{opacity:1;visibility:visible;filter:none;transform:no
    <section class="slide">
     <div class="slide-head"><span class="kicker"><i class="dot"></i> 03 · SỐ LIỆU</span></div>
     <h2 class="reveal" style="--delay:60ms">Nhiệt độ tự bốc cháy<br><span class="accent">của một số chất</span></h2>
-    <p class="note reveal" style="--delay:120ms;margin-top:8px">Số liệu theo bảng trong tài liệu · đơn vị: °C</p>
+    <p class="note reveal" style="--delay:120ms;margin-top:8px">Bảng số liệu tham khảo · đơn vị: °C</p>
     <div class="panel reveal" style="--delay:190ms;margin-top:14px;flex:1;display:flex;flex-direction:column;justify-content:center">
      <div class="bar-list">
       <div class="bar-item"><div class="bar-label"><span>Carbon monoxide · CO</span><b>605</b></div><div class="bar-track"><div class="bar-fill" style="--w:99.2%"></div></div></div>
@@ -426,7 +445,7 @@ body.morph-done .morph-new{opacity:1;visibility:visible;filter:none;transform:no
      </div>
      <p class="note" style="margin-top:17px">Trong bảng này, octane có giá trị thấp nhất: 210°C.</p>
     </div>
-    <div class="bottomline"><span>Các giá trị được trích theo bảng nhiệt độ tự bốc cháy trong tài liệu.</span></div>
+    <div class="bottomline"><span>Mỗi chất có một ngưỡng tự bốc cháy đặc trưng.</span></div>
    </section>
 
    <section class="slide">
@@ -435,7 +454,7 @@ body.morph-done .morph-new{opacity:1;visibility:visible;filter:none;transform:no
     <div class="cols" style="margin-top:17px">
      <div class="panel reveal" style="--delay:170ms">
       <div class="panel-title"><span class="icon-bubble">🌡️</span><h3>Phụ thuộc điều kiện</h3></div>
-      <p>Nhiệt độ tự bốc cháy không cố định; tài liệu nêu giá trị thường giảm khi áp suất môi trường hoặc nồng độ oxygen tăng lên.</p>
+      <p>Nhiệt độ tự bốc cháy có thể thay đổi theo điều kiện môi trường, trong đó có áp suất và nồng độ oxygen.</p>
       <div class="panel-title" style="margin-top:19px"><span class="icon-bubble">🚫</span><h3>Không cần mồi lửa</h3></div>
       <p>Hiện tượng xảy ra do sự tích tụ nhiệt nội tại của chất khi đạt ngưỡng.</p>
      </div>
@@ -473,18 +492,31 @@ body.morph-done .morph-new{opacity:1;visibility:visible;filter:none;transform:no
     <div class="bottomline"><span>Phân biệt đúng ba khái niệm là chìa khóa của bài học.</span></div>
    </section>
 
-   <section class="slide cover">
-    <span class="corner-star star-a">✧</span><span class="corner-star star-b">✦</span><span class="corner-star star-c">✧</span><span class="corner-star star-d">✦</span>
-    <div class="cover-meta reveal" style="--delay:0ms">ĐIỀU CẦN NHỚ</div>
-    <div class="final-mark reveal" style="--delay:100ms">✨</div>
-    <h2 class="reveal" style="--delay:180ms;margin-top:10px">Hiểu đúng ngưỡng nhiệt<br><span style="color:#ffb7c8">để sử dụng nhiệt an toàn</span></h2>
-    <div class="cols three reveal" style="--delay:300ms;width:92%;margin:22px auto 0;text-align:left">
-     <div class="panel"><b class="accent">01 · Chớp cháy</b><p class="small" style="margin-top:7px">Hơi bắt lửa khi gặp nguồn lửa.</p></div>
-     <div class="panel"><b class="accent">02 · Ngọn lửa</b><p class="small" style="margin-top:7px">Cho biết mức độ nóng của phản ứng cháy.</p></div>
-     <div class="panel"><b class="accent">03 · Tự bốc cháy</b><p class="small" style="margin-top:7px">Chất tự cháy mà không cần mồi lửa.</p></div>
-    </div>
-    <p class="cover-sub reveal" style="--delay:450ms;margin-top:22px">CẢM ƠN THẦY CÔ VÀ CÁC BẠN ĐÃ LẮNG NGHE ♥</p>
-    <div class="topic-chips reveal" style="--delay:580ms"><span>Q & A</span><span>HÓA HỌC 10</span><span>BÀI 6</span></div>
+   <section class="slide cover thankyou-slide">
+    <div class="thankyou-eyebrow reveal" style="--delay:0ms">HÓA HỌC 10 · BÀI 6</div>
+    <h2 class="thankyou-script reveal" style="--delay:130ms">Thank You!</h2>
+    <p class="thankyou-copy reveal" style="--delay:300ms">Cảm ơn các bạn đã xem hết phần trình bày của mình. Nếu có bất kì ý kiến, đóng góp nào mình mong bạn sẽ góp ý để bài thuyết trình sau của mình càng hoàn thiện.</p>
+    <a class="thankyou-link reveal" style="--delay:470ms" href="./tai-lieu/" target="_blank" rel="noopener noreferrer">Mở website tài liệu để tổng hợp và ôn tập <span aria-hidden="true">↗</span></a>
+    <svg class="thankyou-orbit" viewBox="0 0 1400 360" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
+     <defs><pattern id="thankDots" width="17" height="17" patternUnits="userSpaceOnUse"><circle cx="3" cy="3" r="1.5" fill="#fff"/></pattern></defs>
+     <path d="M-40 270 C180 160 330 205 510 300 S830 375 1000 250 S1280 65 1450 115"/>
+     <path d="M-40 286 C180 176 330 221 510 316 S830 391 1000 266 S1280 81 1450 131"/>
+     <path d="M-40 302 C180 192 330 237 510 332 S830 407 1000 282 S1280 97 1450 147"/>
+     <path d="M-40 318 C180 208 330 253 510 348 S830 423 1000 298 S1280 113 1450 163"/>
+     <path d="M-40 334 C180 224 330 269 510 364 S830 439 1000 314 S1280 129 1450 179"/>
+     <path d="M-40 350 C180 240 330 285 510 380 S830 455 1000 330 S1280 145 1450 195"/>
+     <path d="M-40 366 C180 256 330 301 510 396 S830 471 1000 346 S1280 161 1450 211"/>
+     <path d="M-40 382 C180 272 330 317 510 412 S830 487 1000 362 S1280 177 1450 227"/>
+     <path d="M-40 398 C180 288 330 333 510 428 S830 503 1000 378 S1280 193 1450 243"/>
+     <path d="M-40 414 C180 304 330 349 510 444 S830 519 1000 394 S1280 209 1450 259"/>
+     <path d="M-40 430 C180 320 330 365 510 460 S830 535 1000 410 S1280 225 1450 275"/>
+     <path d="M-40 446 C180 336 330 381 510 476 S830 551 1000 426 S1280 241 1450 291"/>
+     <path d="M-40 462 C180 352 330 397 510 492 S830 567 1000 442 S1280 257 1450 307"/>
+     <path d="M-40 478 C180 368 330 413 510 508 S830 583 1000 458 S1280 273 1450 323"/>
+     <path d="M0 250 C160 230 300 290 440 332" stroke-dasharray="2 9"/>
+     <path d="M0 0 H600 V360 H0Z" fill="url(#thankDots)" opacity=".25"/>
+    </svg>
+    <div class="thankyou-credit">Tài liệu được biên soạn bởi Nguyễn Trần Đăng Quang.</div>
    </section>
   </div>
  </main>
