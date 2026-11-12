@@ -96,6 +96,7 @@ h3{font-size:clamp(16px,1.55vw,22px);line-height:1.15}
 .thankyou-slide{justify-content:center;text-align:center;isolation:isolate;background:radial-gradient(ellipse at 50% 43%,#b51b36 0,transparent 39%),radial-gradient(ellipse at 10% 10%,#8b1232 0,transparent 34%),radial-gradient(ellipse at 88% 90%,#8f1232 0,transparent 34%),linear-gradient(145deg,#10040a,#380918 45%,#16040b)}
 .thankyou-slide:before{background-image:radial-gradient(#fff3f71a 1px,transparent 1px);background-size:18px 18px;opacity:.3}
 .thankyou-script{font-family:"Caveat","Segoe Print","Brush Script MT",cursive;font-size:clamp(68px,10vw,132px);line-height:.78;font-weight:700;letter-spacing:-.045em;color:#fff;text-shadow:0 9px 32px #09000688;transform:rotate(-3deg);margin:0 auto clamp(20px,3vw,34px);animation:thankYouReveal 1s cubic-bezier(.18,.8,.2,1) both}
+.slide.active .thankyou-script{animation:thankYouReveal 1s cubic-bezier(.18,.8,.2,1) both;animation-delay:var(--delay,0ms)}
 @keyframes thankYouReveal{from{opacity:0;transform:translateY(25px) rotate(-7deg) scale(.91);filter:blur(7px)}to{opacity:1;transform:rotate(-3deg) scale(1);filter:blur(0)}}
 .thankyou-eyebrow{font-size:clamp(10px,.95vw,13px);font-weight:900;letter-spacing:.22em;color:#ffd0da;text-transform:uppercase;margin-bottom:clamp(18px,2.5vw,30px)}
 .thankyou-copy{max-width:850px;margin:0 auto;color:#fff0f3;font-size:clamp(13px,1.45vw,18px);line-height:1.55;text-wrap:balance;text-shadow:0 2px 14px #13000866}
@@ -323,7 +324,7 @@ body.morph-done .morph-new{opacity:1;visibility:visible;filter:none;transform:no
      <div class="panel reveal" style="--delay:300ms">
       <div class="threshold"><span class="symbol">&gt;</span><div><b>37,8°C</b><small>Chất lỏng có thể gây cháy</small></div></div>
       <div class="callout">Ít có nguy cơ bắt lửa hơn ở nhiệt độ phòng so với nhóm có điểm chớp cháy thấp.</div>
-      <div class="rowline" style="margin-top:20px"><span class="muted">Ví dụ</span><strong class="accent">Ethylene glycol · 111°C</strong></div>
+      <div class="rowline" style="margin-top:20px;flex-wrap:wrap"><span class="muted">Ví dụ</span><strong class="accent">Ethylene glycol · 111°C</strong><a class="source-link" href="https://en.wikipedia.org/wiki/Ethylene_glycol" target="_blank" rel="noopener noreferrer">Wikipedia ↗</a></div>
      </div>
     </div>
     <div class="panel reveal classification-situation" style="--delay:410ms;margin-top:14px;display:flex;align-items:center;gap:13px">
@@ -345,7 +346,7 @@ body.morph-done .morph-new{opacity:1;visibility:visible;filter:none;transform:no
      <div class="panel soft reveal" style="--delay:260ms;display:flex;flex-direction:column;justify-content:center">
       <span class="kicker">TIÊU CHUẨN ĐƯỢC NHẮC ĐẾN</span>
       <h3 style="font-size:clamp(22px,2.4vw,34px);margin-top:13px">TCVN 7498:2005</h3>
-      <p style="margin-top:9px">Tài liệu nêu phương pháp xác định điểm chớp cháy bằng thiết bị cốc hở Cleveland.</p>
+      <p style="margin-top:9px">Phép thử cốc hở Cleveland được dùng để xác định điểm chớp cháy của nhiên liệu.</p>
       <div style="margin:18px auto 6px;display:flex;align-items:center;gap:12px">
        <div style="width:70px;height:70px;border-radius:22px;background:#ffffff13;border:1px solid #ffc5d23b;display:grid;place-items:center;font-size:35px">⚗️</div>
        <div><b class="accent">Thiết bị chuyên dụng</b><p class="small" style="margin-top:5px">Ghi nhận nhiệt độ thấp nhất khi pha hơi bùng cháy khi tiếp xúc ngọn lửa thử.</p></div>
