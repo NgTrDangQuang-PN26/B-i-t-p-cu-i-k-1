@@ -1,0 +1,552 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#3a0719">
+<meta name="description" content="Tài liệu học tập Hóa học 10 – Điểm chớp cháy, nhiệt độ ngọn lửa và nhiệt độ tự bốc cháy, kèm câu hỏi ôn tập tương tác.">
+<title>Tài liệu Hóa học 10 · Các ngưỡng nhiệt trong sự cháy</title>
+<style>
+:root{--bg:#17050d;--wine:#310918;--wine2:#4c0c22;--red:#d92b55;--pink:#ffabc0;--pink2:#ffd9e2;--cream:#fff6f7;--muted:#e9c4ce;--gold:#ffd58c;--line:#ffffff20;--panel:#fff4f50c;--green:#91e0b4;--bad:#ff9caa}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:92px}
+body{margin:0;color:var(--cream);font-family:Inter,"Segoe UI",Arial,sans-serif;background:radial-gradient(ellipse at 0% 0%,#73132f 0,transparent 34%),radial-gradient(ellipse at 100% 60%,#67102b 0,transparent 33%),var(--bg);line-height:1.65}
+a{color:inherit;text-decoration:none}
+button{font:inherit}
+.site-header{position:sticky;top:0;z-index:50;background:rgba(24,4,13,.84);backdrop-filter:blur(16px);border-bottom:1px solid #ffffff16}
+.header-inner{max-width:1320px;margin:auto;padding:12px clamp(16px,3vw,34px);display:flex;align-items:center;justify-content:space-between;gap:18px}
+.brand{display:flex;align-items:center;gap:10px;font-size:12px;letter-spacing:.12em;font-weight:900;color:#ffe4e9}
+.brand-mark{width:29px;height:29px;border-radius:10px;display:grid;place-items:center;color:#4a0920;background:linear-gradient(135deg,#ffd1dc,#ed5276);box-shadow:0 7px 18px #ed527633}
+.nav{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.nav a{font-size:12px;font-weight:750;color:#f7d9e0;padding:8px 12px;border:1px solid transparent;border-radius:999px;transition:.2s}
+.nav a:hover,.nav a.active{border-color:#ffb6c23d;background:#ffb6c213;color:#fff}
+.nav .presentation{background:linear-gradient(135deg,#ed5276,#b71c46);color:#fff;border-color:#ffb6c255}
+.container{width:min(1180px,calc(100% - 36px));margin:auto}
+.hero{padding:64px 0 44px;position:relative}
+.hero-panel{border:1px solid #ffffff28;border-radius:28px;padding:clamp(26px,5vw,58px);background:radial-gradient(circle at 90% 10%,#b51b493d,transparent 34%),linear-gradient(135deg,#4b0d22e8,#210611ed);box-shadow:0 25px 70px #08000766;position:relative;overflow:hidden}
+.hero-panel:before{content:"";position:absolute;inset:0;background-image:radial-gradient(#ffe0e71a 1px,transparent 1px);background-size:20px 20px;mask-image:linear-gradient(120deg,#0008,transparent 75%);pointer-events:none}
+.hero-panel>*{position:relative}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;border:1px solid #ffb5c33e;background:#ffb5c314;border-radius:999px;padding:7px 12px;color:#ffd1db;font-size:11px;letter-spacing:.14em;font-weight:900;text-transform:uppercase}
+.eyebrow i{width:7px;height:7px;border-radius:50%;background:#ff9db5;box-shadow:0 0 12px #ff9db5}
+h1{font-size:clamp(34px,5vw,62px);letter-spacing:-.05em;line-height:1.04;margin:21px 0 16px;font-weight:950;max-width:900px}
+h1 span,.accent{color:var(--pink)}
+.hero-lead{font-size:clamp(15px,1.7vw,19px);color:#f8dce3;max-width:780px;line-height:1.65}
+.hero-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:25px}
+.btn{display:inline-flex;justify-content:center;align-items:center;gap:9px;border:1px solid #ffffff2c;border-radius:13px;padding:11px 16px;font-size:13px;font-weight:850;cursor:pointer;transition:transform .2s,background .2s}
+.btn:hover{transform:translateY(-2px)}
+.btn-primary{background:linear-gradient(135deg,#ffabc0,#e94670);color:#4b0920;border-color:#ffb5c8;box-shadow:0 9px 22px #e9467040}
+.btn-ghost{background:#ffffff0d;color:#ffe9ee}
+.hero-meta{display:flex;gap:9px;flex-wrap:wrap;margin-top:25px}
+.hero-meta span{font-size:11px;color:#f5cdd6;border:1px solid #ffffff1c;border-radius:999px;padding:6px 10px;background:#ffffff08}
+.layout{display:grid;grid-template-columns:235px minmax(0,1fr);gap:28px;align-items:start;padding-bottom:80px}
+.sidebar{position:sticky;top:86px;border:1px solid var(--line);border-radius:20px;padding:17px;background:#fff5f508}
+.sidebar-title{font-size:10px;letter-spacing:.15em;color:#e9b7c4;font-weight:900;text-transform:uppercase;margin:2px 8px 12px}
+.sidebar a{display:flex;align-items:center;gap:9px;padding:9px 10px;border-radius:11px;font-size:12px;color:#f3d7de;margin:2px 0;transition:.2s}
+.sidebar a:hover{background:#ffb1c018;color:#fff}
+.sidebar a .num{font-size:10px;color:#ffb2c5;font-weight:900;width:20px}
+.sidebar .quiz-link{margin-top:12px;background:#ffb2c516;border:1px solid #ffb2c52d;color:#ffe8ed}
+.article{min-width:0}
+.section{margin-bottom:22px;scroll-margin-top:90px}
+.section-card{border:1px solid var(--line);border-radius:22px;padding:clamp(20px,3vw,32px);background:linear-gradient(145deg,#fff8fa0e,#ffffff06);box-shadow:inset 0 1px #ffffff08}
+.section-kicker{font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#ffb3c5;font-weight:900}
+h2{font-size:clamp(25px,3.2vw,37px);line-height:1.12;letter-spacing:-.04em;margin:8px 0 12px}
+h3{font-size:17px;line-height:1.25;margin:0 0 8px}
+p{margin:9px 0;color:#f2dce2;font-size:14px}
+.intro{font-size:15px;line-height:1.7;color:#ffe8ed}
+.grid{display:grid;gap:13px}
+.grid.two{grid-template-columns:repeat(2,minmax(0,1fr))}
+.grid.three{grid-template-columns:repeat(3,minmax(0,1fr))}
+.info-card{border:1px solid #ffffff1e;border-radius:16px;padding:17px;background:#ffffff09;min-width:0}
+.info-card.soft{background:linear-gradient(145deg,#ffb4c219,#ffffff08)}
+.card-head{display:flex;align-items:center;gap:11px;margin-bottom:8px}
+.icon{width:38px;height:38px;display:grid;place-items:center;border-radius:13px;background:linear-gradient(140deg,#ffd0dc,#ec5a7d);color:#48091d;font-size:19px;flex:none;box-shadow:0 7px 17px #e9467036}
+.info-card p{font-size:13px;line-height:1.6}
+.callout{border-left:3px solid var(--pink);border-radius:0 12px 12px 0;background:#ffb6c314;padding:12px 15px;margin-top:15px;color:#ffeaf0;font-size:13px;line-height:1.6}
+.callout strong{color:var(--gold)}
+.keyline{display:flex;gap:9px;align-items:flex-start;margin:10px 0;color:#f6dfe5;font-size:13px}
+.keyline b{color:#ffb3c5}
+.metric-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:18px}
+.metric-card{border:1px solid #ffb3c534;background:linear-gradient(145deg,#ffb3c319,#fff6f707);border-radius:15px;padding:15px}
+.metric{font-size:clamp(25px,3vw,37px);font-weight:950;letter-spacing:-.05em;color:#fff}
+.metric-label{font-size:11px;color:#f3cbd5;margin-top:4px}
+.rule{height:1px;background:#ffffff18;margin:20px 0}
+.tag{display:inline-flex;padding:5px 9px;border-radius:999px;background:#ffb7c316;border:1px solid #ffb7c32d;color:#ffd9e2;font-size:10px;font-weight:850}
+.list{padding-left:19px;margin:9px 0;color:#f4dce2;font-size:13px;line-height:1.75}
+.list li{padding-left:3px;margin:3px 0}
+.table-wrap{overflow-x:auto;border:1px solid #ffffff1c;border-radius:15px;margin-top:14px}
+table{width:100%;border-collapse:collapse;min-width:650px;font-size:12px;line-height:1.5}
+th{background:#ffadc01e;color:#ffe4eb;text-align:left;padding:12px}
+td{padding:11px 12px;border-top:1px solid #ffffff16;color:#f5dfe5;vertical-align:top}
+td:first-child{font-weight:850;color:#ffb8c8;white-space:nowrap}
+.number-list{counter-reset:item;display:grid;gap:9px}
+.number-list .step{counter-increment:item;display:grid;grid-template-columns:34px 1fr;gap:11px;align-items:start;border:1px solid #ffffff17;border-radius:13px;padding:12px;background:#ffffff07}
+.number-list .step:before{content:counter(item,decimal-leading-zero);width:30px;height:30px;border-radius:10px;display:grid;place-items:center;background:#ffb4c41f;color:#ffc6d2;font-size:10px;font-weight:900}
+.step p{font-size:12px;margin:1px 0}
+.bar-list{display:grid;grid-template-columns:1fr 1fr;gap:13px 20px;margin-top:15px}
+.bar-label{display:flex;justify-content:space-between;gap:10px;font-size:12px;color:#ffe5eb;margin-bottom:5px}
+.bar-label b{color:#ffb7c7}
+.bar-track{height:8px;border-radius:99px;background:#ffffff19;overflow:hidden}
+.bar-fill{height:100%;width:var(--w);border-radius:99px;background:linear-gradient(90deg,#ffb4c5,#e83e68)}
+.quiz-shell{border:1px solid #ffb8c83a;border-radius:22px;padding:clamp(19px,3vw,30px);background:radial-gradient(circle at 100% 0,#9a16372b,transparent 36%),linear-gradient(145deg,#4b0c22e8,#220610ed)}
+.quiz-top{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+.quiz-progress{height:6px;border-radius:99px;background:#ffffff18;overflow:hidden;flex:1;min-width:120px}
+.quiz-progress>div{height:100%;width:0;background:linear-gradient(90deg,#ffb5c6,#ffd58c);transition:width .3s}
+.quiz-status{font-size:11px;color:#f3cbd4;white-space:nowrap}
+.question{border-top:1px solid #ffffff1a;padding-top:18px;margin-top:18px}
+.question:first-of-type{border-top:0;margin-top:10px}
+.question-title{display:flex;align-items:flex-start;gap:10px}
+.qnum{width:29px;height:29px;display:grid;place-items:center;border-radius:10px;background:#ffadc01f;color:#ffc0cf;font-size:11px;font-weight:950;flex:none}
+.question h3{font-size:15px;line-height:1.5;margin:1px 0 12px}
+.options{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-left:39px}
+.option{width:100%;text-align:left;border:1px solid #ffffff22;border-radius:12px;padding:11px 12px;background:#ffffff09;color:#f9e7ec;display:flex;align-items:flex-start;gap:9px;font-size:12px;line-height:1.5;cursor:pointer;transition:.18s}
+.option:hover{border-color:#ffb8c76c;background:#ffb7c315}
+.option .letter{width:21px;height:21px;border-radius:7px;display:grid;place-items:center;background:#ffffff13;color:#ffd2dc;font-size:10px;font-weight:900;flex:none}
+.option.selected{border-color:#ffadc0;background:#ffadc01c}
+.option.correct{border-color:#76dba4;background:#76dba41b}
+.option.wrong{border-color:#ff8c9c;background:#ff8c9c17}
+.feedback{display:none;margin:9px 0 0 39px;padding:10px 12px;border-radius:10px;font-size:12px;line-height:1.5}
+.feedback.show{display:block}
+.feedback.good{background:#72d7a41c;color:#b5f4cf;border:1px solid #72d7a43a}
+.feedback.bad{background:#ff82951b;color:#ffd0d6;border:1px solid #ff82953b}
+.quiz-actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:22px}
+.quiz-result{display:none;margin-top:18px;border-radius:15px;padding:17px;border:1px solid #ffb8c83b;background:#ffb7c314}
+.quiz-result.show{display:block;animation:softPop .4s ease both}
+.score{font-size:32px;line-height:1.1;font-weight:950;color:#fff}
+.result-message{font-size:13px;color:#ffe0e7;margin-top:6px}
+.footer{border-top:1px solid #ffffff1a;padding:22px 0 30px;color:#e6bac6;font-size:11px}
+.footer-inner{display:flex;justify-content:space-between;gap:15px;flex-wrap:wrap}
+.reveal{opacity:0;transform:translateY(15px);filter:blur(3px);transition:opacity .65s ease,transform .65s cubic-bezier(.18,.78,.2,1),filter .65s}
+.reveal.visible{opacity:1;transform:none;filter:blur(0)}
+@keyframes softPop{0%{opacity:0;transform:translateY(12px) scale(.96)}70%{opacity:1;transform:translateY(-2px) scale(1.01)}100%{opacity:1;transform:none}}
+@media(max-width:900px){.layout{grid-template-columns:1fr}.sidebar{position:static;display:flex;gap:5px;overflow:auto;white-space:nowrap;padding:10px}.sidebar-title{display:none}.sidebar a{flex:none}.sidebar .quiz-link{margin-top:2px}.grid.three{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:620px){.header-inner{align-items:flex-start}.brand{font-size:10px}.nav a{font-size:10px;padding:7px 9px}.nav a:not(.presentation){display:none}.container{width:min(100% - 24px,1180px)}.hero{padding:30px 0 24px}.hero-panel{border-radius:20px}.layout{gap:16px}.section-card{padding:18px;border-radius:17px}.grid.two,.grid.three,.metric-grid{grid-template-columns:1fr}.bar-list{grid-template-columns:1fr}.options{grid-template-columns:1fr;margin-left:0}.feedback{margin-left:0}.question h3{font-size:14px}.footer-inner{display:block}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+<header class="site-header">
+ <div class="header-inner">
+  <a class="brand" href="../"><span class="brand-mark">✦</span><span>HÓA HỌC 10 <span style="opacity:.45">/</span> TÀI LIỆU</span></a>
+  <nav class="nav" aria-label="Điều hướng chính">
+   <a href="#flash">Điểm chớp cháy</a>
+   <a href="#flame">Nhiệt độ ngọn lửa</a>
+   <a href="#auto">Tự bốc cháy</a>
+   <a class="presentation" href="../">← Trang trình chiếu</a>
+  </nav>
+ </div>
+</header>
+
+<main>
+ <section class="hero">
+  <div class="container">
+   <div class="hero-panel">
+    <span class="eyebrow"><i></i> BÀI 6 · TÀI LIỆU HỌC TẬP</span>
+    <h1>Các ngưỡng nhiệt<br><span>trong sự cháy</span></h1>
+    <p class="hero-lead">Hệ thống hóa kiến thức về điểm chớp cháy, nhiệt độ ngọn lửa và nhiệt độ tự bốc cháy. Nội dung được sắp xếp theo từng chủ đề để dễ đọc, ghi nhớ và ôn tập.</p>
+    <div class="hero-actions">
+     <a class="btn btn-primary" href="#flash">Bắt đầu đọc <span>↓</span></a>
+     <a class="btn btn-ghost" href="#quiz">Làm câu hỏi ôn tập ✦</a>
+    </div>
+    <div class="hero-meta"><span>03 chủ đề chính</span><span>Ví dụ thực tế</span><span>Bảng so sánh</span><span>Trắc nghiệm tự chấm</span></div>
+   </div>
+  </div>
+ </section>
+
+ <div class="container layout">
+  <aside class="sidebar" aria-label="Mục lục tài liệu">
+   <div class="sidebar-title">MỤC LỤC</div>
+   <a href="#overview"><span class="num">00</span> Tổng quan</a>
+   <a href="#flash"><span class="num">01</span> Điểm chớp cháy</a>
+   <a href="#flame"><span class="num">02</span> Nhiệt độ ngọn lửa</a>
+   <a href="#auto"><span class="num">03</span> Nhiệt độ tự bốc cháy</a>
+   <a href="#compare"><span class="num">04</span> Bảng tổng kết</a>
+   <a class="quiz-link" href="#quiz"><span class="num">✦</span> Câu hỏi tương tác</a>
+  </aside>
+
+  <article class="article">
+   <section class="section" id="overview">
+    <div class="section-card reveal">
+     <div class="section-kicker">00 · BỨC TRANH CHUNG</div>
+     <h2>Ba đại lượng, ba câu hỏi khác nhau</h2>
+     <p class="intro">Khi tìm hiểu về sự cháy, cần phân biệt nhiệt độ làm hơi chất lỏng bắt lửa, nhiệt độ của ngọn lửa và nhiệt độ khiến một chất tự bốc cháy.</p>
+     <div class="grid three" style="margin-top:18px">
+      <div class="info-card">
+       <div class="card-head"><span class="icon">⚡</span><h3>Điểm chớp cháy</h3></div>
+       <p>Hơi của chất lỏng có thể bắt lửa ở nhiệt độ nào khi gặp nguồn lửa?</p><span class="tag">CẦN NGUỒN MỒI</span>
+      </div>
+      <div class="info-card">
+       <div class="card-head"><span class="icon">🔥</span><h3>Nhiệt độ ngọn lửa</h3></div>
+       <p>Phản ứng cháy tạo ra ngọn lửa nóng đến mức nào?</p><span class="tag">MỨC TỎA NHIỆT</span>
+      </div>
+      <div class="info-card">
+       <div class="card-head"><span class="icon">☀️</span><h3>Tự bốc cháy</h3></div>
+       <p>Chất đạt đến nhiệt độ nào thì tự cháy mà không cần nguồn mồi?</p><span class="tag">KHÔNG CẦN MỒI</span>
+      </div>
+     </div>
+    </div>
+   </section>
+
+   <section class="section" id="flash">
+    <div class="section-card reveal">
+     <div class="section-kicker">01 · FLASH POINT</div>
+     <h2>Điểm chớp cháy</h2>
+     <p class="intro"><b>Điểm chớp cháy</b> là nhiệt độ thấp nhất mà tại đó chất cháy được đốt nóng đến mức tạo ra lượng hơi đủ để bắt lửa khi tiếp xúc với nguồn lửa trong điều kiện áp suất khí quyển.</p>
+     <div class="grid two" style="margin-top:17px">
+      <div class="info-card soft">
+       <h3>Điều gì xảy ra khi nhiệt độ tăng?</h3>
+       <div class="number-list">
+        <div class="step"><div><b>Nhiều hơi hơn</b><p>Chất lỏng bay hơi nhiều hơn khi được đốt nóng.</p></div></div>
+        <div class="step"><div><b>Hơi có thể bắt lửa</b><p>Khi đạt điểm chớp cháy, lượng hơi có thể bắt lửa khi gặp nguồn gây cháy.</p></div></div>
+        <div class="step"><div><b>Ngọn lửa chỉ thoáng qua</b><p>Ngọn lửa xuất hiện trong thời gian ngắn rồi tắt vì lượng hơi chưa đủ duy trì sự cháy liên tục.</p></div></div>
+       </div>
+      </div>
+      <div class="info-card">
+       <h3>Ví dụ cần nhớ</h3>
+       <div class="metric-grid" style="grid-template-columns:1fr 1fr">
+        <div class="metric-card"><div class="metric">13°C</div><div class="metric-label">Ethanol</div></div>
+        <div class="metric-card"><div class="metric" style="font-size:27px">Rất thấp</div><div class="metric-label">Xăng · theo tài liệu</div></div>
+       </div>
+       <p>Xăng có điểm chớp cháy rất thấp nên hơi xăng có thể bắt lửa ngay ở nhiệt độ môi trường thông thường. Ethanol có điểm chớp cháy khoảng 13°C.</p>
+       <div class="callout"><strong>Ghi nhớ:</strong> Điểm chớp cháy càng thấp thì chất lỏng càng dễ tạo hơi có khả năng bắt lửa ở nhiệt độ thấp.</div>
+      </div>
+     </div>
+
+     <div class="rule"></div>
+     <h3>Phân loại theo điểm chớp cháy</h3>
+     <p>Tài liệu phân loại theo tiêu chí trong SGK như sau:</p>
+     <div class="grid two" style="margin-top:12px">
+      <div class="info-card">
+       <div class="card-head"><span class="icon">↘</span><div><h3>Dưới 37,8°C</h3><span class="tag">CHẤT LỎNG DỄ CHÁY</span></div></div>
+       <p>Ví dụ được nêu: propane, pentane, hexane. Các chất này dễ tạo hơi có khả năng bắt lửa ở nhiệt độ thấp.</p>
+      </div>
+      <div class="info-card">
+       <div class="card-head"><span class="icon">↗</span><div><h3>Trên 37,8°C</h3><span class="tag">CHẤT LỎNG CÓ THỂ GÂY CHÁY</span></div></div>
+       <p>Ví dụ được nêu: ethylene glycol và stearic acid; ít có nguy cơ bắt lửa hơn ở nhiệt độ phòng.</p>
+      </div>
+     </div>
+     <div class="callout"><strong>Đừng nhầm:</strong> Điểm chớp cháy không phải nhiệt độ sôi. Đây là nhiệt độ thấp nhất để hơi của chất có thể bắt lửa khi gặp nguồn lửa.</div>
+
+     <div class="rule"></div>
+     <h3>Ứng dụng trong thực tế</h3>
+     <div class="grid two" style="margin-top:12px">
+      <div class="info-card"><div class="card-head"><span class="icon">⛽</span><h3>Công nghiệp xăng dầu</h3></div><p>Đánh giá mức độ nguy hiểm của nhiên liệu.</p></div>
+      <div class="info-card"><div class="card-head"><span class="icon">🚚</span><h3>Giao thông vận tải</h3></div><p>Xác định yêu cầu an toàn khi vận chuyển và lưu trữ nhiên liệu.</p></div>
+      <div class="info-card"><div class="card-head"><span class="icon">🧪</span><h3>Phòng thí nghiệm</h3></div><p>Lựa chọn điều kiện bảo quản phù hợp đối với hóa chất dễ cháy.</p></div>
+      <div class="info-card"><div class="card-head"><span class="icon">🧯</span><h3>Phòng cháy chữa cháy</h3></div><p>Hỗ trợ phân loại và đánh giá nguy cơ cháy của các chất lỏng.</p></div>
+     </div>
+     <div class="callout"><strong>Tình huống:</strong> Nếu dầu diesel bị lẫn xăng, điểm chớp cháy của hỗn hợp có thể giảm xuống, làm tăng nguy cơ cháy trong quá trình bảo quản và vận chuyển.</div>
+
+     <div class="rule"></div>
+     <h3>Phương pháp cốc hở Cleveland</h3>
+     <p>Tài liệu nêu TCVN 7498:2005 và thiết bị cốc hở Cleveland để xác định điểm chớp cháy của nhiên liệu. Mô tả dưới đây chỉ giúp hiểu nguyên lý của phép thử:</p>
+     <div class="number-list" style="margin-top:12px">
+      <div class="step"><div><b>Chuẩn bị mẫu</b><p>Mẫu nhiên liệu được cho vào cốc thử và đun nóng bằng thiết bị chuyên dụng.</p></div></div>
+      <div class="step"><div><b>Quan sát trong phép thử</b><p>Trong quá trình gia nhiệt, ngọn lửa thử được đưa ngang qua bề mặt mẫu tại những khoảng thời gian xác định.</p></div></div>
+      <div class="step"><div><b>Ghi nhận nhiệt độ</b><p>Khi hơi nhiên liệu bùng cháy khi tiếp xúc với ngọn lửa thử, nhiệt độ tại thời điểm đó được ghi nhận.</p></div></div>
+     </div>
+     <p class="note" style="font-size:11px;color:#eabfca">Đây là nội dung giải thích trong tài liệu, không phải hướng dẫn tự thực hiện thí nghiệm.</p>
+    </div>
+   </section>
+
+   <section class="section" id="flame">
+    <div class="section-card reveal">
+     <div class="section-kicker">02 · FLAME TEMPERATURE</div>
+     <h2>Nhiệt độ ngọn lửa</h2>
+     <p class="intro"><b>Nhiệt độ ngọn lửa</b> là nhiệt độ cao nhất tạo ra bởi phản ứng đốt cháy chất cháy ở áp suất khí quyển. Khi chất cháy phản ứng với oxygen, phản ứng thường giải phóng năng lượng dưới dạng nhiệt; nhiệt lượng làm vùng phản ứng nóng lên và hình thành ngọn lửa.</p>
+     <div class="metric-grid">
+      <div class="metric-card"><div class="metric">2.082°C</div><div class="metric-label">Nhiệt độ ngọn lửa theo lí thuyết của ethanol</div></div>
+      <div class="metric-card"><div class="metric">21%</div><div class="metric-label">Oxygen trong không khí (xấp xỉ)</div></div>
+      <div class="metric-card"><div class="metric">3.410 K</div><div class="metric-label">Nhiệt độ ngọn lửa oxygen – acetylene có thể đạt</div></div>
+     </div>
+     <div class="rule"></div>
+     <h3>Các yếu tố ảnh hưởng</h3>
+     <div class="grid two" style="margin-top:12px">
+      <div class="info-card"><h3>01 · Bản chất nhiên liệu</h3><p>Mỗi nhiên liệu có đặc điểm và khả năng tỏa nhiệt khác nhau.</p></div>
+      <div class="info-card"><h3>02 · Lượng oxygen</h3><p>Lượng oxygen tham gia phản ứng ảnh hưởng đến quá trình cháy.</p></div>
+      <div class="info-card"><h3>03 · Điều kiện môi trường</h3><p>Nhiệt độ ngọn lửa phụ thuộc điều kiện và môi trường xảy ra phản ứng.</p></div>
+      <div class="info-card"><h3>04 · Thất thoát nhiệt</h3><p>Khả năng tỏa nhiệt và lượng nhiệt thất thoát ra môi trường cũng là yếu tố liên quan.</p></div>
+     </div>
+     <div class="rule"></div>
+     <h3>Oxygen và nitrogen trong không khí</h3>
+     <p>Không khí chứa khoảng 21% oxygen và 78% nitrogen. Nitrogen hầu như không tham gia phản ứng cháy trong điều kiện thông thường nhưng hấp thụ một phần nhiệt lượng.</p>
+     <div class="info-card soft" style="margin-top:14px">
+      <div style="display:flex;justify-content:space-between;gap:10px;font-size:12px"><b>Oxygen ≈ 21%</b><b>Nitrogen ≈ 78%</b></div>
+      <div style="height:14px;display:flex;overflow:hidden;border-radius:99px;background:#ffffff19;margin:9px 0">
+       <div style="width:21%;background:linear-gradient(90deg,#ffabc0,#ffe0e7)"></div>
+       <div style="width:78%;background:linear-gradient(90deg,#9e4660,#c87e92)"></div>
+       <div style="flex:1;background:#704457"></div>
+      </div>
+      <p style="font-size:12px">Khi sử dụng oxygen tinh khiết thay cho không khí, lượng nitrogen đi kèm giảm đáng kể, giúp nhiệt độ ngọn lửa tăng cao.</p>
+     </div>
+     <div class="callout"><strong>Ví dụ:</strong> Đèn xì oxygen – acetylene được sử dụng trong công nghiệp hàn và cắt kim loại. Nhiệt độ ngọn lửa có thể đạt khoảng 3.410 K theo tài liệu.</div>
+     <div class="rule"></div>
+     <h3>Ứng dụng của nhiệt độ ngọn lửa</h3>
+     <div class="grid two" style="margin-top:12px">
+      <div class="info-card"><h3>Đời sống</h3><p>Nấu ăn, đun nước và sưởi ấm.</p></div>
+      <div class="info-card"><h3>Công nghiệp</h3><p>Nung, luyện kim và sản xuất vật liệu.</p></div>
+      <div class="info-card"><h3>Cơ khí</h3><p>Ứng dụng nhiệt độ cao trong công nghệ hàn và cắt kim loại.</p></div>
+      <div class="info-card"><h3>Phòng cháy chữa cháy</h3><p>Đánh giá mức độ nguy hiểm của đám cháy và lựa chọn biện pháp ứng phó phù hợp.</p></div>
+     </div>
+     <div class="callout"><strong>Lưu ý:</strong> Khi thiếu oxygen, quá trình cháy có thể không hoàn toàn và tạo ra carbon monoxide (CO), một khí độc hại.</div>
+    </div>
+   </section>
+
+   <section class="section" id="auto">
+    <div class="section-card reveal">
+     <div class="section-kicker">03 · AUTOIGNITION TEMPERATURE</div>
+     <h2>Nhiệt độ tự bốc cháy</h2>
+     <p class="intro"><b>Nhiệt độ tự bốc cháy</b> là nhiệt độ thấp nhất ở áp suất khí quyển, tại đó một chất tự động bốc cháy trong bầu khí quyển bình thường mà không cần bất kỳ nguồn cháy nào như ngọn lửa hay tia lửa điện.</p>
+     <div class="grid two" style="margin-top:16px">
+      <div class="info-card soft">
+       <h3>Đặc điểm</h3>
+       <div class="keyline"><b>01.</b><span>Không cố định; tài liệu nêu giá trị thường giảm khi áp suất môi trường hoặc nồng độ oxygen tăng lên.</span></div>
+       <div class="keyline"><b>02.</b><span>Không cần mồi lửa; hiện tượng xảy ra do sự tích tụ nhiệt nội tại của chất khi đạt ngưỡng.</span></div>
+       <div class="keyline"><b>03.</b><span>Nhiệt độ tự bốc cháy càng thấp thì khả năng gây cháy nổ càng cao.</span></div>
+      </div>
+      <div class="info-card">
+       <h3>Ghi nhớ về an toàn</h3>
+       <ul class="list">
+        <li>Bảo quản bình chứa chất cháy xa nguồn truyền nhiệt.</li>
+        <li>Kho chứa cần thông thoáng.</li>
+        <li>Khi vận chuyển, tránh va đập và cọ xát.</li>
+       </ul>
+       <div class="callout">Nhiệt độ tự bốc cháy là ngưỡng cần quan tâm trong bảo quản và vận chuyển chất cháy.</div>
+      </div>
+     </div>
+     <div class="rule"></div>
+     <h3>Nhiệt độ tự bốc cháy của một số chất</h3>
+     <p>Các số liệu dưới đây được giữ theo bảng trong tài liệu Word.</p>
+     <div class="bar-list">
+      <div class="bar-item"><div class="bar-label"><span>Carbon monoxide · CO</span><b>605°C</b></div><div class="bar-track"><div class="bar-fill" style="--w:99.2%"></div></div></div>
+      <div class="bar-item"><div class="bar-label"><span>Hydrogen · H₂</span><b>560°C</b></div><div class="bar-track"><div class="bar-fill" style="--w:91.8%"></div></div></div>
+      <div class="bar-item"><div class="bar-label"><span>Methane · CH₄</span><b>610°C</b></div><div class="bar-track"><div class="bar-fill" style="--w:100%"></div></div></div>
+      <div class="bar-item"><div class="bar-label"><span>Ethane · C₂H₆</span><b>525°C</b></div><div class="bar-track"><div class="bar-fill" style="--w:86.1%"></div></div></div>
+      <div class="bar-item"><div class="bar-label"><span>Propane · C₃H₈</span><b>470°C</b></div><div class="bar-track"><div class="bar-fill" style="--w:77%"></div></div></div>
+      <div class="bar-item"><div class="bar-label"><span>Octane · C₈H₁₈</span><b>210°C</b></div><div class="bar-track"><div class="bar-fill" style="--w:34.4%"></div></div></div>
+      <div class="bar-item"><div class="bar-label"><span>Benzene · C₆H₆</span><b>555°C</b></div><div class="bar-track"><div class="bar-fill" style="--w:91%"></div></div></div>
+     </div>
+     <div class="callout"><strong>Ví dụ trong tài liệu:</strong> Octane có nhiệt độ tự bốc cháy 210°C. Tài liệu dùng ví dụ này để minh họa rằng hiện tượng tự bốc cháy không cần tia lửa.</div>
+    </div>
+   </section>
+
+   <section class="section" id="compare">
+    <div class="section-card reveal">
+     <div class="section-kicker">04 · TỔNG KẾT</div>
+     <h2>So sánh ba đại lượng</h2>
+     <p class="intro">Hãy nhìn vào bản chất của mỗi đại lượng để tránh nhầm lẫn giữa bắt lửa khi có nguồn mồi và tự bốc cháy.</p>
+     <div class="table-wrap">
+      <table>
+       <thead><tr><th>Tiêu chí</th><th>Điểm chớp cháy</th><th>Nhiệt độ ngọn lửa</th><th>Nhiệt độ tự bốc cháy</th></tr></thead>
+       <tbody>
+        <tr><td>Bản chất</td><td>Nhiệt độ thấp nhất để hơi bắt lửa khi có nguồn lửa.</td><td>Nhiệt độ cao nhất của ngọn lửa khi cháy.</td><td>Nhiệt độ thấp nhất để tự cháy không cần nguồn lửa.</td></tr>
+        <tr><td>Cho biết</td><td>Chất lỏng dễ bắt lửa đến mức nào.</td><td>Phản ứng cháy tỏa nhiệt mạnh đến mức nào.</td><td>Cần làm nóng đến mức nào thì chất tự cháy.</td></tr>
+        <tr><td>Ứng dụng</td><td>Phân loại chất lỏng, đánh giá nguy cơ hỏa hoạn.</td><td>Đánh giá nhiệt lượng nhiên liệu và mức độ nguy hiểm khi cháy.</td><td>Bảo quản, vận chuyển an toàn.</td></tr>
+       </tbody>
+      </table>
+     </div>
+     <div class="info-card soft" style="margin-top:15px">
+      <h3>Ví dụ phân biệt: cùng một chất pentane</h3>
+      <div class="grid two" style="margin-top:10px">
+       <div><div class="metric">−49°C</div><div class="metric-label">Điểm chớp cháy</div><p>Chỉ cần có tia lửa, hơi pentane có thể bắt lửa ngay cả khi rất lạnh.</p></div>
+       <div><div class="metric">285°C</div><div class="metric-label">Nhiệt độ tự bốc cháy</div><p>Nếu không có tia lửa, tài liệu nêu ngưỡng tự cháy là 285°C.</p></div>
+      </div>
+     </div>
+    </div>
+   </section>
+
+   <section class="section" id="quiz">
+    <div class="quiz-shell reveal">
+     <div class="section-kicker">✦ KIỂM TRA MỨC ĐỘ GHI NHỚ</div>
+     <h2>Thử sức với 8 câu hỏi</h2>
+     <p class="intro">Chọn một đáp án cho mỗi câu. Bạn có thể xem phản hồi sau khi chọn, rồi nhấn “Chấm điểm” để xem kết quả tổng thể.</p>
+     <div class="quiz-top" style="margin-top:16px">
+      <div class="quiz-progress"><div id="quizProgress"></div></div>
+      <span class="quiz-status" id="quizStatus">Đã trả lời 0/8 câu</span>
+     </div>
+     <div id="questions">
+      <div class="question" data-correct="b" data-explanation="Điểm chớp cháy là nhiệt độ thấp nhất để hơi của chất lỏng có thể bắt lửa khi gặp nguồn lửa.">
+       <div class="question-title"><span class="qnum">01</span><h3>Điểm chớp cháy là gì?</h3></div>
+       <div class="options">
+        <button class="option" data-option="a"><span class="letter">A</span><span>Nhiệt độ sôi của chất lỏng.</span></button>
+        <button class="option" data-option="b"><span class="letter">B</span><span>Nhiệt độ thấp nhất để hơi bắt lửa khi gặp nguồn lửa.</span></button>
+        <button class="option" data-option="c"><span class="letter">C</span><span>Nhiệt độ cao nhất của ngọn lửa.</span></button>
+        <button class="option" data-option="d"><span class="letter">D</span><span>Nhiệt độ làm chất đông đặc.</span></button>
+       </div><div class="feedback" aria-live="polite"></div>
+      </div>
+      <div class="question" data-correct="c" data-explanation="Theo tài liệu, ethanol có điểm chớp cháy khoảng 13°C.">
+       <div class="question-title"><span class="qnum">02</span><h3>Điểm chớp cháy của ethanol được nêu trong tài liệu là khoảng bao nhiêu?</h3></div>
+       <div class="options">
+        <button class="option" data-option="a"><span class="letter">A</span><span>37,8°C</span></button>
+        <button class="option" data-option="b"><span class="letter">B</span><span>111°C</span></button>
+        <button class="option" data-option="c"><span class="letter">C</span><span>13°C</span></button>
+        <button class="option" data-option="d"><span class="letter">D</span><span>210°C</span></button>
+       </div><div class="feedback" aria-live="polite"></div>
+      </div>
+      <div class="question" data-correct="a" data-explanation="Điểm chớp cháy không phải nhiệt độ sôi; đó là nhiệt độ thấp nhất để hơi có thể bắt lửa khi gặp nguồn lửa.">
+       <div class="question-title"><span class="qnum">03</span><h3>Phát biểu nào đúng về điểm chớp cháy?</h3></div>
+       <div class="options">
+        <button class="option" data-option="a"><span class="letter">A</span><span>Không đồng nghĩa với nhiệt độ sôi.</span></button>
+        <button class="option" data-option="b"><span class="letter">B</span><span>Luôn cao hơn nhiệt độ sôi.</span></button>
+        <button class="option" data-option="c"><span class="letter">C</span><span>Không liên quan đến hơi của chất lỏng.</span></button>
+        <button class="option" data-option="d"><span class="letter">D</span><span>Là nhiệt độ cao nhất của đám cháy.</span></button>
+       </div><div class="feedback" aria-live="polite"></div>
+      </div>
+      <div class="question" data-correct="d" data-explanation="Nhiệt độ ngọn lửa phụ thuộc vào bản chất nhiên liệu, lượng oxygen, điều kiện môi trường và thất thoát nhiệt.">
+       <div class="question-title"><span class="qnum">04</span><h3>Yếu tố nào được tài liệu nêu là có ảnh hưởng đến nhiệt độ ngọn lửa?</h3></div>
+       <div class="options">
+        <button class="option" data-option="a"><span class="letter">A</span><span>Bản chất nhiên liệu.</span></button>
+        <button class="option" data-option="b"><span class="letter">B</span><span>Lượng oxygen tham gia phản ứng.</span></button>
+        <button class="option" data-option="c"><span class="letter">C</span><span>Khả năng thất thoát nhiệt.</span></button>
+        <button class="option" data-option="d"><span class="letter">D</span><span>Cả A, B và C.</span></button>
+       </div><div class="feedback" aria-live="polite"></div>
+      </div>
+      <div class="question" data-correct="b" data-explanation="Nitrogen hầu như không tham gia phản ứng cháy trong điều kiện thông thường nhưng hấp thụ một phần nhiệt lượng.">
+       <div class="question-title"><span class="qnum">05</span><h3>Vai trò của nitrogen trong không khí được mô tả như thế nào?</h3></div>
+       <div class="options">
+        <button class="option" data-option="a"><span class="letter">A</span><span>Tham gia mạnh vào mọi phản ứng cháy.</span></button>
+        <button class="option" data-option="b"><span class="letter">B</span><span>Hầu như không tham gia cháy nhưng hấp thụ một phần nhiệt.</span></button>
+        <button class="option" data-option="c"><span class="letter">C</span><span>Làm oxygen biến mất hoàn toàn.</span></button>
+        <button class="option" data-option="d"><span class="letter">D</span><span>Luôn làm ngọn lửa nóng hơn.</span></button>
+       </div><div class="feedback" aria-live="polite"></div>
+      </div>
+      <div class="question" data-correct="a" data-explanation="Nhiệt độ tự bốc cháy là nhiệt độ thấp nhất để chất tự cháy mà không cần nguồn mồi như ngọn lửa hoặc tia lửa điện.">
+       <div class="question-title"><span class="qnum">06</span><h3>Điểm khác biệt quan trọng của nhiệt độ tự bốc cháy là gì?</h3></div>
+       <div class="options">
+        <button class="option" data-option="a"><span class="letter">A</span><span>Chất tự cháy mà không cần nguồn mồi.</span></button>
+        <button class="option" data-option="b"><span class="letter">B</span><span>Chỉ xuất hiện khi có ngọn lửa thử.</span></button>
+        <button class="option" data-option="c"><span class="letter">C</span><span>Luôn bằng điểm chớp cháy.</span></button>
+        <button class="option" data-option="d"><span class="letter">D</span><span>Là nhiệt độ sôi của chất.</span></button>
+       </div><div class="feedback" aria-live="polite"></div>
+      </div>
+      <div class="question" data-correct="c" data-explanation="Trong bảng của tài liệu, octane có nhiệt độ tự bốc cháy là 210°C, thấp nhất trong các chất được liệt kê.">
+       <div class="question-title"><span class="qnum">07</span><h3>Chất nào có nhiệt độ tự bốc cháy thấp nhất trong bảng của tài liệu?</h3></div>
+       <div class="options">
+        <button class="option" data-option="a"><span class="letter">A</span><span>Methane – 610°C.</span></button>
+        <button class="option" data-option="b"><span class="letter">B</span><span>Hydrogen – 560°C.</span></button>
+        <button class="option" data-option="c"><span class="letter">C</span><span>Octane – 210°C.</span></button>
+        <button class="option" data-option="d"><span class="letter">D</span><span>Carbon monoxide – 605°C.</span></button>
+       </div><div class="feedback" aria-live="polite"></div>
+      </div>
+      <div class="question" data-correct="d" data-explanation="Pentane được dùng để so sánh: điểm chớp cháy −49°C và nhiệt độ tự bốc cháy 285°C.">
+       <div class="question-title"><span class="qnum">08</span><h3>Trong ví dụ pentane, cặp giá trị nào được nêu trong tài liệu?</h3></div>
+       <div class="options">
+        <button class="option" data-option="a"><span class="letter">A</span><span>Điểm chớp cháy 13°C; tự bốc cháy 210°C.</span></button>
+        <button class="option" data-option="b"><span class="letter">B</span><span>Điểm chớp cháy 37,8°C; tự bốc cháy 470°C.</span></button>
+        <button class="option" data-option="c"><span class="letter">C</span><span>Điểm chớp cháy 111°C; tự bốc cháy 285°C.</span></button>
+        <button class="option" data-option="d"><span class="letter">D</span><span>Điểm chớp cháy −49°C; tự bốc cháy 285°C.</span></button>
+       </div><div class="feedback" aria-live="polite"></div>
+      </div>
+     </div>
+     <div class="quiz-actions">
+      <button class="btn btn-primary" id="gradeQuiz">Chấm điểm ✦</button>
+      <button class="btn btn-ghost" id="resetQuiz">Làm lại</button>
+     </div>
+     <div class="quiz-result" id="quizResult" aria-live="polite">
+      <div class="section-kicker">KẾT QUẢ CỦA BẠN</div>
+      <div class="score" id="scoreText">0/8</div>
+      <div class="result-message" id="resultMessage"></div>
+     </div>
+    </div>
+   </section>
+
+   <div class="callout reveal"><strong>Hoàn thành tài liệu!</strong> Bạn có thể quay lại trang trình chiếu để xem lại phần tóm tắt trực quan.</div>
+   <div style="margin-top:17px"><a class="btn btn-ghost" href="../">← Quay lại trang trình chiếu</a></div>
+  </article>
+ </div>
+</main>
+
+<footer class="footer">
+ <div class="container footer-inner"><span>HÓA HỌC 10 · BÀI 6 · TÀI LIỆU HỌC TẬP</span><span>Nội dung được biên soạn từ file Word do người học cung cấp.</span></div>
+</footer>
+
+<script>
+(function(){
+ const questions=Array.from(document.querySelectorAll('.question'));
+ const status=document.getElementById('quizStatus');
+ const progress=document.getElementById('quizProgress');
+ const result=document.getElementById('quizResult');
+ const scoreText=document.getElementById('scoreText');
+ const resultMessage=document.getElementById('resultMessage');
+ const grade=document.getElementById('gradeQuiz');
+ const reset=document.getElementById('resetQuiz');
+ let answers={};
+ function refresh(){
+  const count=Object.keys(answers).length;
+  status.textContent='Đã trả lời '+count+'/'+questions.length+' câu';
+  progress.style.width=(count/questions.length*100)+'%';
+ }
+ function choose(q,option){
+  const qIndex=questions.indexOf(q);
+  answers[qIndex]=option.dataset.option;
+  q.querySelectorAll('.option').forEach(btn=>{
+   btn.classList.toggle('selected',btn===option);
+   btn.classList.remove('correct','wrong');
+   btn.setAttribute('aria-pressed',btn===option?'true':'false');
+  });
+  const feedback=q.querySelector('.feedback');
+  feedback.className='feedback';
+  feedback.textContent='';
+  result.classList.remove('show');
+  refresh();
+ }
+ questions.forEach(q=>{
+  q.querySelectorAll('.option').forEach(btn=>{
+   btn.addEventListener('click',()=>choose(q,btn));
+  });
+ });
+ grade.addEventListener('click',()=>{
+  const count=Object.keys(answers).length;
+  if(count<questions.length){
+   status.textContent='Bạn còn '+(questions.length-count)+' câu chưa trả lời.';
+   const firstMissing=questions.find((q,i)=>answers[i]===undefined);
+   if(firstMissing)firstMissing.scrollIntoView({behavior:'smooth',block:'center'});
+   return;
+  }
+  let score=0;
+  questions.forEach((q,i)=>{
+   const correct=q.dataset.correct;
+   const chosen=answers[i];
+   if(chosen===correct)score++;
+   q.querySelectorAll('.option').forEach(btn=>{
+    btn.classList.remove('correct','wrong');
+    if(btn.dataset.option===correct)btn.classList.add('correct');
+    else if(btn.dataset.option===chosen)btn.classList.add('wrong');
+   });
+   const feedback=q.querySelector('.feedback');
+   const ok=chosen===correct;
+   feedback.className='feedback show '+(ok?'good':'bad');
+   feedback.textContent=(ok?'Chính xác! ':'Chưa đúng. ')+q.dataset.explanation;
+  });
+  scoreText.textContent=score+'/'+questions.length;
+  const ratio=score/questions.length;
+  resultMessage.textContent=ratio===1?'Xuất sắc! Bạn đã nắm chắc các ý chính của tài liệu.':ratio>=.75?'Rất tốt! Bạn đã hiểu phần lớn nội dung, hãy xem lại những câu chưa chính xác.':ratio>=.5?'Khá ổn! Hãy đọc lại các mục có liên quan rồi thử lại nhé.':'Đừng lo, hãy xem lại phần tổng kết và thử làm lại một lần nữa.';
+  result.classList.add('show');
+  status.textContent='Đã chấm xong · '+score+'/'+questions.length+' câu đúng';
+  result.scrollIntoView({behavior:'smooth',block:'nearest'});
+ });
+ reset.addEventListener('click',()=>{
+  answers={};
+  questions.forEach(q=>{
+   q.querySelectorAll('.option').forEach(btn=>{
+    btn.classList.remove('selected','correct','wrong');
+    btn.setAttribute('aria-pressed','false');
+   });
+   const feedback=q.querySelector('.feedback');
+   feedback.className='feedback';
+   feedback.textContent='';
+  });
+  result.classList.remove('show');
+  refresh();
+  document.getElementById('quiz').scrollIntoView({behavior:'smooth',block:'start'});
+ });
+ const observer=new IntersectionObserver(entries=>{
+  entries.forEach(entry=>{
+   if(entry.isIntersecting){entry.target.classList.add('visible');observer.unobserve(entry.target)}
+  });
+ },{threshold:.08});
+ document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+ refresh();
+})();
+</script>
+</body>
+</html>
