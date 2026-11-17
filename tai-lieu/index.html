@@ -500,12 +500,16 @@ td:first-child{font-weight:850;color:#ffb8c8;white-space:nowrap}
  const fontStoreKey='chem10-reader-font-scale';
  let fontScale=1;
  const baseFonts=new WeakMap();
+ const authoredFontSizes=new WeakMap();
  let scalableText=[];
  function captureBaseFonts(){
   if(!article)return;
   scalableText=Array.from(article.querySelectorAll('*'));
   scalableText.forEach(el=>{
-   el.style.removeProperty('font-size');
+   if(!authoredFontSizes.has(el))authoredFontSizes.set(el,el.style.getPropertyValue('font-size'));
+   const authoredSize=authoredFontSizes.get(el);
+   if(authoredSize)el.style.setProperty('font-size',authoredSize);
+   else el.style.removeProperty('font-size');
    baseFonts.set(el,parseFloat(getComputedStyle(el).fontSize)||16);
   });
   applyFontScale();
