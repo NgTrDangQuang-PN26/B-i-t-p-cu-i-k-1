@@ -53,6 +53,7 @@ h1 span,.accent{color:var(--pink)}
 .reader-tool-btn{min-width:34px;height:33px;padding:0 9px;border:1px solid #ffffff24;border-radius:10px;background:#ffffff0b;color:#fff3f6;font-size:13px;font-weight:900;cursor:pointer;transition:background .18s,border-color .18s,transform .18s}
 .reader-tool-btn:hover{background:#ffabc022;border-color:#ffabc066;transform:translateY(-1px)}
 .reader-tool-btn:focus-visible{outline:2px solid #ffd3df;outline-offset:2px}
+.reader-tool-btn:disabled{opacity:.38;cursor:not-allowed;transform:none}
 .reader-tool-value{min-width:42px;text-align:center;color:#ffe0e7;font-size:11px;font-weight:850;font-variant-numeric:tabular-nums}
 .reader-tool-btn.reset{min-width:31px;color:#ffc5d1}
 .article{padding-bottom:76px}
@@ -548,8 +549,12 @@ td:first-child{font-weight:850;color:#ffb8c8;white-space:nowrap}
    else link.removeAttribute('aria-current');
   });
   const activeSidebar=document.querySelector('.sidebar a.active');
-  if(activeSidebar&&window.matchMedia('(max-width: 900px)').matches){
-   activeSidebar.scrollIntoView({block:'nearest',inline:'nearest',behavior:'smooth'});
+  const sidebar=document.querySelector('.sidebar');
+  if(activeSidebar&&sidebar&&window.matchMedia('(max-width: 900px)').matches){
+   const linkRect=activeSidebar.getBoundingClientRect();
+   const railRect=sidebar.getBoundingClientRect();
+   const horizontalDelta=linkRect.left-railRect.left-(railRect.width-linkRect.width)/2;
+   sidebar.scrollBy({left:horizontalDelta,behavior:'smooth'});
   }
  }
  if('IntersectionObserver' in window){
