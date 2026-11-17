@@ -648,7 +648,7 @@ body.morph-done .morph-new{opacity:1;visibility:visible;filter:none;transform:no
   old.classList.add('leaving');
   incoming.classList.remove('leaving');
   incoming.classList.add('active');
-  incoming.classList.add(transitionEffects[(target-1)%transitionEffects.length]);
+  incoming.classList.add(transitionEffects[(target-1+transitionEffects.length)%transitionEffects.length]);
   index=target;
   paint();
   cleanupTimer=setTimeout(function(){
