@@ -11,9 +11,12 @@
 :root{--ink:#fff8f7;--muted:#f5cbd3;--rose:#ff9db5;--pink:#ffd5df;--red:#e52b55;--wine:#260713;--wine2:#4b0b20;--panel:rgba(255,242,244,.09);--line:rgba(255,220,228,.18);--gold:#ffd58b}
 *{box-sizing:border-box}
 html,body{height:100%;margin:0}
-body{font-family:Inter,"Segoe UI",Arial,sans-serif;color:var(--ink);background:radial-gradient(ellipse at 15% 15%,#74112f 0,transparent 35%),radial-gradient(ellipse at 85% 80%,#8d1234 0,transparent 38%),#18050d;overflow:hidden}
+body{position:relative;font-family:Inter,"Segoe UI",Arial,sans-serif;color:var(--ink);background:radial-gradient(ellipse at 15% 15%,#74112f 0,transparent 35%),radial-gradient(ellipse at 85% 80%,#8d1234 0,transparent 38%),#18050d;overflow:hidden}
+.ambient-video-shell{position:fixed;inset:0;z-index:0;overflow:hidden;pointer-events:none;background:radial-gradient(ellipse at 16% 18%,#75112f 0,transparent 37%),radial-gradient(ellipse at 84% 78%,#8b1235 0,transparent 40%),#18050d}
+.ambient-video-frame{position:absolute;top:50%;left:50%;width:max(100vw,177.78vh);height:max(100vh,56.25vw);transform:translate(-50%,-50%);border:0;opacity:.72;filter:brightness(.72) saturate(1.18) contrast(1.08);pointer-events:none}
+.ambient-video-shell:after{content:"";position:absolute;inset:0;background:linear-gradient(118deg,rgba(25,3,12,.54),rgba(93,8,35,.24) 48%,rgba(17,2,9,.55)),radial-gradient(ellipse at 50% 45%,rgba(117,12,43,.16),rgba(11,2,7,.3));pointer-events:none}
 button{font:inherit}
-.deck{height:100dvh;display:flex;flex-direction:column;padding:12px clamp(12px,2.4vw,34px) 10px;gap:8px}
+.deck{position:relative;z-index:2;height:100dvh;display:flex;flex-direction:column;padding:12px clamp(12px,2.4vw,34px) 10px;gap:8px}
 .topbar{height:34px;display:flex;align-items:center;justify-content:space-between;gap:12px;color:#f8dce2;font-size:12px;letter-spacing:.12em;text-transform:uppercase}
 .brand{display:flex;align-items:center;gap:9px;font-weight:800}
 .brand-mark{width:22px;height:22px;border-radius:8px;background:linear-gradient(135deg,#ffb3c4,#e92d57);display:grid;place-items:center;box-shadow:0 0 18px #f0476b66;color:#4a0920;font-size:13px}
@@ -21,7 +24,7 @@ button{font:inherit}
 .top-chip{border:1px solid #ffffff24;border-radius:99px;padding:6px 10px;background:#ffffff0a}
 .stage-wrap{flex:1;min-height:0;display:grid;place-items:center;position:relative}
 .stage{width:min(94vw,1320px,calc(80vh * 1.7778));aspect-ratio:16/9;position:relative;isolation:isolate;filter:drop-shadow(0 28px 55px #07000688)}
-.slide{position:absolute;inset:0;overflow:hidden;border-radius:26px;border:1px solid #ffffff27;padding:clamp(22px,3.6vw,54px);background:radial-gradient(circle at 90% 8%,#a91b42 0,transparent 29%),radial-gradient(circle at 0% 100%,#6e102b 0,transparent 36%),linear-gradient(135deg,#310817,#4a0b20 54%,#260713);opacity:0;visibility:hidden;transform:translateX(56px) scale(.975);pointer-events:none;transition:opacity .48s ease,transform .62s cubic-bezier(.2,.8,.2,1),visibility .48s;display:flex;flex-direction:column}
+.slide{position:absolute;inset:0;overflow:hidden;border-radius:26px;border:1px solid #ffffff27;padding:clamp(22px,3.6vw,54px);background:radial-gradient(circle at 90% 8%,rgba(169,27,66,.64) 0,transparent 29%),radial-gradient(circle at 0% 100%,rgba(110,16,43,.68) 0,transparent 36%),linear-gradient(135deg,rgba(49,8,23,.76),rgba(74,11,32,.69) 54%,rgba(38,7,19,.77));opacity:0;visibility:hidden;transform:translateX(56px) scale(.975);pointer-events:none;transition:opacity .48s ease,transform .62s cubic-bezier(.2,.8,.2,1),visibility .48s;display:flex;flex-direction:column}
 .slide:before{content:"";position:absolute;inset:0;pointer-events:none;background-image:radial-gradient(#ffdbe31a 1px,transparent 1px);background-size:24px 24px;mask-image:linear-gradient(120deg,#0008,transparent 80%);opacity:.35}
 .slide:after{content:"";position:absolute;width:33%;height:55%;right:-13%;bottom:-26%;border:1px solid #ffb7c31b;border-radius:50%;box-shadow:0 0 0 28px #ffb7c30a,0 0 0 58px #ffb7c308;pointer-events:none}
 .slide.active{opacity:1;visibility:visible;transform:none;pointer-events:auto;z-index:2}
@@ -93,7 +96,7 @@ h3{font-size:clamp(16px,1.55vw,22px);line-height:1.15}
 .source-link{color:#ffd3de;text-decoration:underline;text-decoration-color:#ffb1c477;text-underline-offset:3px;font-weight:800;white-space:nowrap}
 .source-link:hover{color:#fff}
 .source-pill{color:#ffe4ea;text-decoration:none;cursor:pointer}
-.thankyou-slide{justify-content:center;text-align:center;isolation:isolate;background:radial-gradient(ellipse at 50% 43%,#b51b36 0,transparent 39%),radial-gradient(ellipse at 10% 10%,#8b1232 0,transparent 34%),radial-gradient(ellipse at 88% 90%,#8f1232 0,transparent 34%),linear-gradient(145deg,#10040a,#380918 45%,#16040b)}
+.thankyou-slide{justify-content:center;text-align:center;isolation:isolate;background:radial-gradient(ellipse at 50% 43%,rgba(181,27,54,.54) 0,transparent 39%),radial-gradient(ellipse at 10% 10%,rgba(139,18,50,.58) 0,transparent 34%),radial-gradient(ellipse at 88% 90%,rgba(143,18,50,.5) 0,transparent 34%),linear-gradient(145deg,rgba(16,4,10,.8),rgba(56,9,24,.68) 45%,rgba(22,4,11,.82))}
 .thankyou-slide:before{background-image:radial-gradient(#fff3f71a 1px,transparent 1px);background-size:18px 18px;opacity:.3}
 .thankyou-script{font-family:"Caveat","Segoe Print","Brush Script MT",cursive;font-size:clamp(68px,10vw,132px);line-height:.78;font-weight:700;letter-spacing:-.045em;color:#fff;text-shadow:0 9px 32px #09000688;transform:rotate(-3deg);margin:0 auto clamp(20px,3vw,34px);animation:thankYouReveal 1s cubic-bezier(.18,.8,.2,1) both}
 .slide.active .thankyou-script{animation:thankYouReveal 1s cubic-bezier(.18,.8,.2,1) both;animation-delay:var(--delay,0ms)}
@@ -121,7 +124,7 @@ body.morph-done .morph-new{opacity:1;visibility:visible;filter:none;transform:no
 @keyframes rise{to{opacity:1;transform:none;filter:blur(0)}}
 @keyframes enterSlide{from{opacity:0;transform:translateX(35px) scale(.985);filter:blur(7px)}to{opacity:1;transform:none;filter:blur(0)}}
 .slide.active{animation:enterSlide .58s ease both}
-.cover{justify-content:center;text-align:center;background:radial-gradient(ellipse at 50% 47%,#b01b3d 0,transparent 37%),radial-gradient(ellipse at 12% 10%,#8b1034 0,transparent 35%),radial-gradient(ellipse at 84% 95%,#9f1238 0,transparent 34%),linear-gradient(145deg,#23050d,#5d0c24 48%,#22050d)}
+.cover{justify-content:center;text-align:center;background:radial-gradient(ellipse at 50% 47%,rgba(176,27,61,.58) 0,transparent 37%),radial-gradient(ellipse at 12% 10%,rgba(139,16,52,.62) 0,transparent 35%),radial-gradient(ellipse at 84% 95%,rgba(159,18,56,.52) 0,transparent 34%),linear-gradient(145deg,rgba(35,5,13,.78),rgba(93,12,36,.65) 48%,rgba(34,5,13,.79))}
 .cover:before{background-image:radial-gradient(#fff4f71c 1px,transparent 1px);background-size:17px 17px;opacity:.2}
 .cover-meta{font-size:clamp(10px,1vw,13px);letter-spacing:.22em;text-transform:uppercase;color:#ffd2dd;font-weight:800;margin-bottom:clamp(16px,2.7vw,34px)}
 .welcome-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:clamp(7px,2.1vw,26px);width:min(93%,990px);margin:0 auto clamp(18px,2.4vw,30px)}
@@ -224,9 +227,13 @@ body.morph-done .morph-new{opacity:1;visibility:visible;filter:none;transform:no
  .top-right .top-chip{display:none}.hint{display:none}
 }
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
+@media(prefers-reduced-motion:reduce){.ambient-video-shell{display:none!important}}
 </style>
 </head>
 <body>
+<div class="ambient-video-shell" aria-hidden="true">
+ <iframe class="ambient-video-frame" src="https://www.youtube-nocookie.com/embed/kyPgjGgcLVs?autoplay=1&amp;mute=1&amp;loop=1&amp;playlist=kyPgjGgcLVs&amp;controls=0&amp;disablekb=1&amp;playsinline=1&amp;modestbranding=1&amp;rel=0&amp;iv_load_policy=3" title="Nền chuyển động gradient đỏ đen" tabindex="-1" loading="eager" allow="autoplay; encrypted-media; picture-in-picture" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+</div>
 <div class="start-overlay" id="startOverlay" role="dialog" aria-modal="true" aria-labelledby="startTitle">
  <div class="start-card">
   <div class="start-emblem">✦</div>
