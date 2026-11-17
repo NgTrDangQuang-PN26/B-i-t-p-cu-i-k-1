@@ -11,12 +11,9 @@
 :root{--ink:#fff8f7;--muted:#f5cbd3;--rose:#ff9db5;--pink:#ffd5df;--red:#e52b55;--wine:#260713;--wine2:#4b0b20;--panel:rgba(255,242,244,.09);--line:rgba(255,220,228,.18);--gold:#ffd58b}
 *{box-sizing:border-box}
 html,body{height:100%;margin:0}
-body{position:relative;font-family:Inter,"Segoe UI",Arial,sans-serif;color:var(--ink);background:radial-gradient(ellipse at 15% 15%,#74112f 0,transparent 35%),radial-gradient(ellipse at 85% 80%,#8d1234 0,transparent 38%),#18050d;overflow:hidden}
-.ambient-video-shell{position:fixed;inset:0;z-index:0;overflow:hidden;pointer-events:none;background:radial-gradient(ellipse at 16% 18%,#75112f 0,transparent 37%),radial-gradient(ellipse at 84% 78%,#8b1235 0,transparent 40%),#18050d}
-.ambient-video-frame{position:absolute;top:50%;left:50%;width:max(100vw,177.78vh);height:max(100vh,56.25vw);transform:translate(-50%,-50%);border:0;opacity:.72;filter:brightness(.72) saturate(1.18) contrast(1.08);pointer-events:none}
-.ambient-video-shell:after{content:"";position:absolute;inset:0;background:linear-gradient(118deg,rgba(25,3,12,.54),rgba(93,8,35,.24) 48%,rgba(17,2,9,.55)),radial-gradient(ellipse at 50% 45%,rgba(117,12,43,.16),rgba(11,2,7,.3));pointer-events:none}
+body{font-family:Inter,"Segoe UI",Arial,sans-serif;color:var(--ink);background:radial-gradient(ellipse at 15% 15%,#74112f 0,transparent 35%),radial-gradient(ellipse at 85% 80%,#8d1234 0,transparent 38%),#18050d;overflow:hidden}
 button{font:inherit}
-.deck{position:relative;z-index:2;height:100dvh;display:flex;flex-direction:column;padding:12px clamp(12px,2.4vw,34px) 10px;gap:8px}
+.deck{height:100dvh;display:flex;flex-direction:column;padding:12px clamp(12px,2.4vw,34px) 10px;gap:8px}
 .topbar{height:34px;display:flex;align-items:center;justify-content:space-between;gap:12px;color:#f8dce2;font-size:12px;letter-spacing:.12em;text-transform:uppercase}
 .brand{display:flex;align-items:center;gap:9px;font-weight:800}
 .brand-mark{width:22px;height:22px;border-radius:8px;background:linear-gradient(135deg,#ffb3c4,#e92d57);display:grid;place-items:center;box-shadow:0 0 18px #f0476b66;color:#4a0920;font-size:13px}
@@ -24,7 +21,7 @@ button{font:inherit}
 .top-chip{border:1px solid #ffffff24;border-radius:99px;padding:6px 10px;background:#ffffff0a}
 .stage-wrap{flex:1;min-height:0;display:grid;place-items:center;position:relative}
 .stage{width:min(94vw,1320px,calc(80vh * 1.7778));aspect-ratio:16/9;position:relative;isolation:isolate;filter:drop-shadow(0 28px 55px #07000688)}
-.slide{position:absolute;inset:0;overflow:hidden;border-radius:26px;border:1px solid #ffffff27;padding:clamp(22px,3.6vw,54px);background:radial-gradient(circle at 90% 8%,rgba(169,27,66,.64) 0,transparent 29%),radial-gradient(circle at 0% 100%,rgba(110,16,43,.68) 0,transparent 36%),linear-gradient(135deg,rgba(49,8,23,.76),rgba(74,11,32,.69) 54%,rgba(38,7,19,.77));opacity:0;visibility:hidden;transform:translateX(56px) scale(.975);pointer-events:none;transition:opacity .48s ease,transform .62s cubic-bezier(.2,.8,.2,1),visibility .48s;display:flex;flex-direction:column}
+.slide{position:absolute;inset:0;overflow:hidden;border-radius:26px;border:1px solid #ffffff27;padding:clamp(22px,3.6vw,54px);background:radial-gradient(circle at 90% 8%,#a91b42 0,transparent 29%),radial-gradient(circle at 0% 100%,#6e102b 0,transparent 36%),linear-gradient(135deg,#310817,#4a0b20 54%,#260713);opacity:0;visibility:hidden;transform:translateX(56px) scale(.975);pointer-events:none;transition:opacity .48s ease,transform .62s cubic-bezier(.2,.8,.2,1),visibility .48s;display:flex;flex-direction:column}
 .slide:before{content:"";position:absolute;inset:0;pointer-events:none;background-image:radial-gradient(#ffdbe31a 1px,transparent 1px);background-size:24px 24px;mask-image:linear-gradient(120deg,#0008,transparent 80%);opacity:.35}
 .slide:after{content:"";position:absolute;width:33%;height:55%;right:-13%;bottom:-26%;border:1px solid #ffb7c31b;border-radius:50%;box-shadow:0 0 0 28px #ffb7c30a,0 0 0 58px #ffb7c308;pointer-events:none}
 .slide.active{opacity:1;visibility:visible;transform:none;pointer-events:auto;z-index:2}
@@ -41,12 +38,12 @@ h3{font-size:clamp(16px,1.55vw,22px);line-height:1.15}
 .muted{color:#f4c9d2}
 .accent{color:#ffb1c2}
 .gold{color:var(--gold)}
-.reveal{opacity:0;transform:translateY(18px);filter:blur(5px)}
+.reveal{opacity:0;transform:translateY(18px)}
 .slide.active .reveal{animation:rise .68s cubic-bezier(.18,.78,.2,1) forwards;animation-delay:var(--delay,0ms)}
 
-@keyframes enterFromLeft{from{opacity:0;transform:translateX(-30px) rotate(-1deg) scale(.98);filter:blur(4px)}to{opacity:1;transform:none;filter:blur(0)}}
-@keyframes enterFromRight{from{opacity:0;transform:translateX(30px) rotate(1deg) scale(.98);filter:blur(4px)}to{opacity:1;transform:none;filter:blur(0)}}
-@keyframes softPop{0%{opacity:0;transform:translateY(12px) scale(.94);filter:blur(3px)}72%{opacity:1;transform:translateY(-3px) scale(1.015);filter:blur(0)}100%{opacity:1;transform:none;filter:blur(0)}}
+@keyframes enterFromLeft{from{opacity:0;transform:translateX(-34px) rotate(-2deg) scale(.965)}to{opacity:1;transform:none}}
+@keyframes enterFromRight{from{opacity:0;transform:translateX(34px) rotate(2deg) scale(.965)}to{opacity:1;transform:none}}
+@keyframes softPop{0%{opacity:0;transform:translateY(16px) scale(.94)}72%{opacity:1;transform:translateY(-3px) scale(1.015)}100%{opacity:1;transform:none}}
 @keyframes iconBob{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(-5px) rotate(-5deg)}}
 @keyframes flamePulse{0%,100%{transform:translateY(0) scale(1);filter:drop-shadow(0 0 12px #ff9b6b55)}45%{transform:translateY(-4px) scale(1.04);filter:drop-shadow(0 0 22px #ff9b6b99)}}
 @keyframes twinkle{0%,100%{opacity:.45;transform:scale(.88) rotate(-8deg)}50%{opacity:1;transform:scale(1.12) rotate(10deg)}}
@@ -96,7 +93,7 @@ h3{font-size:clamp(16px,1.55vw,22px);line-height:1.15}
 .source-link{color:#ffd3de;text-decoration:underline;text-decoration-color:#ffb1c477;text-underline-offset:3px;font-weight:800;white-space:nowrap}
 .source-link:hover{color:#fff}
 .source-pill{color:#ffe4ea;text-decoration:none;cursor:pointer}
-.thankyou-slide{justify-content:center;text-align:center;isolation:isolate;background:radial-gradient(ellipse at 50% 43%,rgba(181,27,54,.54) 0,transparent 39%),radial-gradient(ellipse at 10% 10%,rgba(139,18,50,.58) 0,transparent 34%),radial-gradient(ellipse at 88% 90%,rgba(143,18,50,.5) 0,transparent 34%),linear-gradient(145deg,rgba(16,4,10,.8),rgba(56,9,24,.68) 45%,rgba(22,4,11,.82))}
+.thankyou-slide{justify-content:center;text-align:center;isolation:isolate;background:radial-gradient(ellipse at 50% 43%,#b51b36 0,transparent 39%),radial-gradient(ellipse at 10% 10%,#8b1232 0,transparent 34%),radial-gradient(ellipse at 88% 90%,#8f1232 0,transparent 34%),linear-gradient(145deg,#10040a,#380918 45%,#16040b)}
 .thankyou-slide:before{background-image:radial-gradient(#fff3f71a 1px,transparent 1px);background-size:18px 18px;opacity:.3}
 .thankyou-script{font-family:"Caveat","Segoe Print","Brush Script MT",cursive;font-size:clamp(68px,10vw,132px);line-height:.78;font-weight:700;letter-spacing:-.045em;color:#fff;text-shadow:0 9px 32px #09000688;transform:rotate(-3deg);margin:0 auto clamp(20px,3vw,34px);animation:thankYouReveal 1s cubic-bezier(.18,.8,.2,1) both}
 .slide.active .thankyou-script{animation:thankYouReveal 1s cubic-bezier(.18,.8,.2,1) both;animation-delay:var(--delay,0ms)}
@@ -121,10 +118,10 @@ body.morph-active .morph-new{animation:morphIn 1.08s cubic-bezier(.18,.8,.22,1) 
 body.morph-done .morph-old{opacity:0;visibility:hidden;transform:scale(.55)}
 body.morph-done .morph-new{opacity:1;visibility:visible;filter:none;transform:none}
 
-@keyframes rise{to{opacity:1;transform:none;filter:blur(0)}}
-@keyframes enterSlide{from{opacity:0;transform:translateX(35px) scale(.985);filter:blur(7px)}to{opacity:1;transform:none;filter:blur(0)}}
+@keyframes rise{to{opacity:1;transform:none}}
+@keyframes enterSlide{from{opacity:0;transform:translateX(35px) scale(.985)}to{opacity:1;transform:none}}
 .slide.active{animation:enterSlide .58s ease both}
-.cover{justify-content:center;text-align:center;background:radial-gradient(ellipse at 50% 47%,rgba(176,27,61,.58) 0,transparent 37%),radial-gradient(ellipse at 12% 10%,rgba(139,16,52,.62) 0,transparent 35%),radial-gradient(ellipse at 84% 95%,rgba(159,18,56,.52) 0,transparent 34%),linear-gradient(145deg,rgba(35,5,13,.78),rgba(93,12,36,.65) 48%,rgba(34,5,13,.79))}
+.cover{justify-content:center;text-align:center;background:radial-gradient(ellipse at 50% 47%,#b01b3d 0,transparent 37%),radial-gradient(ellipse at 12% 10%,#8b1034 0,transparent 35%),radial-gradient(ellipse at 84% 95%,#9f1238 0,transparent 34%),linear-gradient(145deg,#23050d,#5d0c24 48%,#22050d)}
 .cover:before{background-image:radial-gradient(#fff4f71c 1px,transparent 1px);background-size:17px 17px;opacity:.2}
 .cover-meta{font-size:clamp(10px,1vw,13px);letter-spacing:.22em;text-transform:uppercase;color:#ffd2dd;font-weight:800;margin-bottom:clamp(16px,2.7vw,34px)}
 .welcome-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:clamp(7px,2.1vw,26px);width:min(93%,990px);margin:0 auto clamp(18px,2.4vw,30px)}
@@ -191,6 +188,80 @@ body.morph-done .morph-new{opacity:1;visibility:visible;filter:none;transform:no
 .table-wrap{overflow:auto;border-radius:14px;flex:1;min-height:0}
 .note{font-size:clamp(10px,.9vw,12px);color:#efc1cb;line-height:1.4}
 .bottomline{display:flex;justify-content:space-between;align-items:center;gap:14px;margin-top:auto;padding-top:12px;color:#f2c4ce;font-size:clamp(10px,.9vw,12px)}
+
+/* --- Motion design system: organic light, 3D cards, masked typography and page wipes --- */
+.slide>.motion-atmosphere{position:absolute!important;inset:0;z-index:0!important;overflow:hidden;border-radius:inherit;pointer-events:none;contain:paint}
+.motion-blob{position:absolute;display:block;width:clamp(190px,30vw,420px);height:clamp(170px,28vw,360px);border-radius:58% 42% 63% 37% / 45% 58% 42% 55%;opacity:.18;mix-blend-mode:screen;filter:blur(30px);will-change:transform,border-radius}
+.motion-blob.one{left:-13%;top:-22%;background:radial-gradient(circle at 50% 50%,#ff658d 0,rgba(218,32,79,.48) 35%,transparent 72%);animation:blobFlowOne 16s ease-in-out infinite alternate}
+.motion-blob.two{right:-15%;top:7%;width:clamp(180px,25vw,340px);height:clamp(190px,29vw,390px);background:radial-gradient(circle at 50% 50%,#d52d5d 0,rgba(116,13,47,.5) 40%,transparent 72%);animation:blobFlowTwo 19s ease-in-out infinite alternate}
+.motion-blob.three{left:30%;bottom:-31%;width:clamp(220px,34vw,460px);height:clamp(150px,23vw,310px);background:radial-gradient(circle at 50% 50%,#ff9ab2 0,rgba(160,18,58,.45) 38%,transparent 73%);opacity:.12;animation:blobFlowThree 22s ease-in-out infinite alternate}
+@keyframes blobFlowOne{0%{transform:translate3d(0,0,0) rotate(-12deg) scale(.92);border-radius:58% 42% 63% 37%/45% 58% 42% 55%}50%{transform:translate3d(42px,24px,0) rotate(9deg) scale(1.08);border-radius:42% 58% 39% 61%/57% 42% 58% 43%}100%{transform:translate3d(78px,54px,0) rotate(18deg) scale(.98);border-radius:63% 37% 54% 46%/43% 61% 39% 57%}}
+@keyframes blobFlowTwo{0%{transform:translate3d(0,0,0) rotate(9deg) scale(1);border-radius:51% 49% 39% 61%/42% 58% 42% 58%}100%{transform:translate3d(-70px,48px,0) rotate(-17deg) scale(1.12);border-radius:39% 61% 57% 43%/58% 40% 60% 42%}}
+@keyframes blobFlowThree{0%{transform:translate3d(0,0,0) rotate(4deg) scale(.9)}100%{transform:translate3d(-38px,-42px,0) rotate(-12deg) scale(1.14)}}
+.slide.active:before{animation:dotFieldDrift 22s linear infinite alternate}
+@keyframes dotFieldDrift{from{background-position:0 0}to{background-position:28px 18px}}
+.slide.active:after{animation:haloDrift 12s ease-in-out infinite alternate}
+
+/* Five distinct slide-entry transitions. Content remains sharp while the slide canvas moves. */
+@keyframes wipeReveal{0%{opacity:0;clip-path:inset(0 100% 0 0 round 26px);transform:translateX(22px) scale(1.015)}65%{opacity:1;clip-path:inset(0 3% 0 0 round 26px);transform:translateX(0) scale(1)}100%{opacity:1;clip-path:inset(0 0 0 0 round 26px);transform:none}}
+@keyframes irisReveal{0%{opacity:0;clip-path:circle(5% at 50% 50%);transform:scale(.94)}70%{opacity:1;clip-path:circle(78% at 50% 50%);transform:scale(1.01)}100%{opacity:1;clip-path:circle(150% at 50% 50%);transform:none}}
+@keyframes depthReveal{0%{opacity:0;transform:perspective(1300px) rotateY(13deg) translateX(42px) scale(.96);transform-origin:left center}65%{opacity:1;transform:perspective(1300px) rotateY(-1deg) translateX(-3px) scale(1)}100%{opacity:1;transform:perspective(1300px) rotateY(0) translateX(0) scale(1)}}
+@keyframes liftReveal{0%{opacity:0;clip-path:inset(78% 0 0 0 round 26px);transform:translateY(32px) scale(.975)}72%{opacity:1;clip-path:inset(0 0 0 0 round 26px);transform:translateY(-3px) scale(1.005)}100%{opacity:1;clip-path:inset(0 0 0 0 round 26px);transform:none}}
+@keyframes flipReveal{0%{opacity:0;transform:perspective(1400px) rotateX(-12deg) translateY(30px) scale(.97);transform-origin:50% 0}70%{opacity:1;transform:perspective(1400px) rotateX(1deg) translateY(-2px) scale(1)}100%{opacity:1;transform:perspective(1400px) rotateX(0) translateY(0) scale(1)}}
+.slide.active.fx-wipe{animation:wipeReveal .88s cubic-bezier(.2,.82,.18,1) both}
+.slide.active.fx-iris{animation:irisReveal .88s cubic-bezier(.2,.8,.2,1) both}
+.slide.active.fx-depth{animation:depthReveal .86s cubic-bezier(.18,.8,.22,1) both}
+.slide.active.fx-lift{animation:liftReveal .84s cubic-bezier(.18,.8,.22,1) both}
+.slide.active.fx-flip{animation:flipReveal .88s cubic-bezier(.18,.8,.22,1) both}
+
+/* Text and elements arrive in a hierarchy rather than as one default pop. */
+@keyframes headingMaskIn{0%{opacity:0;clip-path:inset(0 0 90% 0);transform:translateY(24px) scale(.97)}72%{opacity:1;clip-path:inset(0 0 0 0);transform:translateY(-2px) scale(1.008)}100%{opacity:1;clip-path:inset(0 0 0 0);transform:none}}
+@keyframes kickerStamp{0%{opacity:0;transform:translateY(-12px) scale(.86);letter-spacing:.24em}65%{opacity:1;transform:translateY(2px) scale(1.03)}100%{opacity:1;transform:none}}
+@keyframes card3DIn{0%{opacity:0;transform:perspective(900px) rotateY(10deg) translateY(25px) scale(.955);transform-origin:left center}75%{opacity:1;transform:perspective(900px) rotateY(-1deg) translateY(-2px) scale(1.008)}100%{opacity:1;transform:perspective(900px) rotateY(0) translateY(0) scale(1)}}
+@keyframes card3DInReverse{0%{opacity:0;transform:perspective(900px) rotateY(-10deg) translateY(25px) scale(.955);transform-origin:right center}75%{opacity:1;transform:perspective(900px) rotateY(1deg) translateY(-2px) scale(1.008)}100%{opacity:1;transform:perspective(900px) rotateY(0) translateY(0) scale(1)}}
+@keyframes calloutSweep{0%{opacity:0;clip-path:inset(0 100% 0 0);transform:translateX(-12px)}75%{opacity:1;clip-path:inset(0 0 0 0);transform:translateX(2px)}100%{opacity:1;clip-path:inset(0 0 0 0);transform:none}}
+@keyframes metricBounce{0%{opacity:0;transform:translateY(22px) scale(.72)}65%{opacity:1;transform:translateY(-5px) scale(1.07)}82%{transform:translateY(2px) scale(.99)}100%{opacity:1;transform:none}}
+@keyframes chipFloatIn{0%{opacity:0;transform:translateY(18px) rotate(-5deg) scale(.82)}70%{opacity:1;transform:translateY(-3px) rotate(1deg) scale(1.04)}100%{opacity:1;transform:none}}
+@keyframes tileFlipIn{0%{opacity:0;transform:perspective(800px) rotateY(-52deg) rotateX(12deg) translateY(14px) scale(.88)}72%{opacity:1;transform:perspective(800px) rotateY(5deg) translateY(-3px) scale(1.03)}100%{opacity:1;transform:perspective(800px) rotateY(0) rotateX(0) translateY(0) scale(1)}}
+@keyframes svgDrawLine{to{stroke-dashoffset:0}}
+.slide.active h2.reveal{animation:headingMaskIn .82s cubic-bezier(.18,.8,.22,1) both;animation-delay:var(--delay,0ms)}
+.slide.active .slide-head{animation:kickerStamp .62s cubic-bezier(.18,.8,.22,1) both}
+.slide.active .panel.reveal:nth-child(odd){animation:card3DIn .86s cubic-bezier(.18,.8,.22,1) both;animation-delay:var(--delay,120ms)}
+.slide.active .panel.reveal:nth-child(even){animation:card3DInReverse .86s cubic-bezier(.18,.8,.22,1) both;animation-delay:var(--delay,180ms)}
+.slide.active .callout{animation:calloutSweep .78s cubic-bezier(.18,.8,.22,1) both;animation-delay:var(--delay,220ms);filter:none}
+.slide.active .metric{animation:metricBounce .82s cubic-bezier(.18,.8,.22,1) both;animation-delay:var(--delay,260ms)}
+.slide.active .topic-chips span{animation:chipFloatIn .72s cubic-bezier(.18,.8,.22,1) both}
+.slide.active .topic-chips span:nth-child(1){animation-delay:520ms}
+.slide.active .topic-chips span:nth-child(2){animation-delay:620ms}
+.slide.active .topic-chips span:nth-child(3){animation-delay:720ms}
+.slide.active .welcome-card{animation:tileFlipIn .82s cubic-bezier(.18,.8,.22,1) both;animation-delay:var(--morph-delay,0ms)}
+.slide.active .welcome-card:nth-child(1){--morph-delay:0ms}
+.slide.active .welcome-card:nth-child(2){--morph-delay:70ms}
+.slide.active .welcome-card:nth-child(3){--morph-delay:140ms}
+.slide.active .welcome-card:nth-child(4){--morph-delay:210ms}
+.slide.active .welcome-card:nth-child(5){--morph-delay:280ms}
+.slide.active .welcome-card:nth-child(6){--morph-delay:350ms}
+.slide.active .welcome-card:nth-child(7){--morph-delay:420ms}
+.slide.active .bar-fill{animation:barGrow 1.15s cubic-bezier(.2,.8,.2,1) both;animation-delay:420ms}
+.slide.active .thankyou-orbit path{stroke-dasharray:1600;stroke-dashoffset:1600;animation:svgDrawLine 2.2s cubic-bezier(.2,.8,.2,1) forwards}
+.slide.active .thankyou-orbit path:nth-child(2n){animation-delay:100ms}
+.slide.active .thankyou-orbit path:nth-child(3n){animation-delay:220ms}
+.slide.active .flamebox{animation:card3DIn .9s cubic-bezier(.18,.8,.22,1) both;animation-delay:360ms}
+.slide.active .flamebox:nth-child(2){animation-name:card3DInReverse;animation-delay:500ms}
+
+/* Soft continuous movement on decorative UI; content remains crisp and still. */
+.slide.active .icon-bubble{animation:iconBob 3.7s ease-in-out infinite}
+.slide.active .corner-star{animation:twinkle 3.4s ease-in-out infinite}
+.slide.active .corner-star.star-b{animation-delay:.7s}
+.slide.active .corner-star.star-c{animation-delay:1.3s}
+.slide.active .corner-star.star-d{animation-delay:1.9s}
+.slide.active .slide-head .dot{animation:dotPulse 2.4s ease-out infinite}
+@media(prefers-reduced-motion:reduce){
+ .motion-atmosphere{display:none!important}
+ .slide.active,.slide.active.fx-wipe,.slide.active.fx-iris,.slide.active.fx-depth,.slide.active.fx-lift,.slide.active.fx-flip{animation:none!important}
+ .slide.active .reveal,.slide.active .panel.reveal,.slide.active h2.reveal,.slide.active .callout,.slide.active .metric,.slide.active .welcome-card,.slide.active .topic-chips span{animation:none!important;opacity:1;transform:none;clip-path:none}
+}
+
 /* Keep classification cards in normal flow so the example callout sits below them. */
 .classification-slide .classification-cards{flex:0 0 auto;min-height:auto;align-items:stretch}
 .classification-slide .classification-cards>.panel{min-height:220px;padding:clamp(14px,1.5vw,21px)}
@@ -227,13 +298,9 @@ body.morph-done .morph-new{opacity:1;visibility:visible;filter:none;transform:no
  .top-right .top-chip{display:none}.hint{display:none}
 }
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
-@media(prefers-reduced-motion:reduce){.ambient-video-shell{display:none!important}}
 </style>
 </head>
 <body>
-<div class="ambient-video-shell" aria-hidden="true">
- <iframe class="ambient-video-frame" src="https://www.youtube-nocookie.com/embed/kyPgjGgcLVs?autoplay=1&amp;mute=1&amp;loop=1&amp;playlist=kyPgjGgcLVs&amp;controls=0&amp;disablekb=1&amp;playsinline=1&amp;modestbranding=1&amp;rel=0&amp;iv_load_policy=3" title="Nền chuyển động gradient đỏ đen" tabindex="-1" loading="eager" allow="autoplay; encrypted-media; picture-in-picture" referrerpolicy="strict-origin-when-cross-origin"></iframe>
-</div>
 <div class="start-overlay" id="startOverlay" role="dialog" aria-modal="true" aria-labelledby="startTitle">
  <div class="start-card">
   <div class="start-emblem">✦</div>
@@ -552,6 +619,14 @@ body.morph-done .morph-new{opacity:1;visibility:visible;filter:none;transform:no
  const startHint=document.getElementById('startHint');
  let index=0, cleanupTimer=null, touchX=null, morphTriggered=false, overlayDismissed=false;
  const total=slides.length;
+ const transitionEffects=['fx-wipe','fx-iris','fx-depth','fx-lift','fx-flip'];
+ slides.forEach(function(slide){
+  const atmosphere=document.createElement('div');
+  atmosphere.className='motion-atmosphere';
+  atmosphere.setAttribute('aria-hidden','true');
+  atmosphere.innerHTML='<span class="motion-blob one"></span><span class="motion-blob two"></span><span class="motion-blob three"></span>';
+  slide.prepend(atmosphere);
+ });
  function paint(){
   const pct=((index+1)/total)*100;
   progress.style.width=pct+'%';
@@ -564,15 +639,22 @@ body.morph-done .morph-new{opacity:1;visibility:visible;filter:none;transform:no
   const target=(to+total)%total;
   if(target===index)return;
   if(cleanupTimer)clearTimeout(cleanupTimer);
+  slides.forEach(function(slide){
+   transitionEffects.forEach(function(effect){slide.classList.remove(effect)});
+  });
   const old=slides[index];
   const incoming=slides[target];
   old.classList.remove('active');
   old.classList.add('leaving');
   incoming.classList.remove('leaving');
   incoming.classList.add('active');
+  incoming.classList.add(transitionEffects[(target-1)%transitionEffects.length]);
   index=target;
   paint();
-  cleanupTimer=setTimeout(function(){old.classList.remove('leaving')},650);
+  cleanupTimer=setTimeout(function(){
+   old.classList.remove('leaving');
+   transitionEffects.forEach(function(effect){incoming.classList.remove(effect)});
+  },980);
  }
  function forward(){go(index===total-1?0:index+1)}
  function backward(){go(index===0?0:index-1)}
