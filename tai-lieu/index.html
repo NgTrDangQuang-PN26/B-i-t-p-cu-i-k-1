@@ -45,6 +45,28 @@ h1 span,.accent{color:var(--pink)}
 .sidebar a:hover{background:#ffb1c018;color:#fff}
 .sidebar a .num{font-size:10px;color:#ffb2c5;font-weight:900;width:20px}
 .sidebar .quiz-link{margin-top:12px;background:#ffb2c516;border:1px solid #ffb2c52d;color:#ffe8ed}
+.sidebar a.active,.nav a.active{background:#ffb1c018;color:#fff;font-weight:850;box-shadow:inset 0 0 0 1px #ffb1c038}
+.sidebar a.active .num{color:#fff}
+.sidebar a{scroll-margin-top:100px}
+.reader-tools{position:fixed;right:20px;bottom:20px;z-index:80;display:flex;align-items:center;gap:7px;padding:9px 10px;border:1px solid #ffc0d03a;border-radius:16px;background:rgba(39,6,19,.91);box-shadow:0 12px 34px #08000775;backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);color:#ffedf1}
+.reader-tools-label{font-size:9px;letter-spacing:.12em;font-weight:950;color:#f2bac7;padding:0 5px;white-space:nowrap}
+.reader-tool-btn{min-width:34px;height:33px;padding:0 9px;border:1px solid #ffffff24;border-radius:10px;background:#ffffff0b;color:#fff3f6;font-size:13px;font-weight:900;cursor:pointer;transition:background .18s,border-color .18s,transform .18s}
+.reader-tool-btn:hover{background:#ffabc022;border-color:#ffabc066;transform:translateY(-1px)}
+.reader-tool-btn:focus-visible{outline:2px solid #ffd3df;outline-offset:2px}
+.reader-tool-value{min-width:42px;text-align:center;color:#ffe0e7;font-size:11px;font-weight:850;font-variant-numeric:tabular-nums}
+.reader-tool-btn.reset{min-width:31px;color:#ffc5d1}
+.article{padding-bottom:76px}
+@media(max-width:900px){
+ .sidebar{position:sticky!important;top:64px!important;z-index:40;display:flex;gap:5px;overflow-x:auto;white-space:nowrap;padding:10px!important;border:1px solid #ffffff20;border-radius:15px;background:rgba(35,5,16,.9);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);scrollbar-width:none}
+ .sidebar::-webkit-scrollbar{display:none}
+}
+@media(max-width:620px){
+ .reader-tools{right:10px;bottom:calc(10px + env(safe-area-inset-bottom));gap:5px;padding:7px 8px;border-radius:14px}
+ .reader-tools-label{font-size:8px;padding:0 3px}
+ .reader-tool-btn{height:31px;min-width:31px;padding:0 7px}
+ .reader-tool-value{min-width:36px;font-size:10px}
+ .article{padding-bottom:88px}
+}
 .article{min-width:0}
 .section{margin-bottom:22px;scroll-margin-top:90px}
 .section-card{border:1px solid var(--line);border-radius:22px;padding:clamp(20px,3vw,32px);background:linear-gradient(145deg,#fff8fa0e,#ffffff06);box-shadow:inset 0 1px #ffffff08}
@@ -135,6 +157,14 @@ td:first-child{font-weight:850;color:#ffb8c8;white-space:nowrap}
   </nav>
  </div>
 </header>
+
+<div class="reader-tools" role="group" aria-label="Điều chỉnh kích thước chữ">
+ <span class="reader-tools-label">CỠ CHỮ</span>
+ <button class="reader-tool-btn" type="button" id="fontDown" aria-label="Giảm cỡ chữ" title="Giảm cỡ chữ">A−</button>
+ <output class="reader-tool-value" id="fontScaleValue" aria-live="polite">100%</output>
+ <button class="reader-tool-btn" type="button" id="fontUp" aria-label="Tăng cỡ chữ" title="Tăng cỡ chữ">A+</button>
+ <button class="reader-tool-btn reset" type="button" id="fontReset" aria-label="Đặt lại cỡ chữ" title="Đặt lại cỡ chữ">↺</button>
+</div>
 
 <main>
  <section class="hero">
@@ -461,6 +491,77 @@ td:first-child{font-weight:850;color:#ffb8c8;white-space:nowrap}
 
 <script>
 (function(){
+ const article=document.querySelector('.article');
+ const fontDown=document.getElementById('fontDown');
+ const fontUp=document.getElementById('fontUp');
+ const fontReset=document.getElementById('fontReset');
+ const fontScaleValue=document.getElementById('fontScaleValue');
+ const fontStoreKey='chem10-reader-font-scale';
+ let fontScale=1;
+ const baseFonts=new WeakMap();
+ let scalableText=[];
+ function captureBaseFonts(){
+  if(!article)return;
+  scalableText=Array.from(article.querySelectorAll('*'));
+  scalableText.forEach(el=>{
+   el.style.removeProperty('font-size');
+   baseFonts.set(el,parseFloat(getComputedStyle(el).fontSize)||16);
+  });
+  applyFontScale();
+ }
+ function applyFontScale(){
+  scalableText.forEach(el=>{
+   const base=baseFonts.get(el);
+   if(base)el.style.fontSize=(base*fontScale).toFixed(2)+'px';
+  });
+  if(fontScaleValue)fontScaleValue.textContent=Math.round(fontScale*100)+'%';
+  if(fontDown)fontDown.disabled=fontScale<=.85;
+  if(fontUp)fontUp.disabled=fontScale>=1.4;
+ }
+ function setFontScale(value){
+  fontScale=Math.max(.85,Math.min(1.4,Math.round(value*100)/100));
+  applyFontScale();
+  try{localStorage.setItem(fontStoreKey,String(fontScale))}catch(error){}
+ }
+ try{
+  const savedScale=parseFloat(localStorage.getItem(fontStoreKey));
+  if(Number.isFinite(savedScale)&&savedScale>=.85&&savedScale<=1.4)fontScale=savedScale;
+ }catch(error){}
+ if(fontDown)fontDown.addEventListener('click',()=>setFontScale(fontScale-.05));
+ if(fontUp)fontUp.addEventListener('click',()=>setFontScale(fontScale+.05));
+ if(fontReset)fontReset.addEventListener('click',()=>setFontScale(1));
+ captureBaseFonts();
+ let resizeFrame=0;
+ window.addEventListener('resize',()=>{
+  if(resizeFrame)cancelAnimationFrame(resizeFrame);
+  resizeFrame=requestAnimationFrame(captureBaseFonts);
+ });
+
+ // The sticky contents rail follows the section currently crossing the reading line.
+ const trackedSections=Array.from(document.querySelectorAll('.article .section[id]'));
+ const trackedLinks=Array.from(document.querySelectorAll('.sidebar a[href^="#"],.nav a[href^="#"]'));
+ function setActiveSection(id){
+  trackedLinks.forEach(link=>{
+   const active=link.getAttribute('href')==='#'+id;
+   link.classList.toggle('active',active);
+   if(active)link.setAttribute('aria-current','location');
+   else link.removeAttribute('aria-current');
+  });
+  const activeSidebar=document.querySelector('.sidebar a.active');
+  if(activeSidebar&&window.matchMedia('(max-width: 900px)').matches){
+   activeSidebar.scrollIntoView({block:'nearest',inline:'nearest',behavior:'smooth'});
+  }
+ }
+ if('IntersectionObserver' in window){
+  const sectionObserver=new IntersectionObserver(entries=>{
+   const visible=entries.filter(entry=>entry.isIntersecting);
+   if(!visible.length)return;
+   visible.sort((a,b)=>b.intersectionRatio-a.intersectionRatio);
+   setActiveSection(visible[0].target.id);
+  },{root:null,rootMargin:'-18% 0px -62% 0px',threshold:[0,.1,.25,.5,.75]});
+  trackedSections.forEach(section=>sectionObserver.observe(section));
+ }
+
  const questions=Array.from(document.querySelectorAll('.question'));
  const status=document.getElementById('quizStatus');
  const progress=document.getElementById('quizProgress');
