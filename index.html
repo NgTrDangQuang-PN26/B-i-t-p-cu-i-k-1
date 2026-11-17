@@ -120,7 +120,7 @@ body.morph-done .morph-new{opacity:1;visibility:visible;filter:none;transform:no
 
 @keyframes rise{to{opacity:1;transform:none}}
 @keyframes enterSlide{from{opacity:0;transform:translateX(35px) scale(.985)}to{opacity:1;transform:none}}
-.slide.active{animation:enterSlide .58s ease both}
+/* Slide-entry motion is handled only by the selected fx-* class; do not replay a fallback animation when it is removed. */
 .cover{justify-content:center;text-align:center;background:radial-gradient(ellipse at 50% 47%,#b01b3d 0,transparent 37%),radial-gradient(ellipse at 12% 10%,#8b1034 0,transparent 35%),radial-gradient(ellipse at 84% 95%,#9f1238 0,transparent 34%),linear-gradient(145deg,#23050d,#5d0c24 48%,#22050d)}
 .cover:before{background-image:radial-gradient(#fff4f71c 1px,transparent 1px);background-size:17px 17px;opacity:.2}
 .cover-meta{font-size:clamp(10px,1vw,13px);letter-spacing:.22em;text-transform:uppercase;color:#ffd2dd;font-weight:800;margin-bottom:clamp(16px,2.7vw,34px)}
@@ -653,7 +653,8 @@ body.morph-done .morph-new{opacity:1;visibility:visible;filter:none;transform:no
   paint();
   cleanupTimer=setTimeout(function(){
    old.classList.remove('leaving');
-   transitionEffects.forEach(function(effect){incoming.classList.remove(effect)});
+   /* Keep the transition marker through cleanup. It is cleared at the start
+      of the next navigation, with no fallback entrance animation to flash. */
   },980);
  }
  function forward(){go(index===total-1?0:index+1)}
