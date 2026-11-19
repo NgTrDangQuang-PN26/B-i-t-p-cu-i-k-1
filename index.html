@@ -46,6 +46,40 @@ h3{font-size:clamp(16px,1.55vw,22px);line-height:1.15}
 @keyframes softPop{0%{opacity:0;transform:translateY(16px) scale(.94)}72%{opacity:1;transform:translateY(-3px) scale(1.015)}100%{opacity:1;transform:none}}
 @keyframes iconBob{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(-5px) rotate(-5deg)}}
 @keyframes flamePulse{0%,100%{transform:translateY(0) scale(1);filter:drop-shadow(0 0 12px #ff9b6b55)}45%{transform:translateY(-4px) scale(1.04);filter:drop-shadow(0 0 22px #ff9b6b99)}}
+
+/* Natural multi-tongue flame flicker: separate flame layers move at different rhythms. */
+@keyframes flameBodyFlicker{
+ 0%,100%{transform:translateY(0) scaleX(1) scaleY(1) skewX(0deg);filter:drop-shadow(0 0 12px #ff9b6b66)}
+ 17%{transform:translateY(-2px) scaleX(.96) scaleY(1.09) skewX(-2deg);filter:drop-shadow(0 0 19px #ff9b6b99)}
+ 36%{transform:translateY(1px) scaleX(1.045) scaleY(.95) skewX(2deg);filter:drop-shadow(0 0 14px #ff9b6b77)}
+ 58%{transform:translateY(-3px) scaleX(.97) scaleY(1.07) skewX(-1deg);filter:drop-shadow(0 0 23px #ff9b6bcc)}
+ 79%{transform:translateY(1px) scaleX(1.025) scaleY(.98) skewX(2deg)}
+}
+@keyframes flameTongueFlicker{
+ 0%,100%{transform:translateY(0) scaleY(1) rotate(0deg);opacity:.98}
+ 24%{transform:translateY(-4px) scaleY(1.13) rotate(-2deg);opacity:1}
+ 51%{transform:translateY(1px) scaleY(.91) rotate(2deg);opacity:.84}
+ 76%{transform:translateY(-2px) scaleY(1.08) rotate(-1deg);opacity:1}
+}
+@keyframes flameCoreGlow{
+ 0%,100%{opacity:.9;transform:scale(.98)}
+ 35%{opacity:1;transform:scale(1.08)}
+ 68%{opacity:.82;transform:scale(.93)}
+}
+.flame-art{width:clamp(70px,8vw,104px);height:clamp(86px,10vw,126px);display:grid;place-items:center;margin:0 auto 4px;filter:drop-shadow(0 0 22px #ff7b5466);overflow:visible}
+.flame-art svg{width:100%;height:100%;overflow:visible}
+.flame-art .flame-shell{transform-box:fill-box;transform-origin:50% 100%;animation:flameBodyFlicker .64s ease-in-out infinite}
+.flame-art .flame-tongue{transform-box:fill-box;transform-origin:50% 100%;animation:flameTongueFlicker .43s ease-in-out infinite}
+.flame-art .flame-tongue.delay{animation-delay:-.19s;animation-duration:.51s}
+.flame-art .flame-core{transform-box:fill-box;transform-origin:50% 100%;animation:flameCoreGlow .55s ease-in-out infinite}
+.oxygen-slide .flame-shape svg{transform-origin:50% 100%;animation:flameBodyFlicker .72s ease-in-out infinite!important}
+.oxygen-slide .flame-shape svg path:first-of-type{transform-box:fill-box;transform-origin:50% 100%;animation:flameTongueFlicker .48s ease-in-out infinite}
+.oxygen-slide .flame-shape svg path:last-of-type{transform-box:fill-box;transform-origin:50% 100%;animation:flameCoreGlow .4s ease-in-out infinite}
+.slide.active .icon-bubble.flame-symbol{animation:flameBodyFlicker .7s ease-in-out infinite}
+@media(prefers-reduced-motion:reduce){
+ .flame-art .flame-shell,.flame-art .flame-tongue,.flame-art .flame-core,.oxygen-slide .flame-shape svg,.oxygen-slide .flame-shape svg path,.slide.active .icon-bubble.flame-symbol{animation:none!important}
+}
+
 @keyframes twinkle{0%,100%{opacity:.45;transform:scale(.88) rotate(-8deg)}50%{opacity:1;transform:scale(1.12) rotate(10deg)}}
 @keyframes haloDrift{from{transform:translate(0,0) scale(1)}to{transform:translate(-16px,-10px) scale(1.05)}}
 @keyframes dotPulse{0%,100%{box-shadow:0 0 0 0 #ff9db566}50%{box-shadow:0 0 0 7px #ff9db500}}
@@ -345,7 +379,7 @@ body.morph-done .morph-new{opacity:1;visibility:visible;filter:none;transform:no
       <p>Hơi của chất lỏng có thể bắt lửa ở nhiệt độ nào khi gặp nguồn lửa?</p><div class="pill" style="margin-top:14px">CẦN NGUỒN MỒI</div>
      </article>
      <article class="panel reveal" style="--delay:370ms">
-      <div class="panel-title"><span class="icon-bubble">🔥</span><h3>Nhiệt độ ngọn lửa</h3></div>
+      <div class="panel-title"><span class="icon-bubble flame-symbol">🔥</span><h3>Nhiệt độ ngọn lửa</h3></div>
       <p>Phản ứng cháy tạo ra ngọn lửa nóng đến mức nào?</p><div class="pill" style="margin-top:14px">MỨC TỎA NHIỆT</div>
      </article>
      <article class="panel reveal" style="--delay:490ms">
@@ -441,7 +475,17 @@ body.morph-done .morph-new{opacity:1;visibility:visible;filter:none;transform:no
       <p class="muted reveal" style="--delay:370ms;margin-top:15px;font-size:clamp(13px,1.1vw,15px)">Đại lượng này thể hiện mức độ tỏa nhiệt của phản ứng cháy.</p>
      </div>
      <div class="panel soft reveal" style="--delay:220ms;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center">
-      <div class="final-mark">🔥</div>
+      <div class="flame-art" aria-label="Ngọn lửa đang cháy" role="img">
+<svg viewBox="0 0 120 150" aria-hidden="true">
+ <defs>
+  <linearGradient id="fireOuter" x1="0" y1="1" x2="1" y2="0"><stop stop-color="#e52d38"/><stop offset=".45" stop-color="#ff713d"/><stop offset="1" stop-color="#ffd36a"/></linearGradient>
+  <linearGradient id="fireInner" x1="0" y1="1" x2="0" y2="0"><stop stop-color="#ffad43"/><stop offset=".72" stop-color="#ffe17b"/><stop offset="1" stop-color="#fff8ce"/></linearGradient>
+ </defs>
+ <path class="flame-shell" fill="url(#fireOuter)" d="M61 5C69 25 92 38 93 66C111 91 104 125 83 140C64 154 34 148 19 128C1 103 16 73 34 55C40 44 42 31 39 18C54 29 58 42 56 54C70 39 69 21 61 5Z"/>
+ <path class="flame-tongue" fill="#ffb33f" d="M34 139C21 119 32 99 45 81C44 100 59 103 56 120C70 101 74 83 68 62C90 88 94 112 78 136C66 148 48 148 34 139Z"/>
+ <path class="flame-tongue delay" fill="url(#fireInner)" d="M65 73C82 93 80 113 68 130C57 142 39 134 39 119C39 105 53 94 53 79C59 88 61 97 59 104C69 95 69 84 65 73Z"/>
+ <path class="flame-core" fill="#fff4bd" d="M61 104C71 117 65 132 55 136C45 133 45 121 52 113C56 109 59 106 61 104Z"/>
+</svg></div>
       <div class="metric" style="margin-top:7px">2.082°C</div>
       <div class="metric-label">Nhiệt độ ngọn lửa đoạn nhiệt của ethanol</div>
       <span class="pill" style="margin-top:17px">NHIỆT ĐỘ NGỌN LỬA ĐOẠN NHIỆT</span>
