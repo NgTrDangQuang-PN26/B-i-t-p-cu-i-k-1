@@ -195,6 +195,112 @@ td:first-child{font-weight:850;color:#ffb8c8;white-space:nowrap}
 @media(max-width:900px){.layout{grid-template-columns:1fr}.sidebar{position:static;display:flex;gap:5px;overflow:auto;white-space:nowrap;padding:10px}.sidebar-title{display:none}.sidebar a{flex:none}.sidebar .quiz-link{margin-top:2px}.grid.three{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:620px){.header-inner{align-items:flex-start}.brand{font-size:10px}.nav a{font-size:10px;padding:7px 9px}.nav a:not(.presentation){display:none}.container{width:min(100% - 24px,1180px)}.hero{padding:30px 0 24px}.hero-panel{border-radius:20px}.layout{gap:16px}.section-card{padding:18px;border-radius:17px}.grid.two,.grid.three,.metric-grid{grid-template-columns:1fr}.bar-list{grid-template-columns:1fr}.options{grid-template-columns:1fr;margin-left:0}.feedback{margin-left:0}.question h3{font-size:14px}.footer-inner{display:block}}
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;transition:none!important;animation:none!important}}
+ 
+/* Scroll-led interactive reading, inspired by Mixpanel's chapter-triggered demos. */
+.scrolly-lab{margin-top:clamp(24px,4vw,42px);padding-top:clamp(22px,3vw,30px);border-top:1px solid #ffffff1b}
+.scrolly-heading{max-width:720px;margin-bottom:18px}
+.scrolly-heading h3{font-size:clamp(21px,2.4vw,29px);letter-spacing:-.035em;margin:8px 0}
+.scrolly-heading p{font-size:13px;color:#edcbd4;max-width:620px}
+.scrolly-layout{display:grid;grid-template-columns:minmax(0,1fr) minmax(280px,.92fr);gap:clamp(14px,2.2vw,28px);align-items:start}
+.scrolly-steps{display:grid;gap:18px}
+.scrolly-step{position:relative;min-height:205px;padding:20px 18px 18px 22px;border:1px solid #ffffff1b;border-radius:18px;background:linear-gradient(145deg,#ffffff0b,#ffffff05);display:flex;flex-direction:column;justify-content:center;transition:border-color .35s,background .35s,transform .45s,box-shadow .35s;opacity:.68;transform:scale(.975)}
+.scrolly-step:before{content:"";position:absolute;left:0;top:18px;bottom:18px;width:3px;border-radius:3px;background:transparent;transition:background .35s,box-shadow .35s}
+.scrolly-step.active{opacity:1;transform:scale(1);border-color:#ffb2c35c;background:linear-gradient(145deg,#ffb4c21a,#ffffff08);box-shadow:0 14px 36px #09000722}
+.scrolly-step.active:before{background:linear-gradient(180deg,#ffd4dd,#e8426b);box-shadow:0 0 16px #ff8ba766}
+.scrolly-step-label{font-size:9px;font-weight:950;letter-spacing:.14em;color:#ffb7c7}
+.scrolly-step h3{font-size:clamp(16px,1.6vw,20px);margin:9px 0 5px;letter-spacing:-.02em}
+.scrolly-step p{font-size:12px;line-height:1.6;margin:0;color:#f1d4dc}
+.scrolly-step a{display:inline-flex;align-items:center;gap:7px;margin-top:12px;color:#ffc1cf;font-size:11px;font-weight:850;width:max-content}
+.scrolly-step a:hover{color:#fff}
+.scrolly-stage{position:sticky;top:105px;min-height:450px;height:min(56vw,500px);max-height:500px;border:1px solid #ffb5c33a;border-radius:22px;overflow:hidden;display:flex;flex-direction:column;justify-content:space-between;padding:17px;background:radial-gradient(circle at 50% 41%,#a51a4133,transparent 47%),linear-gradient(145deg,#470b21,#220711);box-shadow:0 20px 52px #07000655;isolation:isolate;transition:background .45s}
+.scrolly-stage:before{content:"";position:absolute;inset:0;z-index:-1;background-image:radial-gradient(#ffe4eb19 1px,transparent 1px);background-size:17px 17px;mask-image:linear-gradient(135deg,#000b,transparent 82%)}
+.scrolly-stage[data-phase="flame"]{background:radial-gradient(circle at 50% 41%,#f34f442e,transparent 48%),linear-gradient(145deg,#4b0b20,#220711)}
+.scrolly-stage[data-phase="auto"]{background:radial-gradient(circle at 50% 41%,#e39a4b25,transparent 49%),linear-gradient(145deg,#430d20,#1d0810)}
+.scrolly-stage-top{display:flex;justify-content:space-between;gap:12px;color:#f4bdca;font-size:9px;font-weight:950;letter-spacing:.14em;position:relative;z-index:2}
+.scrolly-stage-orbit{position:absolute;left:50%;top:42%;border:1px solid #ffbdd02a;border-radius:50%;transform:translate(-50%,-50%);pointer-events:none;transition:transform .8s cubic-bezier(.2,.8,.2,1),border-color .5s}
+.orbit-one{width:200px;height:200px}
+.orbit-two{width:290px;height:290px;border-style:dashed}
+.orbit-three{width:390px;height:390px;opacity:.55}
+.scrolly-stage[data-phase="flame"] .orbit-one{transform:translate(-50%,-50%) scale(1.18);border-color:#ff9e7155}
+.scrolly-stage[data-phase="auto"] .orbit-one{transform:translate(-50%,-50%) scale(.84);border-color:#ffd18c88}
+.scrolly-stage[data-phase="flame"] .orbit-two{transform:translate(-50%,-50%) scale(1.1) rotate(18deg)}
+.scrolly-stage[data-phase="auto"] .orbit-two{transform:translate(-50%,-50%) scale(.9) rotate(-18deg)}
+.scrolly-scene{position:absolute;left:50%;top:43%;width:min(82%,340px);height:250px;transform:translate(-50%,-50%) scale(.82) rotate(-4deg);opacity:0;visibility:hidden;transition:opacity .42s,transform .75s cubic-bezier(.18,.8,.22,1),visibility .42s;pointer-events:none}
+.scrolly-scene svg{width:100%;height:100%;overflow:visible}
+.scrolly-stage[data-phase="flash"] .scene-flash,.scrolly-stage[data-phase="flame"] .scene-flame,.scrolly-stage[data-phase="auto"] .scene-auto{opacity:1;visibility:visible;transform:translate(-50%,-50%) scale(1) rotate(0)}
+.vapor-particle{animation:vaporRise 2.6s ease-in-out infinite}
+.vapor-particle.p-b{animation-delay:.8s}
+.vapor-dot{animation:vaporBob 2.1s ease-in-out infinite}
+.vapor-dot.d-b{animation-delay:.5s}.vapor-dot.d-c{animation-delay:1s}
+@keyframes vaporRise{0%,100%{opacity:.3;transform:translateY(7px)}50%{opacity:1;transform:translateY(-9px)}}
+@keyframes vaporBob{0%,100%{transform:translateY(0);opacity:.55}50%{transform:translateY(-12px);opacity:1}}
+.journey-flame-outer{transform-box:fill-box;transform-origin:50% 100%;animation:readerFlameOuter .68s ease-in-out infinite}
+.journey-flame-inner{transform-box:fill-box;transform-origin:50% 100%;animation:readerFlameTongue .46s ease-in-out infinite}
+.heat-wave{animation:vaporRise 1.9s ease-in-out infinite}
+.heat-wave.wave-a{animation-delay:.4s}
+.auto-wave{animation:vaporBob 2.8s ease-in-out infinite}
+.scrolly-stage-caption{position:relative;z-index:3;margin-top:auto;min-height:105px;padding:13px 14px 14px;border:1px solid #ffffff20;border-radius:15px;background:rgba(29,5,15,.42);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+.scrolly-stage-kicker{font-size:9px;color:#ffc0ce;letter-spacing:.13em;font-weight:950}
+.scrolly-stage-caption h3{font-size:21px;margin:5px 0 3px;letter-spacing:-.03em}
+.scrolly-stage-caption p{font-size:11px;color:#f2ced7;margin:0;line-height:1.45}
+.scrolly-progress{height:4px;border-radius:99px;background:#ffffff1c;margin-top:12px;overflow:hidden;position:relative;z-index:3}
+.scrolly-progress span{display:block;width:33.33%;height:100%;border-radius:99px;background:linear-gradient(90deg,#ffb6c6,#ffd38b);transition:width .6s cubic-bezier(.2,.8,.2,1)}
+@media(max-width:900px){
+ .scrolly-layout{grid-template-columns:1fr}
+ .scrolly-stage{position:relative;top:auto;order:-1;height:390px;min-height:390px;margin-bottom:8px}
+ .scrolly-step{min-height:160px}
+ .scrolly-scene{top:42%;height:205px}
+ .orbit-three{width:330px;height:330px}
+}
+@media(max-width:620px){
+ .scrolly-stage{height:350px;min-height:350px;border-radius:17px}
+ .scrolly-stage-caption h3{font-size:18px}
+ .scrolly-step{min-height:150px;padding:16px}
+ .scrolly-stage-orbit.orbit-three{width:280px;height:280px}
+}
+
+/* One compact launcher keeps both reading controls out of the way until requested. */
+.reader-hub{position:fixed;right:18px;bottom:18px;z-index:110;display:flex;flex-direction:column;align-items:flex-end;gap:10px}
+.reader-hub-trigger{display:flex;align-items:center;gap:8px;border:1px solid #ffc0d052;border-radius:15px;padding:10px 13px;background:rgba(42,7,21,.94);color:#fff2f5;box-shadow:0 12px 34px #08000775;backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);cursor:pointer;transition:transform .2s,background .2s}
+.reader-hub-trigger:hover{transform:translateY(-2px);background:rgba(64,10,30,.97)}
+.reader-hub-aa{width:25px;height:25px;border-radius:8px;display:grid;place-items:center;background:linear-gradient(135deg,#ffd4de,#ec6b8b);color:#4a0b20;font-weight:950;font-size:12px}
+.reader-hub-trigger-label{font-size:11px;font-weight:900}
+.reader-hub-mark-count{min-width:19px;height:19px;display:grid;place-items:center;border-radius:7px;background:#ffd17b;color:#421025;font-size:10px;font-weight:950}
+.reader-hub-panel{display:none;width:min(330px,calc(100vw - 26px));padding:14px;border:1px solid #ffc0d044;border-radius:18px;background:rgba(39,6,19,.96);box-shadow:0 18px 48px #08000799;backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);color:#ffedf1}
+.reader-hub.open .reader-hub-panel{display:block;animation:confusionPop .2s ease-out both}
+.reader-hub-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:13px}
+.reader-hub-head>div{display:flex;flex-direction:column;gap:3px}
+.reader-hub-eyebrow{font-size:8px;letter-spacing:.16em;font-weight:950;color:#f2aebe}
+.reader-hub-head strong{font-size:12px;color:#fff0f4}
+.reader-tools{position:static;display:flex;align-items:center;justify-content:space-between;gap:7px;padding:0;margin:0;border:0;border-radius:0;background:transparent;box-shadow:none;backdrop-filter:none;color:#ffedf1}
+.reader-tools-label{font-size:9px;letter-spacing:.12em;font-weight:950;color:#f2bac7;padding:0 3px;white-space:nowrap}
+.reader-tool-btn{min-width:34px;height:33px;padding:0 9px;border:1px solid #ffffff24;border-radius:10px;background:#ffffff0b;color:#fff3f6;font-size:13px;font-weight:900;cursor:pointer;transition:background .18s,border-color .18s,transform .18s}
+.reader-tool-btn:hover{background:#ffabc022;border-color:#ffabc066;transform:translateY(-1px)}
+.reader-tool-btn:focus-visible{outline:2px solid #ffd3df;outline-offset:2px}
+.reader-tool-btn:disabled{opacity:.38;cursor:not-allowed;transform:none}
+.confusion-dock{position:static;left:auto;bottom:auto;z-index:auto;margin-top:12px;padding-top:12px;border-top:1px solid #ffffff1c}
+.confusion-dock-trigger{width:100%;display:flex;justify-content:space-between;align-items:center;gap:8px;border:1px solid #ffd17b44;border-radius:12px;padding:10px 11px;background:#ffb7c313;color:#fff0df;box-shadow:none;backdrop-filter:none;font-size:11px;font-weight:850;cursor:pointer;transition:transform .2s,background .2s}
+.confusion-dock-trigger:hover{transform:translateY(-1px);background:#ffb7c324}
+.confusion-count{min-width:21px;height:21px;border-radius:8px;background:#ffd17b;color:#421025;display:grid;place-items:center;font-size:10px;font-weight:950}
+.confusion-drawer{position:static;left:auto;bottom:auto;width:auto;max-height:min(45vh,300px);overflow:auto;margin-top:10px;padding:12px;border:1px solid #ffd17b33;border-radius:13px;background:#1806109e;box-shadow:none;backdrop-filter:none;-webkit-backdrop-filter:none;display:none}
+.confusion-drawer.open{display:block;animation:confusionPop .2s ease-out both}
+.confusion-drawer-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:10px}
+.confusion-drawer-head strong{font-size:11px;color:#ffe7d0}
+.confusion-empty{font-size:11px;color:#e9c4ce;line-height:1.5;padding:9px 2px}
+.confusion-item{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:start;gap:8px;padding:9px 0;border-top:1px solid #ffffff17}
+.confusion-item button{border:0;background:transparent;color:#ffe5eb;text-align:left;font-size:11px;line-height:1.45;cursor:pointer;overflow-wrap:anywhere}
+.confusion-item .remove-mark{color:#f5b6c6;font-size:10px;font-weight:850;white-space:nowrap;padding:3px 0}
+.confusion-tip{font-size:10px;color:#e6bdc8;line-height:1.45;margin:0 0 9px}
+@media(max-width:620px){
+ .reader-hub{right:10px;bottom:calc(10px + env(safe-area-inset-bottom))}
+ .reader-hub-trigger{padding:8px 10px;border-radius:13px}
+ .reader-hub-trigger-label{font-size:10px}
+ .reader-hub-panel{padding:12px}
+ .reader-tools{gap:5px}
+ .reader-tools-label{font-size:8px;padding:0 2px}
+ .reader-tool-btn{height:31px;min-width:31px;padding:0 7px}
+ .reader-tool-value{min-width:36px;font-size:10px}
+}
 </style>
 </head>
 <body>
@@ -210,26 +316,37 @@ td:first-child{font-weight:850;color:#ffb8c8;white-space:nowrap}
  </div>
 </header>
 
-<div class="reader-tools" role="group" aria-label="Điều chỉnh kích thước chữ">
- <span class="reader-tools-label">CỠ CHỮ</span>
- <button class="reader-tool-btn" type="button" id="fontDown" aria-label="Giảm cỡ chữ" title="Giảm cỡ chữ">A−</button>
- <output class="reader-tool-value" id="fontScaleValue" aria-live="polite">100%</output>
- <button class="reader-tool-btn" type="button" id="fontUp" aria-label="Tăng cỡ chữ" title="Tăng cỡ chữ">A+</button>
- <button class="reader-tool-btn reset" type="button" id="fontReset" aria-label="Đặt lại cỡ chữ" title="Đặt lại cỡ chữ">↺</button>
+<div class="reader-hub" id="readerHub">
+ <div class="reader-hub-panel" id="readerHubPanel" aria-label="Công cụ đọc tài liệu">
+  <div class="reader-hub-head">
+   <div><span class="reader-hub-eyebrow">READING TOOLS</span><strong>Tùy chỉnh trải nghiệm đọc</strong></div>
+   <button class="reader-tool-btn" type="button" id="closeReaderHub" aria-label="Ẩn công cụ đọc" title="Ẩn công cụ đọc">×</button>
+  </div>
+  <div class="reader-tools" role="group" aria-label="Điều chỉnh kích thước chữ">
+   <span class="reader-tools-label">CỠ CHỮ</span>
+   <button class="reader-tool-btn" type="button" id="fontDown" aria-label="Giảm cỡ chữ" title="Giảm cỡ chữ">A−</button>
+   <output class="reader-tool-value" id="fontScaleValue" aria-live="polite">100%</output>
+   <button class="reader-tool-btn" type="button" id="fontUp" aria-label="Tăng cỡ chữ" title="Tăng cỡ chữ">A+</button>
+   <button class="reader-tool-btn reset" type="button" id="fontReset" aria-label="Đặt lại cỡ chữ" title="Đặt lại cỡ chữ">↺</button>
+  </div>
+  <div class="confusion-dock" id="confusionDock">
+   <div class="confusion-drawer" id="confusionDrawer" aria-label="Các đoạn đã đánh dấu">
+    <div class="confusion-drawer-head"><strong>NHỮNG ĐOẠN CẦN ÔN LẠI</strong><button class="reader-tool-btn" type="button" id="closeConfusion" aria-label="Đóng danh sách">×</button></div>
+    <p class="confusion-tip">Chọn một đoạn trong danh sách để quay lại vị trí đó. Nhấn “Bỏ” nếu bạn đã hiểu phần này.</p>
+    <div id="confusionItems"></div>
+   </div>
+   <button class="confusion-dock-trigger" type="button" id="toggleConfusion" aria-expanded="false"><span>✦ Đoạn chưa hiểu</span><span class="confusion-count" id="confusionCount">0</span></button>
+  </div>
+ </div>
+ <button class="reader-hub-trigger" type="button" id="toggleReaderHub" aria-expanded="false" aria-controls="readerHubPanel" aria-label="Hiện công cụ đọc" title="Hiện công cụ đọc">
+  <span class="reader-hub-aa">Aa</span><span class="reader-hub-trigger-label">Công cụ đọc</span><span class="reader-hub-mark-count" id="readerHubMarkCount">0</span>
+ </button>
 </div>
 
 <main>
 <div class="confusion-popup" id="confusionPopup">
  <span>Đã chọn một đoạn văn</span>
  <button type="button" id="markConfusing">✦ Đánh dấu chưa hiểu</button>
-</div>
-<div class="confusion-dock" id="confusionDock">
- <div class="confusion-drawer" id="confusionDrawer" aria-label="Các đoạn đã đánh dấu">
-  <div class="confusion-drawer-head"><strong>NHỮNG ĐOẠN CẦN ÔN LẠI</strong><button class="reader-tool-btn" type="button" id="closeConfusion" aria-label="Đóng danh sách">×</button></div>
-  <p class="confusion-tip">Chọn một đoạn trong danh sách để quay lại vị trí đó. Nhấn “Bỏ” nếu bạn đã hiểu phần này.</p>
-  <div id="confusionItems"></div>
- </div>
- <button class="confusion-dock-trigger" type="button" id="toggleConfusion" aria-expanded="false"><span>✦ Đoạn chưa hiểu</span><span class="confusion-count" id="confusionCount">0</span></button>
 </div>
  <section class="hero">
   <div class="container">
@@ -276,6 +393,76 @@ td:first-child{font-weight:850;color:#ffb8c8;white-space:nowrap}
       <div class="info-card">
        <div class="card-head"><span class="icon">☀️</span><h3>Tự bốc cháy</h3></div>
        <p>Chất đạt đến nhiệt độ nào thì tự cháy mà không cần nguồn mồi?</p><span class="tag">KHÔNG CẦN MỒI</span>
+      </div>
+     </div>
+
+     <div class="scrolly-lab" id="thermalJourney">
+      <div class="scrolly-heading">
+       <span class="section-kicker">SCROLL TO EXPLORE · 3 CHẶNG</span>
+       <h3>Theo dấu hành trình của nhiệt</h3>
+       <p>Cuộn qua từng chặng để quan sát hình minh họa bên cạnh thay đổi theo khái niệm đang đọc.</p>
+      </div>
+      <div class="scrolly-layout">
+       <div class="scrolly-steps">
+        <article class="scrolly-step active" data-phase="flash" data-index="01">
+         <span class="scrolly-step-label">01 / FLASH POINT</span>
+         <h3>Hơi bắt lửa khi gặp nguồn mồi</h3>
+         <p>Điểm chớp cháy cho biết nhiệt độ thấp nhất mà hơi của chất lỏng có thể bắt lửa khi gặp nguồn lửa.</p>
+         <a href="#flash">Đọc phần điểm chớp cháy <span>↗</span></a>
+        </article>
+        <article class="scrolly-step" data-phase="flame" data-index="02">
+         <span class="scrolly-step-label">02 / FLAME TEMPERATURE</span>
+         <h3>Nhiệt được giải phóng và tạo ngọn lửa</h3>
+         <p>Nhiệt độ ngọn lửa mô tả mức nóng của vùng phản ứng cháy; oxygen và nhiên liệu đều có vai trò quan trọng.</p>
+         <a href="#flame">Đọc phần nhiệt độ ngọn lửa <span>↗</span></a>
+        </article>
+        <article class="scrolly-step" data-phase="auto" data-index="03">
+         <span class="scrolly-step-label">03 / AUTOIGNITION</span>
+         <h3>Chất tự bốc cháy khi đạt ngưỡng</h3>
+         <p>Nhiệt độ tự bốc cháy là ngưỡng thấp nhất để chất tự cháy mà không cần mồi lửa bên ngoài.</p>
+         <a href="#auto">Đọc phần tự bốc cháy <span>↗</span></a>
+        </article>
+       </div>
+       <div class="scrolly-stage" id="thermalStage" data-phase="flash" aria-live="polite">
+        <div class="scrolly-stage-orbit orbit-one"></div><div class="scrolly-stage-orbit orbit-two"></div><div class="scrolly-stage-orbit orbit-three"></div>
+        <div class="scrolly-stage-top"><span>THERMAL FIELD</span><span id="thermalStageIndex">01 / 03</span></div>
+        <div class="scrolly-scene scene-flash" data-scene="flash" aria-hidden="true">
+         <svg viewBox="0 0 300 260" role="img">
+          <defs><radialGradient id="vaporGlow"><stop stop-color="#ffb6c7" stop-opacity=".85"/><stop offset="1" stop-color="#ff789d" stop-opacity="0"/></radialGradient><linearGradient id="dropletFill" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#ffdce5"/><stop offset="1" stop-color="#ea557c"/></linearGradient></defs>
+          <circle cx="150" cy="130" r="108" fill="url(#vaporGlow)" opacity=".4"/>
+          <path d="M150 92C132 119 104 145 104 174a46 46 0 0 0 92 0c0-29-28-55-46-82Z" fill="url(#dropletFill)" stroke="#ffe5eb" stroke-opacity=".8" stroke-width="2"/>
+          <path class="vapor-particle p-a" d="M80 85c-13-12-1-25 9-30" fill="none" stroke="#ffc5d3" stroke-width="4" stroke-linecap="round"/>
+          <path class="vapor-particle p-b" d="M215 91c14-12 6-27-4-33" fill="none" stroke="#ffc5d3" stroke-width="4" stroke-linecap="round"/>
+          <circle class="vapor-dot d-a" cx="87" cy="122" r="7" fill="#ffabc0"/><circle class="vapor-dot d-b" cx="216" cy="145" r="5" fill="#ffd4de"/><circle class="vapor-dot d-c" cx="119" cy="55" r="4" fill="#fff0f3"/>
+          <path d="M216 45l4 10 10 4-10 4-4 10-4-10-10-4 10-4Z" fill="#ffd68c"/>
+         </svg>
+        </div>
+        <div class="scrolly-scene scene-flame" data-scene="flame" aria-hidden="true">
+         <svg viewBox="0 0 300 260" role="img">
+          <defs><linearGradient id="journeyFire" x1="0" y1="1" x2="1" y2="0"><stop stop-color="#e52e45"/><stop offset=".55" stop-color="#ff884d"/><stop offset="1" stop-color="#ffe18a"/></linearGradient><linearGradient id="journeyCore" x1="0" y1="1" x2="0" y2="0"><stop stop-color="#ffb64d"/><stop offset="1" stop-color="#fff6cd"/></linearGradient></defs>
+          <circle cx="150" cy="144" r="108" fill="#ff7955" opacity=".12"/>
+          <path class="journey-flame-outer" d="M151 30c20 40 59 55 65 103 8 54-25 96-70 96-48 0-77-35-68-81 6-32 35-51 34-86 19 16 25 35 24 51 19-21 22-52 15-83Z" fill="url(#journeyFire)"/>
+          <path class="journey-flame-inner" d="M153 108c22 27 31 49 18 77-8 17-27 27-43 15-17-13-13-36 2-55 10-12 17-23 15-37Z" fill="url(#journeyCore)"/>
+          <path class="heat-wave wave-a" d="M70 82c-14-16-14-28 0-44M230 82c14-16 14-28 0-44M56 160c-17-14-17-28 0-42M244 160c17-14 17-28 0-42" fill="none" stroke="#ffb5c5" stroke-width="3" stroke-linecap="round"/>
+         </svg>
+        </div>
+        <div class="scrolly-scene scene-auto" data-scene="auto" aria-hidden="true">
+         <svg viewBox="0 0 300 260" role="img">
+          <defs><radialGradient id="autoGlow"><stop stop-color="#ffd58c" stop-opacity=".8"/><stop offset="1" stop-color="#f56b74" stop-opacity="0"/></radialGradient></defs>
+          <circle cx="150" cy="128" r="112" fill="url(#autoGlow)" opacity=".62"/>
+          <circle cx="150" cy="128" r="72" fill="#ffcf8a" fill-opacity=".07" stroke="#ffd8a2" stroke-opacity=".65" stroke-width="2" stroke-dasharray="5 8"/>
+          <circle cx="150" cy="128" r="48" fill="#ffcf8a" fill-opacity=".15" stroke="#ffd9a4" stroke-opacity=".7"/>
+          <text x="150" y="143" fill="#fff2d1" text-anchor="middle" font-size="46" font-weight="800">°C</text>
+          <path class="auto-wave auto-a" d="M150 23c-24 18-24 35 0 53M150 180c-24 18-24 35 0 53M45 128c18-24 35-24 53 0M202 128c18-24 35-24 53 0" fill="none" stroke="#ffd18c" stroke-width="3" stroke-linecap="round"/>
+         </svg>
+        </div>
+        <div class="scrolly-stage-caption">
+         <span class="scrolly-stage-kicker" id="thermalStageKicker">CHẶNG 01 · CÓ NGUỒN MỒI</span>
+         <h3 id="thermalStageTitle">Điểm chớp cháy</h3>
+         <p id="thermalStageDescription">Hơi của chất lỏng có thể bắt lửa khi gặp nguồn lửa.</p>
+        </div>
+        <div class="scrolly-progress"><span id="thermalStageProgress"></span></div>
+       </div>
       </div>
      </div>
     </div>
@@ -645,6 +832,64 @@ td:first-child{font-weight:850;color:#ffb8c8;white-space:nowrap}
   trackedSections.forEach(section=>sectionObserver.observe(section));
  }
 
+ // Scroll-triggered thermal story: the sticky illustration follows the chapter in view.
+ const journeySteps=Array.from(document.querySelectorAll('.scrolly-step'));
+ const thermalStage=document.getElementById('thermalStage');
+ const stageIndex=document.getElementById('thermalStageIndex');
+ const stageKicker=document.getElementById('thermalStageKicker');
+ const stageTitle=document.getElementById('thermalStageTitle');
+ const stageDescription=document.getElementById('thermalStageDescription');
+ const stageProgress=document.getElementById('thermalStageProgress');
+ const stageCopy={
+  flash:{index:'01 / 03',kicker:'CHẶNG 01 · CÓ NGUỒN MỒI',title:'Điểm chớp cháy',description:'Hơi của chất lỏng có thể bắt lửa khi gặp nguồn lửa.',progress:'33.33%'},
+  flame:{index:'02 / 03',kicker:'CHẶNG 02 · TỎA NHIỆT',title:'Nhiệt độ ngọn lửa',description:'Năng lượng giải phóng làm vùng phản ứng cháy nóng lên.',progress:'66.66%'},
+  auto:{index:'03 / 03',kicker:'CHẶNG 03 · TỰ BỐC CHÁY',title:'Nhiệt độ tự bốc cháy',description:'Chất tự cháy khi đạt ngưỡng, không cần nguồn mồi bên ngoài.',progress:'100%'}
+ };
+ function activateJourneyStep(step){
+  if(!step||!thermalStage)return;
+  const phase=step.dataset.phase||'flash';
+  const copy=stageCopy[phase]||stageCopy.flash;
+  journeySteps.forEach(item=>{
+   const active=item===step;
+   item.classList.toggle('active',active);
+   item.setAttribute('aria-current',active?'step':'false');
+  });
+  thermalStage.dataset.phase=phase;
+  if(stageIndex)stageIndex.textContent=copy.index;
+  if(stageKicker)stageKicker.textContent=copy.kicker;
+  if(stageTitle)stageTitle.textContent=copy.title;
+  if(stageDescription)stageDescription.textContent=copy.description;
+  if(stageProgress)stageProgress.style.width=copy.progress;
+ }
+ if(journeySteps.length&&'IntersectionObserver' in window){
+  const journeyObserver=new IntersectionObserver(entries=>{
+   const visible=entries.filter(entry=>entry.isIntersecting).sort((a,b)=>b.intersectionRatio-a.intersectionRatio);
+   if(visible[0])activateJourneyStep(visible[0].target);
+  },{root:null,rootMargin:'-28% 0px -42% 0px',threshold:[0,.2,.4,.6,.8]});
+  journeySteps.forEach(step=>journeyObserver.observe(step));
+  activateJourneyStep(journeySteps[0]);
+ }
+
+ // Floating reader tools are hidden until the reader chooses to open them.
+ const readerHub=document.getElementById('readerHub');
+ const readerHubPanel=document.getElementById('readerHubPanel');
+ const toggleReaderHub=document.getElementById('toggleReaderHub');
+ const closeReaderHub=document.getElementById('closeReaderHub');
+ function setReaderHub(open){
+  if(!readerHub||!toggleReaderHub)return;
+  readerHub.classList.toggle('open',open);
+  toggleReaderHub.setAttribute('aria-expanded',open?'true':'false');
+  toggleReaderHub.setAttribute('aria-label',open?'Ẩn công cụ đọc':'Hiện công cụ đọc');
+ }
+ if(toggleReaderHub)toggleReaderHub.addEventListener('click',()=>setReaderHub(!readerHub.classList.contains('open')));
+ if(closeReaderHub)closeReaderHub.addEventListener('click',()=>setReaderHub(false));
+ document.addEventListener('pointerdown',event=>{
+  if(readerHub&&!readerHub.contains(event.target))setReaderHub(false);
+ });
+ document.addEventListener('keydown',event=>{
+  if(event.key==='Escape'&&readerHub&&readerHub.classList.contains('open'))setReaderHub(false);
+ });
+
  // Reader highlights: save passages that need another look.
  const confusionKey='chem10-confusion-marks-v1';
  const confusionPopup=document.getElementById('confusionPopup');
@@ -731,6 +976,8 @@ td:first-child{font-weight:850;color:#ffb8c8;white-space:nowrap}
  function renderConfusionList(){
   if(!confusionItems||!confusionCount)return;
   confusionCount.textContent=String(confusionMarks.length);
+  const hubCount=document.getElementById('readerHubMarkCount');
+  if(hubCount)hubCount.textContent=String(confusionMarks.length);
   confusionItems.replaceChildren();
   if(!confusionMarks.length){
    const empty=document.createElement('p');empty.className='confusion-empty';empty.textContent='Chưa có đoạn nào được đánh dấu. Khi gặp phần chưa rõ, hãy bôi đen đoạn văn đó rồi chọn “Đánh dấu chưa hiểu”.';confusionItems.appendChild(empty);return;
