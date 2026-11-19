@@ -54,6 +54,34 @@ h1 span,.accent{color:var(--pink)}
 .reader-tool-btn:hover{background:#ffabc022;border-color:#ffabc066;transform:translateY(-1px)}
 .reader-tool-btn:focus-visible{outline:2px solid #ffd3df;outline-offset:2px}
 .reader-tool-btn:disabled{opacity:.38;cursor:not-allowed;transform:none}
+/* Mark a selected passage as something to revisit. */
+.confusion-mark{background:linear-gradient(transparent 16%,rgba(255,190,96,.35) 16%,rgba(255,190,96,.35) 91%,transparent 91%);color:#fff6e8;border-bottom:2px solid #ffd17b;border-radius:3px;padding:0 1px;cursor:pointer;box-decoration-break:clone;-webkit-box-decoration-break:clone}
+.confusion-mark:hover{background:rgba(255,190,96,.48)}
+.confusion-mark:after{content:" ✦";font-size:.72em;color:#ffd17b;vertical-align:super}
+.confusion-popup{position:fixed;z-index:120;display:none;align-items:center;gap:8px;padding:7px 9px;border:1px solid #ffd17b66;border-radius:13px;background:rgba(47,12,25,.96);box-shadow:0 10px 30px #08000788;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);transform:translateY(-5px)}
+.confusion-popup.show{display:flex;animation:confusionPop .18s ease-out both}
+@keyframes confusionPop{from{opacity:0;transform:translateY(3px) scale(.96)}to{opacity:1;transform:translateY(-5px) scale(1)}}
+.confusion-popup button{border:0;border-radius:9px;background:linear-gradient(135deg,#ffd58c,#ffb5c7);color:#421025;font-size:11px;font-weight:900;padding:8px 11px;cursor:pointer;white-space:nowrap}
+.confusion-popup span{font-size:10px;color:#ffebd7;white-space:nowrap}
+.confusion-dock{position:fixed;left:20px;bottom:20px;z-index:85}
+.confusion-dock-trigger{display:flex;align-items:center;gap:8px;border:1px solid #ffd17b59;border-radius:15px;padding:10px 13px;background:rgba(49,12,25,.93);color:#fff0df;box-shadow:0 12px 30px #08000777;backdrop-filter:blur(15px);-webkit-backdrop-filter:blur(15px);font-size:11px;font-weight:850;cursor:pointer;transition:transform .2s,background .2s}
+.confusion-dock-trigger:hover{transform:translateY(-2px);background:rgba(73,19,35,.97)}
+.confusion-count{min-width:21px;height:21px;border-radius:8px;background:#ffd17b;color:#421025;display:grid;place-items:center;font-size:10px;font-weight:950}
+.confusion-drawer{position:absolute;left:0;bottom:calc(100% + 10px);width:min(340px,calc(100vw - 28px));max-height:min(52vh,390px);overflow:auto;padding:14px;border:1px solid #ffd17b49;border-radius:17px;background:rgba(41,8,21,.97);box-shadow:0 16px 42px #08000788;backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);display:none}
+.confusion-drawer.open{display:block;animation:confusionPop .2s ease-out both}
+.confusion-drawer-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:10px}
+.confusion-drawer-head strong{font-size:12px;color:#ffe7d0}
+.confusion-empty{font-size:11px;color:#e9c4ce;line-height:1.5;padding:9px 2px}
+.confusion-item{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:start;gap:8px;padding:9px 0;border-top:1px solid #ffffff17}
+.confusion-item button{border:0;background:transparent;color:#ffe5eb;text-align:left;font-size:11px;line-height:1.45;cursor:pointer;overflow-wrap:anywhere}
+.confusion-item .remove-mark{color:#f5b6c6;font-size:10px;font-weight:850;white-space:nowrap;padding:3px 0}
+.confusion-tip{font-size:10px;color:#e6bdc8;line-height:1.45;margin:0 0 9px}
+@media(max-width:620px){
+ .confusion-dock{left:10px;bottom:calc(10px + env(safe-area-inset-bottom))}
+ .confusion-dock-trigger{padding:9px 10px;font-size:10px}
+ .confusion-popup{max-width:calc(100vw - 20px)}
+ .confusion-popup span{display:none}
+}
 .reader-tool-value{min-width:42px;text-align:center;color:#ffe0e7;font-size:11px;font-weight:850;font-variant-numeric:tabular-nums}
 .reader-tool-btn.reset{min-width:31px;color:#ffc5d1}
 .article{padding-bottom:76px}
@@ -168,6 +196,18 @@ td:first-child{font-weight:850;color:#ffb8c8;white-space:nowrap}
 </div>
 
 <main>
+<div class="confusion-popup" id="confusionPopup">
+ <span>Đã chọn một đoạn văn</span>
+ <button type="button" id="markConfusing">✦ Đánh dấu chưa hiểu</button>
+</div>
+<div class="confusion-dock" id="confusionDock">
+ <div class="confusion-drawer" id="confusionDrawer" aria-label="Các đoạn đã đánh dấu">
+  <div class="confusion-drawer-head"><strong>NHỮNG ĐOẠN CẦN ÔN LẠI</strong><button class="reader-tool-btn" type="button" id="closeConfusion" aria-label="Đóng danh sách">×</button></div>
+  <p class="confusion-tip">Chọn một đoạn trong danh sách để quay lại vị trí đó. Nhấn “Bỏ” nếu bạn đã hiểu phần này.</p>
+  <div id="confusionItems"></div>
+ </div>
+ <button class="confusion-dock-trigger" type="button" id="toggleConfusion" aria-expanded="false"><span>✦ Đoạn chưa hiểu</span><span class="confusion-count" id="confusionCount">0</span></button>
+</div>
  <section class="hero">
   <div class="container">
    <div class="hero-panel">
@@ -570,6 +610,179 @@ td:first-child{font-weight:850;color:#ffb8c8;white-space:nowrap}
   },{root:null,rootMargin:'-18% 0px -62% 0px',threshold:[0,.1,.25,.5,.75]});
   trackedSections.forEach(section=>sectionObserver.observe(section));
  }
+
+ // Reader highlights: save passages that need another look.
+ const confusionKey='chem10-confusion-marks-v1';
+ const confusionPopup=document.getElementById('confusionPopup');
+ const markConfusing=document.getElementById('markConfusing');
+ const confusionDrawer=document.getElementById('confusionDrawer');
+ const toggleConfusion=document.getElementById('toggleConfusion');
+ const closeConfusion=document.getElementById('closeConfusion');
+ const confusionCount=document.getElementById('confusionCount');
+ const confusionItems=document.getElementById('confusionItems');
+ let confusionMarks=[];
+ let currentSelectionRange=null;
+ try{
+  const stored=JSON.parse(localStorage.getItem(confusionKey)||'[]');
+  if(Array.isArray(stored))confusionMarks=stored.filter(x=>x&&typeof x.quote==='string'&&typeof x.sectionId==='string');
+ }catch(error){confusionMarks=[]}
+ function saveConfusionMarks(){
+  try{localStorage.setItem(confusionKey,JSON.stringify(confusionMarks))}catch(error){}
+  renderConfusionList();
+ }
+ function getTextBlocks(section){
+  return Array.from(section.querySelectorAll('p,h1,h2,h3,h4,li,td,th'));
+ }
+ function textNodesIn(block){
+  const walker=document.createTreeWalker(block,NodeFilter.SHOW_TEXT,{
+   acceptNode(node){
+    if(!node.nodeValue||!node.nodeValue.length)return NodeFilter.FILTER_REJECT;
+    if(node.parentElement&&node.parentElement.closest('mark.confusion-mark'))return NodeFilter.FILTER_REJECT;
+    return NodeFilter.FILTER_ACCEPT;
+   }
+  });
+  const nodes=[];let node;while((node=walker.nextNode()))nodes.push(node);return nodes;
+ }
+ function buildRangeFromOffsets(block,start,end){
+  const nodes=textNodesIn(block);let position=0,startNode=null,endNode=null,startOffset=0,endOffset=0;
+  for(const node of nodes){
+   const next=position+node.nodeValue.length;
+   if(!startNode&&start>=position&&start<=next){startNode=node;startOffset=start-position}
+   if(end>=position&&end<=next){endNode=node;endOffset=end-position;break}
+   position=next;
+  }
+  if(!startNode||!endNode)return null;
+  const range=document.createRange();
+  try{range.setStart(startNode,startOffset);range.setEnd(endNode,endOffset);return range}catch(error){return null}
+ }
+ function chooseBestOccurrence(text,quote,prefix,suffix){
+  let index=text.indexOf(quote),best=-1,bestScore=-1;
+  while(index>=0){
+   const before=text.slice(Math.max(0,index-prefix.length),index);
+   const after=text.slice(index+quote.length,index+quote.length+suffix.length);
+   let score=0;
+   for(let i=1;i<=Math.min(before.length,prefix.length);i++){if(before.slice(-i)===prefix.slice(-i))score=i;else break}
+   for(let i=1;i<=Math.min(after.length,suffix.length);i++){if(after.slice(0,i)===suffix.slice(0,i))score+=i;else break}
+   if(score>bestScore){bestScore=score;best=index}
+   index=text.indexOf(quote,index+1);
+  }
+  return best;
+ }
+ function addMarkToRange(range,record){
+  const mark=document.createElement('mark');
+  mark.className='confusion-mark';
+  mark.dataset.markId=record.id;
+  const content=range.extractContents();
+  mark.appendChild(content);
+  range.insertNode(mark);
+  mark.addEventListener('click',()=>removeConfusionMark(record.id));
+  return mark;
+ }
+ function restoreConfusionMarks(){
+  confusionMarks.forEach(record=>{
+   const section=document.getElementById(record.sectionId);
+   if(!section)return;
+   const blocks=getTextBlocks(section);
+   const preferred=Number.isInteger(record.blockIndex)?blocks[record.blockIndex]:null;
+   const candidates=preferred?[preferred,...blocks.filter(x=>x!==preferred)]:blocks;
+   for(const block of candidates){
+    const text=block.textContent||'';
+    const index=chooseBestOccurrence(text,record.quote,record.prefix||'',record.suffix||'');
+    if(index<0)continue;
+    const range=buildRangeFromOffsets(block,index,index+record.quote.length);
+    if(range){const mark=addMarkToRange(range,record);mark.title='Đoạn bạn đã đánh dấu là chưa hiểu · Nhấn để bỏ đánh dấu';break}
+   }
+  });
+  renderConfusionList();
+ }
+ function renderConfusionList(){
+  if(!confusionItems||!confusionCount)return;
+  confusionCount.textContent=String(confusionMarks.length);
+  confusionItems.replaceChildren();
+  if(!confusionMarks.length){
+   const empty=document.createElement('p');empty.className='confusion-empty';empty.textContent='Chưa có đoạn nào được đánh dấu. Khi gặp phần chưa rõ, hãy bôi đen đoạn văn đó rồi chọn “Đánh dấu chưa hiểu”.';confusionItems.appendChild(empty);return;
+  }
+  confusionMarks.forEach(record=>{
+   const row=document.createElement('div');row.className='confusion-item';
+   const jump=document.createElement('button');jump.type='button';jump.textContent='“'+record.quote.slice(0,110)+(record.quote.length>110?'…':'')+'”';
+   jump.addEventListener('click',()=>{
+    const section=document.getElementById(record.sectionId);
+    const blocks=section?getTextBlocks(section):[];
+    const block=blocks[record.blockIndex]||section;
+    if(block)block.scrollIntoView({behavior:'smooth',block:'center'});
+    const mark=section&&section.querySelector('[data-mark-id="'+record.id+'"]');
+    if(mark){mark.classList.add('mark-pulse');setTimeout(()=>mark.classList.remove('mark-pulse'),1100)}
+   });
+   const remove=document.createElement('button');remove.type='button';remove.className='remove-mark';remove.textContent='Bỏ';
+   remove.addEventListener('click',()=>removeConfusionMark(record.id));
+   row.append(jump,remove);confusionItems.appendChild(row);
+  });
+ }
+ function removeConfusionMark(id){
+  document.querySelectorAll('mark.confusion-mark[data-mark-id="'+id+'"]').forEach(mark=>{
+   const parent=mark.parentNode;
+   while(mark.firstChild)parent.insertBefore(mark.firstChild,mark);
+   parent.removeChild(mark);
+   parent.normalize();
+  });
+  confusionMarks=confusionMarks.filter(item=>item.id!==id);
+  saveConfusionMarks();
+ }
+ function blockFor(node){
+  const element=node&&node.nodeType===Node.ELEMENT_NODE?node:node&&node.parentElement;
+  return element&&element.closest('p,h1,h2,h3,h4,li,td,th');
+ }
+ function showConfusionPopup(){
+  if(!confusionPopup||!article)return;
+  const selection=window.getSelection();
+  if(!selection||selection.isCollapsed||!selection.rangeCount){confusionPopup.classList.remove('show');currentSelectionRange=null;return}
+  const range=selection.getRangeAt(0);
+  const blockStart=blockFor(range.startContainer),blockEnd=blockFor(range.endContainer);
+  if(!blockStart||blockStart!==blockEnd||!article.contains(blockStart)||range.toString().trim().length<4||blockStart.closest('mark.confusion-mark')){
+   confusionPopup.classList.remove('show');currentSelectionRange=null;return;
+  }
+  currentSelectionRange=range.cloneRange();
+  const rect=range.getBoundingClientRect();
+  const width=220,left=Math.max(10,Math.min(window.innerWidth-width-10,rect.left+rect.width/2-width/2));
+  const top=Math.max(10,rect.top-48);
+  confusionPopup.style.left=left+'px';confusionPopup.style.top=top+'px';
+  confusionPopup.classList.add('show');
+ }
+ let selectionTimer=0;
+ document.addEventListener('selectionchange',()=>{
+  if(selectionTimer)clearTimeout(selectionTimer);
+  selectionTimer=setTimeout(showConfusionPopup,90);
+ });
+ document.addEventListener('mouseup',()=>setTimeout(showConfusionPopup,40));
+ document.addEventListener('keyup',()=>setTimeout(showConfusionPopup,40));
+ if(markConfusing){
+  markConfusing.addEventListener('mousedown',event=>event.preventDefault());
+  markConfusing.addEventListener('click',()=>{
+   if(!currentSelectionRange)return;
+   const range=currentSelectionRange.cloneRange();
+   const block=blockFor(range.startContainer);
+   const section=block&&block.closest('.section[id]');
+   if(!block||!section)return;
+   const quote=range.toString();
+   const beforeRange=document.createRange();beforeRange.selectNodeContents(block);beforeRange.setEnd(range.startContainer,range.startOffset);
+   const start=beforeRange.toString().length;
+   const blockText=block.textContent||'';
+   const record={id:'mark-'+Date.now()+'-'+confusionMarks.length,sectionId:section.id,blockIndex:getTextBlocks(section).indexOf(block),quote,prefix:blockText.slice(Math.max(0,start-48),start),suffix:blockText.slice(start+quote.length,start+quote.length+48)};
+   const mark=addMarkToRange(range,record);
+   mark.title='Đoạn bạn đã đánh dấu là chưa hiểu · Nhấn để bỏ đánh dấu';
+   confusionMarks.push(record);saveConfusionMarks();
+   window.getSelection().removeAllRanges();currentSelectionRange=null;confusionPopup.classList.remove('show');
+   const old=toggleConfusion.textContent;toggleConfusion.setAttribute('aria-label','Mở danh sách đoạn chưa hiểu');
+  });
+ }
+ if(toggleConfusion)toggleConfusion.addEventListener('click',()=>{
+  const open=confusionDrawer.classList.toggle('open');
+  toggleConfusion.setAttribute('aria-expanded',open?'true':'false');
+ });
+ if(closeConfusion)closeConfusion.addEventListener('click',()=>{
+  confusionDrawer.classList.remove('open');toggleConfusion.setAttribute('aria-expanded','false');
+ });
+ restoreConfusionMarks();
 
  const questions=Array.from(document.querySelectorAll('.question'));
  const status=document.getElementById('quizStatus');
