@@ -263,6 +263,7 @@ td:first-child{font-weight:850;color:#ffb8c8;white-space:nowrap}
      <div class="section-kicker">00 · BỨC TRANH CHUNG</div>
      <h2>Ba đại lượng, ba câu hỏi khác nhau</h2>
      <p class="intro">Khi tìm hiểu về sự cháy, cần phân biệt nhiệt độ làm hơi chất lỏng bắt lửa, nhiệt độ của ngọn lửa và nhiệt độ khiến một chất tự bốc cháy.</p>
+     <div class="callout"><strong>Mẹo học tập:</strong> Bôi đen một câu hoặc đoạn ngắn bạn chưa rõ, sau đó chọn <b>“Đánh dấu chưa hiểu”</b>. Các đoạn đã đánh dấu sẽ được lưu trên trình duyệt này để bạn quay lại ôn tập.</div>
      <div class="grid three" style="margin-top:18px">
       <div class="info-card">
        <div class="card-head"><span class="icon">⚡</span><h3>Điểm chớp cháy</h3></div>
@@ -670,7 +671,6 @@ td:first-child{font-weight:850;color:#ffb8c8;white-space:nowrap}
   const walker=document.createTreeWalker(block,NodeFilter.SHOW_TEXT,{
    acceptNode(node){
     if(!node.nodeValue||!node.nodeValue.length)return NodeFilter.FILTER_REJECT;
-    if(node.parentElement&&node.parentElement.closest('mark.confusion-mark'))return NodeFilter.FILTER_REJECT;
     return NodeFilter.FILTER_ACCEPT;
    }
   });
@@ -771,7 +771,10 @@ td:first-child{font-weight:850;color:#ffb8c8;white-space:nowrap}
   if(!selection||selection.isCollapsed||!selection.rangeCount){confusionPopup.classList.remove('show');currentSelectionRange=null;return}
   const range=selection.getRangeAt(0);
   const blockStart=blockFor(range.startContainer),blockEnd=blockFor(range.endContainer);
-  if(!blockStart||blockStart!==blockEnd||!article.contains(blockStart)||range.toString().trim().length<4||blockStart.closest('mark.confusion-mark')){
+  const overlapsExistingMark=Array.from(article.querySelectorAll('mark.confusion-mark')).some(mark=>{
+   try{return range.intersectsNode(mark)}catch(error){return false}
+  });
+  if(!blockStart||blockStart!==blockEnd||!article.contains(blockStart)||range.toString().trim().length<4||overlapsExistingMark){
    confusionPopup.classList.remove('show');currentSelectionRange=null;return;
   }
   currentSelectionRange=range.cloneRange();
