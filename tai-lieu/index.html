@@ -189,8 +189,10 @@ td:first-child{font-weight:850;color:#ffb8c8;white-space:nowrap}
 .result-message{font-size:13px;color:#ffe0e7;margin-top:6px}
 .footer{border-top:1px solid #ffffff1a;padding:22px 0 30px;color:#e6bac6;font-size:11px}
 .footer-inner{display:flex;justify-content:space-between;gap:15px;flex-wrap:wrap}
-.reveal{opacity:0;transform:translateY(15px);filter:blur(3px);transition:opacity .65s ease,transform .65s cubic-bezier(.18,.78,.2,1),filter .65s}
-.reveal.visible{opacity:1;transform:none;filter:blur(0)}
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .78s ease,transform .9s cubic-bezier(.18,.78,.2,1)}
+.reveal.visible{opacity:1;transform:none}
+.editorial-reveal{opacity:0;transform:translate3d(0,42px,0) scale(.985);clip-path:inset(0 0 10% 0 round 18px);transition:opacity .85s cubic-bezier(.18,.78,.2,1),transform 1s cubic-bezier(.18,.78,.2,1),clip-path 1s cubic-bezier(.18,.78,.2,1);transition-delay:var(--editorial-delay,0ms);will-change:opacity,transform}
+.editorial-reveal.visible{opacity:1;transform:none;clip-path:inset(0 0 0 0 round 18px)}
 @keyframes softPop{0%{opacity:0;transform:translateY(12px) scale(.96)}70%{opacity:1;transform:translateY(-2px) scale(1.01)}100%{opacity:1;transform:none}}
 @media(max-width:900px){.layout{grid-template-columns:1fr}.sidebar{position:static;display:flex;gap:5px;overflow:auto;white-space:nowrap;padding:10px}.sidebar-title{display:none}.sidebar a{flex:none}.sidebar .quiz-link{margin-top:2px}.grid.three{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:620px){.header-inner{align-items:flex-start}.brand{font-size:10px}.nav a{font-size:10px;padding:7px 9px}.nav a:not(.presentation){display:none}.container{width:min(100% - 24px,1180px)}.hero{padding:30px 0 24px}.hero-panel{border-radius:20px}.layout{gap:16px}.section-card{padding:18px;border-radius:17px}.grid.two,.grid.three,.metric-grid{grid-template-columns:1fr}.bar-list{grid-template-columns:1fr}.options{grid-template-columns:1fr;margin-left:0}.feedback{margin-left:0}.question h3{font-size:14px}.footer-inner{display:block}}
@@ -307,6 +309,111 @@ td:first-child{font-weight:850;color:#ffb8c8;white-space:nowrap}
  .vapor-particle,.vapor-dot,.journey-flame-outer,.journey-flame-inner,.heat-wave,.auto-wave{animation:none!important}
 }
 
+
+/* Editorial reading layout: wide canvas, generous type and chapter-led rhythm. */
+html{scroll-padding-top:108px}
+.container{width:min(1680px,calc(100% - clamp(28px,6.2vw,132px)));max-width:1680px}
+.hero{padding:clamp(36px,5vw,76px) 0 clamp(28px,4vw,56px)}
+.hero-panel{min-height:clamp(320px,35vw,510px);display:flex;flex-direction:column;justify-content:center;padding:clamp(34px,6vw,88px);border-radius:clamp(22px,3vw,36px)}
+h1{font-size:clamp(46px,7vw,92px);max-width:1120px;line-height:.99;letter-spacing:-.065em}
+.hero-lead{font-size:clamp(17px,1.65vw,22px);max-width:900px;line-height:1.7}
+.hero-meta span{font-size:12px}
+.layout{display:block;width:100%;max-width:none;padding-bottom:clamp(70px,8vw,120px)}
+.article{width:100%;max-width:none;min-width:0;padding-bottom:0}
+.section{margin-bottom:clamp(28px,4vw,58px);scroll-margin-top:105px}
+.section-card{padding:clamp(28px,5vw,76px);border-radius:clamp(20px,2.6vw,32px);background:linear-gradient(145deg,rgba(255,248,250,.075),rgba(255,255,255,.025));}
+.section-kicker{font-size:11px;letter-spacing:.2em}
+h2{font-size:clamp(34px,4.5vw,58px);line-height:1.04;letter-spacing:-.055em;margin:12px 0 20px}
+h3{font-size:clamp(19px,1.8vw,24px);line-height:1.2;letter-spacing:-.025em}
+p{font-size:clamp(16px,1.18vw,18px);line-height:1.8}
+.intro{font-size:clamp(18px,1.5vw,22px);line-height:1.75;max-width:1120px}
+.info-card{padding:clamp(18px,2vw,28px);border-radius:20px}
+.info-card p{font-size:clamp(15px,1.05vw,17px)}
+.callout{padding:16px 20px;font-size:clamp(15px,1.1vw,17px);line-height:1.75;border-radius:0 16px 16px 0}
+.metric{font-size:clamp(32px,4vw,52px)}
+.metric-label{font-size:13px}
+.table-wrap{border-radius:18px}
+table{font-size:14px;line-height:1.7}
+th,td{padding:15px 17px}
+.number-list .step{padding:16px;border-radius:16px}
+.number-list .step p{font-size:15px}
+.section-card .rule{margin:clamp(24px,3vw,40px) 0}
+.scrolly-heading h3{font-size:clamp(25px,3vw,36px)}
+.scrolly-heading p{font-size:15px}
+.scrolly-step{min-height:220px;padding:clamp(22px,3vw,36px)}
+.scrolly-step h3{font-size:clamp(20px,2.15vw,27px)}
+.scrolly-step p{font-size:15px}
+.quiz-shell{padding:clamp(26px,4vw,58px);border-radius:28px}
+.quiz-shell>h2{font-size:clamp(34px,4.5vw,58px)}
+.question h3{font-size:clamp(16px,1.25vw,19px)}
+.option{font-size:14px;padding:14px 15px}
+.feedback{font-size:14px;line-height:1.7}
+.footer{font-size:12px}
+
+/* A square, always-available hamburger opens a compact reader menu. */
+.reading-progress{position:fixed;left:0;right:0;top:0;height:3px;z-index:130;background:transparent;pointer-events:none}
+.reading-progress span{display:block;height:100%;width:0;background:linear-gradient(90deg,#ffb4c5,#ffd58c);box-shadow:0 0 12px #ff8eaa88;transition:width .12s linear}
+.reader-hub{position:fixed;right:clamp(12px,2vw,24px);top:74px;bottom:auto;z-index:110;display:flex;flex-direction:column;align-items:flex-end;gap:0}
+.reader-hub-trigger{position:relative;width:52px;height:52px;min-width:52px;padding:0;display:grid;place-items:center;border:1px solid #ffc0d052;border-radius:15px;background:rgba(42,7,21,.94);color:#fff2f5;box-shadow:0 10px 30px #08000766;backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);cursor:pointer;transition:transform .22s,border-color .22s,background .22s}
+.reader-hub-trigger:hover{transform:translateY(-2px);border-color:#ffb2c5aa;background:rgba(70,11,32,.98)}
+.menu-bars{width:21px;height:17px;display:flex;flex-direction:column;justify-content:space-between}
+.menu-bars i{width:100%;height:2px;border-radius:3px;background:#ffe5ec;transform-origin:center;transition:transform .25s,opacity .2s,width .2s}
+.menu-bars i:nth-child(2){width:72%;margin-left:auto}
+.reader-hub.open .menu-bars i:first-child{transform:translateY(7.5px) rotate(45deg)}
+.reader-hub.open .menu-bars i:nth-child(2){opacity:0;width:0}
+.reader-hub.open .menu-bars i:last-child{transform:translateY(-7.5px) rotate(-45deg)}
+.reader-hub-mark-count{position:absolute;right:-5px;top:-5px;min-width:19px;height:19px;padding:0 4px;display:grid;place-items:center;border:2px solid #2a0715;border-radius:8px;background:#ffd17b;color:#421025;font-size:10px;font-weight:950}
+.reader-hub-panel{position:absolute;right:0;top:calc(100% + 11px);bottom:auto;width:min(355px,calc(100vw - 24px));max-height:min(78vh,760px);overflow:auto;padding:18px;border:1px solid #ffc0d044;border-radius:20px;background:rgba(39,6,19,.97);box-shadow:0 20px 60px #080007aa;backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);color:#ffedf1;overscroll-behavior:contain}
+.reader-hub.open .reader-hub-panel{display:block;animation:readerMenuIn .28s cubic-bezier(.18,.8,.22,1) both}
+@keyframes readerMenuIn{from{opacity:0;transform:translateY(-8px) scale(.97);clip-path:inset(0 0 10% 0 round 20px)}to{opacity:1;transform:none;clip-path:inset(0 0 0 0 round 20px)}}
+.reader-hub-head{margin-bottom:16px;padding-bottom:12px;border-bottom:1px solid #ffffff1b}
+.reader-hub-eyebrow{font-size:9px;letter-spacing:.18em}
+.reader-hub-head strong{font-size:14px}
+.reader-current{padding:13px 14px;border:1px solid #ffb5c332;border-radius:14px;background:linear-gradient(130deg,#ffb5c315,#ffffff05);margin:0 0 15px}
+.reader-current-label{display:block;font-size:9px;font-weight:950;letter-spacing:.16em;color:#ffb7c7;margin-bottom:5px}
+.reader-current strong{display:block;font-size:15px;line-height:1.4;color:#fff6f8}
+.reader-current-track{height:3px;border-radius:99px;background:#ffffff1a;margin-top:11px;overflow:hidden}
+.reader-current-track span{display:block;width:0;height:100%;border-radius:99px;background:linear-gradient(90deg,#ffb1c4,#ffd58c);transition:width .35s}
+.reader-tools{padding:12px 0 15px;border-bottom:1px solid #ffffff1b;margin-bottom:15px}
+.reader-tools-label{font-size:10px}
+.reader-tool-btn{width:36px;height:36px;border-radius:11px}
+.reader-tool-value{font-size:12px;min-width:47px}
+.reader-hub .sidebar{display:block;position:static;top:auto;z-index:auto;overflow:visible;padding:0;border:0;border-radius:0;background:transparent;backdrop-filter:none;white-space:normal;box-shadow:none;margin:0 0 15px}
+.reader-hub .sidebar-title{display:block;font-size:9px;letter-spacing:.17em;margin:0 0 8px 3px}
+.reader-hub .sidebar a{display:flex;align-items:center;gap:10px;margin:3px 0;padding:11px 12px;border:1px solid transparent;border-radius:11px;font-size:13px;white-space:normal;color:#f7dfe6}
+.reader-hub .sidebar a .num{font-size:10px;width:23px;flex:none}
+.reader-hub .sidebar a.active{background:#ffb1c01c;border-color:#ffb1c044;box-shadow:inset 3px 0 #ffb4c6;color:#fff}
+.reader-hub .sidebar .quiz-link{margin-top:10px}
+.confusion-dock{margin-top:14px;padding-top:14px}
+.confusion-dock-trigger{font-size:12px;padding:12px 13px}
+.confusion-drawer{max-height:260px}
+@media(max-width:900px){
+ .container{width:calc(100% - 34px)}
+ .hero{padding-top:32px}
+ .hero-panel{min-height:320px}
+ .layout{display:block}
+ .reader-hub{top:64px}
+ .scrolly-layout{grid-template-columns:1fr}
+}
+@media(max-width:620px){
+ .container{width:calc(100% - 22px)}
+ .hero-panel{padding:28px 22px;min-height:330px}
+ h1{font-size:clamp(42px,13vw,65px)}
+ .section-card{padding:25px 19px}
+ h2{font-size:clamp(31px,9vw,43px)}
+ p{font-size:16px}
+ .intro{font-size:17px}
+ .reader-hub{right:10px;top:62px}
+ .reader-hub-trigger{width:46px;height:46px;min-width:46px;border-radius:13px}
+ .reader-hub-panel{padding:14px;width:min(340px,calc(100vw - 20px))}
+ .grid.three{grid-template-columns:1fr}
+ .metric-grid{grid-template-columns:1fr}
+ .scrolly-stage{height:350px;min-height:350px}
+}
+@media(prefers-reduced-motion:reduce){
+ .reader-hub-panel,.reader-hub-trigger,.menu-bars i,.reader-current-track span{animation:none!important;transition:none!important}
+}
+
 </style>
 </head>
 <body>
@@ -314,13 +421,11 @@ td:first-child{font-weight:850;color:#ffb8c8;white-space:nowrap}
  <div class="header-inner">
   <a class="brand" href="../"><span class="brand-mark">✦</span><span>HÓA HỌC 10 <span style="opacity:.45">/</span> TÀI LIỆU</span></a>
   <nav class="nav" aria-label="Điều hướng chính">
-   <a href="#flash">Điểm chớp cháy</a>
-   <a href="#flame">Nhiệt độ ngọn lửa</a>
-   <a href="#auto">Tự bốc cháy</a>
    <a class="presentation" href="../">← Trang trình chiếu</a>
   </nav>
  </div>
 </header>
+<div class="reading-progress" aria-hidden="true"><span id="readingProgressFill"></span></div>
 
 <div class="reader-hub" id="readerHub">
  <div class="reader-hub-panel" id="readerHubPanel" aria-label="Công cụ đọc tài liệu">
@@ -335,6 +440,20 @@ td:first-child{font-weight:850;color:#ffb8c8;white-space:nowrap}
    <button class="reader-tool-btn" type="button" id="fontUp" aria-label="Tăng cỡ chữ" title="Tăng cỡ chữ">A+</button>
    <button class="reader-tool-btn reset" type="button" id="fontReset" aria-label="Đặt lại cỡ chữ" title="Đặt lại cỡ chữ">↺</button>
   </div>
+  <div class="reader-current" aria-live="polite">
+   <span class="reader-current-label">ĐANG ĐỌC</span>
+   <strong id="currentReadingHeading">Tổng quan</strong>
+   <div class="reader-current-track"><span id="currentReadingProgress"></span></div>
+  </div>
+   <aside class="sidebar" aria-label="Mục lục các phần trong tài liệu">
+    <div class="sidebar-title">MỤC LỤC</div>
+    <a href="#overview"><span class="num">00</span> Tổng quan</a>
+    <a href="#flash"><span class="num">01</span> Điểm chớp cháy</a>
+    <a href="#flame"><span class="num">02</span> Nhiệt độ ngọn lửa</a>
+    <a href="#auto"><span class="num">03</span> Nhiệt độ tự bốc cháy</a>
+    <a href="#compare"><span class="num">04</span> Bảng tổng kết</a>
+    <a class="quiz-link" href="#quiz"><span class="num">✦</span> Câu hỏi tương tác</a>
+   </aside>
   <div class="confusion-dock" id="confusionDock">
    <div class="confusion-drawer" id="confusionDrawer" aria-label="Các đoạn đã đánh dấu">
     <div class="confusion-drawer-head"><strong>NHỮNG ĐOẠN CẦN ÔN LẠI</strong><button class="reader-tool-btn" type="button" id="closeConfusion" aria-label="Đóng danh sách">×</button></div>
@@ -344,8 +463,9 @@ td:first-child{font-weight:850;color:#ffb8c8;white-space:nowrap}
    <button class="confusion-dock-trigger" type="button" id="toggleConfusion" aria-expanded="false"><span>✦ Đoạn chưa hiểu</span><span class="confusion-count" id="confusionCount">0</span></button>
   </div>
  </div>
- <button class="reader-hub-trigger" type="button" id="toggleReaderHub" aria-expanded="false" aria-controls="readerHubPanel" aria-label="Hiện công cụ đọc" title="Hiện công cụ đọc">
-  <span class="reader-hub-aa">Aa</span><span class="reader-hub-trigger-label">Công cụ đọc</span><span class="reader-hub-mark-count" id="readerHubMarkCount">0</span>
+ <button class="reader-hub-trigger" type="button" id="toggleReaderHub" aria-expanded="false" aria-controls="readerHubPanel" aria-label="Mở mục lục và công cụ đọc" title="Mở mục lục và công cụ đọc">
+  <span class="menu-bars" aria-hidden="true"><i></i><i></i><i></i></span>
+  <span class="reader-hub-mark-count" id="readerHubMarkCount">0</span>
  </button>
 </div>
 
@@ -370,15 +490,7 @@ td:first-child{font-weight:850;color:#ffb8c8;white-space:nowrap}
  </section>
 
  <div class="container layout">
-  <aside class="sidebar" aria-label="Mục lục tài liệu">
-   <div class="sidebar-title">MỤC LỤC</div>
-   <a href="#overview"><span class="num">00</span> Tổng quan</a>
-   <a href="#flash"><span class="num">01</span> Điểm chớp cháy</a>
-   <a href="#flame"><span class="num">02</span> Nhiệt độ ngọn lửa</a>
-   <a href="#auto"><span class="num">03</span> Nhiệt độ tự bốc cháy</a>
-   <a href="#compare"><span class="num">04</span> Bảng tổng kết</a>
-   <a class="quiz-link" href="#quiz"><span class="num">✦</span> Câu hỏi tương tác</a>
-  </aside>
+
 
   <article class="article">
    <section class="section" id="overview">
@@ -819,6 +931,14 @@ td:first-child{font-weight:850;color:#ffb8c8;white-space:nowrap}
    if(active)link.setAttribute('aria-current','location');
    else link.removeAttribute('aria-current');
   });
+  const currentHeading=document.getElementById('currentReadingHeading');
+  const currentProgress=document.getElementById('currentReadingProgress');
+  const currentSection=document.getElementById(id);
+  const sectionHeading=currentSection&&currentSection.querySelector('h2');
+  const activeLink=document.querySelector('.sidebar a[href="#'+id+'"]');
+  if(currentHeading)currentHeading.textContent=sectionHeading?sectionHeading.textContent.trim():(activeLink?activeLink.textContent.trim():'Tài liệu học tập');
+  const sectionIndex=trackedSections.findIndex(section=>section.id===id);
+  if(currentProgress)currentProgress.style.width=((sectionIndex+1)/Math.max(1,trackedSections.length)*100)+'%';
   const activeSidebar=document.querySelector('.sidebar a.active');
   const sidebar=document.querySelector('.sidebar');
   if(activeSidebar&&sidebar&&window.matchMedia('(max-width: 900px)').matches){
@@ -837,6 +957,21 @@ td:first-child{font-weight:850;color:#ffb8c8;white-space:nowrap}
   },{root:null,rootMargin:'-18% 0px -62% 0px',threshold:[0,.1,.25,.5,.75]});
   trackedSections.forEach(section=>sectionObserver.observe(section));
  }
+ const readingProgressFill=document.getElementById('readingProgressFill');
+ let readingProgressFrame=0;
+ function updateReadingProgress(){
+  if(!readingProgressFill)return;
+  const root=document.documentElement;
+  const maxScroll=Math.max(1,root.scrollHeight-window.innerHeight);
+  const progress=Math.max(0,Math.min(1,window.scrollY/maxScroll));
+  readingProgressFill.style.width=(progress*100).toFixed(2)+'%';
+ }
+ window.addEventListener('scroll',()=>{
+  if(readingProgressFrame)return;
+  readingProgressFrame=requestAnimationFrame(()=>{readingProgressFrame=0;updateReadingProgress()});
+ },{passive:true});
+ window.addEventListener('resize',updateReadingProgress);
+ updateReadingProgress();
 
  // Scroll-triggered thermal story: the sticky illustration follows the chapter in view.
  const journeySteps=Array.from(document.querySelectorAll('.scrolly-step'));
@@ -889,6 +1024,7 @@ td:first-child{font-weight:850;color:#ffb8c8;white-space:nowrap}
  }
  if(toggleReaderHub)toggleReaderHub.addEventListener('click',()=>setReaderHub(!readerHub.classList.contains('open')));
  if(closeReaderHub)closeReaderHub.addEventListener('click',()=>setReaderHub(false));
+ document.querySelectorAll('.reader-hub .sidebar a').forEach(link=>link.addEventListener('click',()=>setReaderHub(false)));
  document.addEventListener('pointerdown',event=>{
   if(readerHub&&!readerHub.contains(event.target))setReaderHub(false);
  });
@@ -1151,12 +1287,30 @@ td:first-child{font-weight:850;color:#ffb8c8;white-space:nowrap}
   refresh();
   document.getElementById('quiz').scrollIntoView({behavior:'smooth',block:'start'});
  });
+ // Editorial scroll reveals: reveal each content layer once, with restrained stagger.
+ const editorialGroups=[
+  '.section-card > .section-kicker,.section-card > h2,.section-card > .intro,.section-card > .grid,.section-card > .metric-grid,.section-card > .rule,.section-card > h3,.section-card > .table-wrap,.section-card > .bar-list,.section-card > .callout,.section-card > .number-list,.section-card > .info-card',
+  '.section-card .grid > .info-card,.section-card .grid > .metric-card,.section-card .metric-grid > .metric-card,.section-card .number-list > .step,.section-card .bar-list > .bar-item,.scrolly-steps > .scrolly-step',
+  '.quiz-shell > .section-kicker,.quiz-shell > h2,.quiz-shell > .intro,.quiz-shell > .quiz-top,.quiz-shell > #questions,.quiz-shell > .quiz-actions,.question'
+ ];
+ const editorialTargets=new Set();
+ editorialGroups.forEach(selector=>{
+  document.querySelectorAll(selector).forEach((el,index)=>{
+   if(el.classList.contains('reveal'))return;
+   editorialTargets.add(el);
+   el.style.setProperty('--editorial-delay',Math.min(index%4,3)*85+'ms');
+  });
+ });
+ editorialTargets.forEach(el=>el.classList.add('editorial-reveal'));
  const observer=new IntersectionObserver(entries=>{
   entries.forEach(entry=>{
-   if(entry.isIntersecting){entry.target.classList.add('visible');observer.unobserve(entry.target)}
+   if(entry.isIntersecting){
+    entry.target.classList.add('visible');
+    observer.unobserve(entry.target);
+   }
   });
- },{threshold:.08});
- document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+ },{threshold:.12,rootMargin:'0px 0px -7% 0px'});
+ document.querySelectorAll('.reveal,.editorial-reveal').forEach(el=>observer.observe(el));
  refresh();
 })();
 </script>
